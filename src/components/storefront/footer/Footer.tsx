@@ -66,36 +66,36 @@ export function Footer() {
    * This dictionary safely translates those strings into real React icons.
    */
   const iconMap: Record<string, React.ReactNode> = {
-    Sparkles: <Sparkles className="w-5 h-5 text-heritage-terracotta" />,
-    Truck: <Truck className="w-5 h-5 text-heritage-terracotta" />,
-    RotateCcw: <RotateCcw className="w-5 h-5 text-heritage-terracotta" />,
-    ShieldCheck: <ShieldCheck className="w-5 h-5 text-heritage-terracotta" />,
+    Sparkles: <Sparkles className="w-5 h-5 text-luxe-terracotta" />,
+    Truck: <Truck className="w-5 h-5 text-luxe-terracotta" />,
+    RotateCcw: <RotateCcw className="w-5 h-5 text-luxe-terracotta" />,
+    ShieldCheck: <ShieldCheck className="w-5 h-5 text-luxe-terracotta" />,
   };
 
   return (
-    <footer className="bg-heritage-sand/40 border-t border-[#E0D5C3] mt-24">
+    <footer className="bg-luxe-ivory/30 border-t border-luxe-gold/25 mt-20">
       {/*
        * ========================================================================
        * 1. TRUST SIGNALS STRIP:
        * 4-column responsive grid displaying core Indian D2C reassurances.
        * ========================================================================
        */}
-      <div className="border-b border-[#E0D5C3] bg-heritage-ivory/60">
+      <div className="border-b border-luxe-gold/20 bg-luxe-warmwhite">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Loop through the 4 trust signals defined in `siteConfig.trustSignals` */}
             {siteConfig.trustSignals.map((signal) => (
               <div key={signal.title} className="flex items-start space-x-4">
                 {/* Rounded Icon Bubble */}
-                <div className="p-3 bg-heritage-sand/60 rounded-full shrink-0">
-                  {iconMap[signal.icon] || <Sparkles className="w-5 h-5 text-heritage-terracotta" />}
+                <div className="p-3 bg-luxe-ivory rounded-full shrink-0 border border-luxe-gold/25">
+                  {iconMap[signal.icon] || <Sparkles className="w-5 h-5 text-luxe-terracotta" />}
                 </div>
                 {/* Title and Explanation */}
                 <div>
-                  <h4 className="font-serif text-sm font-semibold tracking-wide text-heritage-charcoal">
+                  <h4 className="font-serif text-sm font-semibold tracking-wide text-luxe-charcoal">
                     {signal.title}
                   </h4>
-                  <p className="text-xs text-heritage-earth/80 mt-1 leading-relaxed">
+                  <p className="text-xs text-luxe-grey mt-1 leading-relaxed font-light">
                     {signal.description}
                   </p>
                 </div>
@@ -115,21 +115,21 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
           {/* Column 1 & 2: Brand Identity & Direct Contact */}
           <div className="lg:col-span-2 space-y-4">
-            <h3 className="font-serif text-2xl tracking-[0.2em] uppercase font-normal text-heritage-charcoal">
+            <h3 className="font-serif text-2xl tracking-[0.24em] uppercase font-normal text-luxe-charcoal">
               Ragadhni
             </h3>
-            <p className="text-xs text-heritage-earth leading-relaxed max-w-sm">
+            <p className="text-xs text-luxe-grey leading-relaxed max-w-sm font-light">
               Ragadhni celebrates India’s rich textile legacy through honest craftsmanship,
               contemporary tailoring, and timeless casual elegance. Designed for everyday
               grace and festive grandeur.
             </p>
-            <div className="pt-2 space-y-1.5 text-xs text-heritage-charcoal">
+            <div className="pt-2 space-y-1.5 text-xs text-luxe-charcoal">
               <div className="flex items-center space-x-2">
-                <Phone className="w-3.5 h-3.5 text-heritage-terracotta" />
+                <Phone className="w-3.5 h-3.5 text-luxe-terracotta" />
                 <span className="font-medium">{siteConfig.contact.phone}</span>
               </div>
               <div className="flex items-center space-x-2">
-                <Mail className="w-3.5 h-3.5 text-heritage-terracotta" />
+                <Mail className="w-3.5 h-3.5 text-luxe-terracotta" />
                 <span>{siteConfig.contact.email}</span>
               </div>
             </div>
@@ -137,37 +137,37 @@ export function Footer() {
 
           {/* Column 3: Ethnic Wear Links */}
           <div className="space-y-3">
-            <h4 className="font-serif text-xs font-semibold uppercase tracking-[0.18em] text-heritage-terracotta">
+            <h4 className="font-serif text-xs font-semibold uppercase tracking-[0.2em] text-luxe-terracotta">
               Ethnic Wear
             </h4>
-            <ul className="space-y-2 text-xs text-heritage-charcoal/80">
+            <ul className="space-y-2 text-xs text-luxe-charcoal/80">
               <li>
-                <Link href="/women/sarees" className="hover:text-heritage-terracotta transition-colors">
+                <Link href="/women/sarees" className="hover:text-luxe-burgundy transition-colors">
                   Handcrafted Sarees
                 </Link>
               </li>
               <li>
-                <Link href="/women/kurtis" className="hover:text-heritage-terracotta transition-colors">
-                  Kurtis & Kurta Sets
+                <Link href="/women/kurtis" className="hover:text-luxe-burgundy transition-colors">
+                  Kurtis &amp; Kurta Sets
                 </Link>
               </li>
               <li>
-                <Link href="/women/salwar-suits" className="hover:text-heritage-terracotta transition-colors">
+                <Link href="/women/salwar-suits" className="hover:text-luxe-burgundy transition-colors">
                   Salwar Suits
                 </Link>
               </li>
               <li>
-                <Link href="/women/lehengas-anarkalis" className="hover:text-heritage-terracotta transition-colors">
-                  Lehengas & Anarkalis
+                <Link href="/women/lehengas-anarkalis" className="hover:text-luxe-burgundy transition-colors">
+                  Lehengas &amp; Anarkalis
                 </Link>
               </li>
               <li>
-                <Link href="/women/dupattas" className="hover:text-heritage-terracotta transition-colors">
+                <Link href="/women/dupattas" className="hover:text-luxe-burgundy transition-colors">
                   Handcrafted Dupattas
                 </Link>
               </li>
               <li>
-                <Link href="/collections/ethnic-wear" className="hover:text-heritage-terracotta transition-colors">
+                <Link href="/collections/ethnic-wear" className="hover:text-luxe-burgundy transition-colors">
                   View All Ethnic
                 </Link>
               </li>
@@ -176,37 +176,42 @@ export function Footer() {
 
           {/* Column 4: Traditional Casuals & Edits */}
           <div className="space-y-3">
-            <h4 className="font-serif text-xs font-semibold uppercase tracking-[0.18em] text-heritage-terracotta">
+            <h4 className="font-serif text-xs font-semibold uppercase tracking-[0.2em] text-luxe-terracotta">
               Traditional Casuals
             </h4>
-            <ul className="space-y-2 text-xs text-heritage-charcoal/80">
+            <ul className="space-y-2 text-xs text-luxe-charcoal/80">
               <li>
-                <Link href="/women/casual-dresses" className="hover:text-heritage-terracotta transition-colors">
+                <Link href="/women/casual-dresses" className="hover:text-luxe-burgundy transition-colors">
                   Ethnic Casual Dresses
                 </Link>
               </li>
               <li>
-                <Link href="/women/tops-tunics" className="hover:text-heritage-terracotta transition-colors">
-                  Handblock Tops & Tunics
+                <Link href="/women/tops-tunics" className="hover:text-luxe-burgundy transition-colors">
+                  Handblock Tops &amp; Tunics
                 </Link>
               </li>
               <li>
-                <Link href="/women/bottomwear" className="hover:text-heritage-terracotta transition-colors">
-                  Palazzos & Bottomwear
+                <Link href="/women/bottomwear" className="hover:text-luxe-burgundy transition-colors">
+                  Palazzos &amp; Bottomwear
                 </Link>
               </li>
               <li>
-                <Link href="/collections/casual-wear" className="hover:text-heritage-terracotta transition-colors">
+                <Link href="/women/accessories" className="hover:text-luxe-burgundy transition-colors">
+                  Jewellery &amp; Accessories
+                </Link>
+              </li>
+              <li>
+                <Link href="/collections/casual-wear" className="hover:text-luxe-burgundy transition-colors">
                   Everyday Handblocks
                 </Link>
               </li>
               <li>
-                <Link href="/collections/festive-wear" className="hover:text-heritage-terracotta transition-colors">
+                <Link href="/collections/festive-wear" className="hover:text-luxe-burgundy transition-colors">
                   Festive Celebrations
                 </Link>
               </li>
               <li>
-                <Link href="/collections/new-arrivals" className="hover:text-heritage-terracotta transition-colors">
+                <Link href="/collections/new-arrivals" className="hover:text-luxe-burgundy transition-colors">
                   New Arrivals
                 </Link>
               </li>
@@ -215,37 +220,37 @@ export function Footer() {
 
           {/* Column 5: Customer Care & Policy Links */}
           <div className="space-y-3">
-            <h4 className="font-serif text-xs font-semibold uppercase tracking-[0.18em] text-heritage-terracotta">
-              Help & Policies
+            <h4 className="font-serif text-xs font-semibold uppercase tracking-[0.2em] text-luxe-terracotta">
+              Help &amp; Policies
             </h4>
-            <ul className="space-y-2 text-xs text-heritage-charcoal/80">
+            <ul className="space-y-2 text-xs text-luxe-charcoal/80">
               <li>
-                <Link href="/track-order" className="hover:text-heritage-terracotta transition-colors">
+                <Link href="/track-order" className="hover:text-luxe-burgundy transition-colors">
                   Track Your Order
                 </Link>
               </li>
               <li>
-                <Link href="/policies/shipping" className="hover:text-heritage-terracotta transition-colors">
-                  Shipping & Delivery
+                <Link href="/policies/shipping" className="hover:text-luxe-burgundy transition-colors">
+                  Shipping &amp; Delivery
                 </Link>
               </li>
               <li>
-                <Link href="/policies/returns" className="hover:text-heritage-terracotta transition-colors">
-                  Returns & Exchanges
+                <Link href="/policies/returns" className="hover:text-luxe-burgundy transition-colors">
+                  Returns &amp; Exchanges
                 </Link>
               </li>
               <li>
-                <Link href="/size-guide" className="hover:text-heritage-terracotta transition-colors">
+                <Link href="/size-guide" className="hover:text-luxe-burgundy transition-colors">
                   Indian Size Guide
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-heritage-terracotta transition-colors">
+                <Link href="/about" className="hover:text-luxe-burgundy transition-colors">
                   Our Story
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-heritage-terracotta transition-colors">
+                <Link href="/contact" className="hover:text-luxe-burgundy transition-colors">
                   Contact Support
                 </Link>
               </li>
@@ -259,24 +264,24 @@ export function Footer() {
          * Switches conditionally between the input form and a success message.
          * ========================================================================
          */}
-        <div className="mt-14 pt-8 border-t border-[#E0D5C3] flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="mt-14 pt-8 border-t border-luxe-gold/25 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="w-full md:w-auto">
-            <h5 className="font-serif text-sm text-heritage-charcoal font-medium">
+            <h5 className="font-serif text-base text-luxe-charcoal font-normal">
               Join the Ragadhni Circle
             </h5>
-            <p className="text-xs text-heritage-earth mt-0.5">
+            <p className="text-xs text-luxe-grey mt-0.5 font-light">
               Receive private preview invites, festive lookbooks, and textile stories.
             </p>
           </div>
 
           {/*
            * Conditional Rendering:
-           * If `subscribed` is true -> Show green confirmation message
+           * If `subscribed` is true -> Show confirmation message
            * If `subscribed` is false -> Show email input form
            */}
           {subscribed ? (
-            <div className="flex items-center space-x-2 text-xs text-heritage-emerald bg-heritage-emerald/10 border border-heritage-emerald/30 px-4 py-2.5">
-              <Check className="w-4 h-4 text-heritage-emerald" />
+            <div className="flex items-center space-x-2 text-xs text-luxe-maroon bg-luxe-gold/20 border border-luxe-gold/40 px-4 py-2.5">
+              <Check className="w-4 h-4 text-luxe-maroon" />
               <span>You have joined the Ragadhni Circle.</span>
             </div>
           ) : (
@@ -287,11 +292,11 @@ export function Footer() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email address"
-                className="bg-heritage-ivory border border-[#D5C9B5] px-3 py-2 text-xs text-heritage-charcoal placeholder:text-heritage-earth/60 focus:outline-none focus:border-heritage-terracotta w-full"
+                className="bg-luxe-warmwhite border border-luxe-gold/40 px-3.5 py-2.5 text-xs text-luxe-charcoal placeholder:text-luxe-grey/60 focus:outline-none focus:border-luxe-burgundy w-full"
               />
               <button
                 type="submit"
-                className="bg-heritage-terracotta text-heritage-ivory px-4 py-2 text-xs uppercase tracking-wider font-medium hover:bg-heritage-rosewood transition-colors flex items-center shrink-0"
+                className="bg-luxe-burgundy text-luxe-warmwhite px-5 py-2.5 text-xs uppercase tracking-wider font-medium hover:bg-luxe-wine transition-colors flex items-center shrink-0"
               >
                 <span>Join</span>
                 <ArrowRight className="w-3.5 h-3.5 ml-1" />
@@ -306,14 +311,14 @@ export function Footer() {
        * 4. BOTTOM COPYRIGHT & INDIAN PAYMENT METHODS:
        * ========================================================================
        */}
-      <div className="bg-heritage-sand/60 py-5 border-t border-[#DDD1BE] text-center text-[11px] text-heritage-earth">
+      <div className="bg-luxe-ivory/50 py-5 border-t border-luxe-gold/20 text-center text-[11px] text-luxe-grey">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p>
             &copy; {new Date().getFullYear()} Ragadhni Lifestyle Private Limited. All rights reserved.
           </p>
           {/* Payment trust signals */}
-          <div className="flex items-center space-x-3 text-heritage-earth/80">
-            <span>UPI &bull; RuPay &bull; Netbanking &bull; Visa &bull; Mastercard &bull; COD</span>
+          <div className="flex items-center space-x-3 text-luxe-grey/90">
+            <span>UPI &bull; RuPay &bull; Netbanking &bull; Visa &bull; Mastercard &bull; Cash on Delivery</span>
           </div>
         </div>
       </div>

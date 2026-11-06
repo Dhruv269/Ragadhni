@@ -40,25 +40,22 @@ import { Footer } from "@/components/storefront/footer/Footer";
  * ==============================================================================
  * Next.js automatically downloads these fonts at build time, self-hosts them locally,
  * and sets `display: "swap"`.
- * WHY THIS IS GREAT:
- * 1. Zero layout shift (the page doesn't glitch while waiting for fonts to load).
- * 2. Faster load times because fonts are served from your own domain.
- * 3. Complete user privacy (no tracking requests sent to external Google servers).
+ * - Cormorant Garamond: Classical serif font for luxury editorial headlines
+ * - Plus Jakarta Sans: Cached modern geometric sans-serif fallback
+ * - Manrope: Loaded via globals.css @import for navigation, buttons, and UI
  */
 
-// Cormorant Garamond: Classical serif font for luxury editorial headlines
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-cormorant", // Injected as CSS variable `--font-cormorant`
+  variable: "--font-cormorant",
   display: "swap",
 });
 
-// Plus Jakarta Sans: Modern geometric sans-serif for UI labels, prices, and navigation
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-jakarta", // Injected as CSS variable `--font-jakarta`
+  variable: "--font-jakarta",
   display: "swap",
 });
 
@@ -118,7 +115,7 @@ export default function RootLayout({
        * `main className="flex-1"`: Expands to fill available space, ensuring the Footer
        * is pushed to the bottom of the screen even on short pages.
        */}
-      <body className="bg-heritage-ivory text-heritage-charcoal font-sans flex flex-col min-h-screen">
+      <body className="bg-luxe-warmwhite text-luxe-charcoal font-sans flex flex-col min-h-screen selection:bg-luxe-gold/30 selection:text-luxe-maroon">
         {/* Top promotional announcement bar */}
         <AnnouncementBar />
 

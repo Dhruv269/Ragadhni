@@ -434,4 +434,80 @@ export const mockProducts: Product[] = [
       { id: "var-010-free", sku: "RAG-DUP-CH-01", size: "Free Size", color: "Antique Gold Ochre", colorHex: "#C2A673", price: 1199, stockQuantity: 22 },
     ],
   },
+
+  // ----------------------------------------------------------------------------
+  // Product 11: Women's Kundan & Pearl Chandbali Earrings
+  // ----------------------------------------------------------------------------
+  {
+    id: "rag-011",
+    title: "Kundan & Freshwater Pearl Chandbali Earrings",
+    slug: "kundan-freshwater-pearl-chandbali-earrings",
+    description:
+      "Handcrafted 22k gold plated brass crescent earrings set with uncut Kundan stones, emerald meenakari reverse work, and cascading freshwater seed pearls.",
+    gender: "WOMEN",
+    category: "accessories",
+    categoryName: "Jewellery & Accessories",
+    fabric: "Gold Plated Brass & Kundan",
+    weave: "Handcrafted Filigree",
+    work: "Jadau Kundan & Meenakari",
+    fit: "Statement Crescent Earring",
+    washCare: "Store in airtight pouch away from moisture",
+    basePrice: 1499,
+    compareAtPrice: 2199,
+    isNewArrival: true,
+    isBestseller: true,
+    isFeatured: true,
+    rating: 4.9,
+    reviewCount: 42,
+    tags: ["Jewellery", "Kundan", "Earrings", "Festive", "Accessories"],
+    images: [
+      {
+        id: "img-011-a",
+        url: "https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&w=900&q=80",
+        altText: "Kundan & Freshwater Pearl Chandbali Earrings",
+        isPrimary: true,
+      },
+    ],
+    variants: [
+      { id: "var-011-free", sku: "RAG-JWL-KUN-01", size: "Free Size", color: "Muted Gold", colorHex: "#C3A16B", price: 1499, stockQuantity: 15 },
+    ],
+  },
+
+  // ----------------------------------------------------------------------------
+  // Product 12: Women's Zari Embroidered Raw Silk Potli Bag
+  // ----------------------------------------------------------------------------
+  {
+    id: "rag-012",
+    title: "Zari Embroidered Raw Silk Festive Potli Bag",
+    slug: "zari-embroidered-raw-silk-festive-potli-bag",
+    description:
+      "Lustrous raw silk drawstring bag embellished with antique gold zari embroidery, braided pearl handle, and handmade latkan tassels.",
+    gender: "WOMEN",
+    category: "accessories",
+    categoryName: "Jewellery & Accessories",
+    fabric: "Pure Raw Silk",
+    weave: "Textured Silk",
+    work: "Zari Threadwork & Latkan",
+    fit: "Drawstring Clutch Bag",
+    washCare: "Spot Clean with Dry Cloth Only",
+    basePrice: 1299,
+    compareAtPrice: 1799,
+    isNewArrival: false,
+    isBestseller: true,
+    isFeatured: true,
+    rating: 4.8,
+    reviewCount: 29,
+    tags: ["Potli", "Silk", "Accessories", "Festive", "Bags"],
+    images: [
+      {
+        id: "img-012-a",
+        url: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=900&q=80",
+        altText: "Zari Embroidered Raw Silk Festive Potli Bag",
+        isPrimary: true,
+      },
+    ],
+    variants: [
+      { id: "var-012-free", sku: "RAG-ACC-POT-01", size: "Free Size", color: "Royal Burgundy", colorHex: "#35131F", price: 1299, stockQuantity: 18 },
+    ],
+  },
 ];

@@ -33,9 +33,8 @@ export type Gender = "WOMEN";
 
 /**
  * ApparelCategory:
- * The complete list of women's clothing categories supported by the Ragadhni brand.
- * Using a union type prevents spelling mistakes when creating new products or category routes.
- * Accessories are strictly excluded.
+ * The complete list of women's clothing and accessory categories supported by the Ragadhni brand:
+ * Sarees, Kurtas & Suits, Lehengas, Ethnic Dresses, Dupattas, and Handcrafted Accessories.
  */
 export type ApparelCategory =
   | "kurtis"
@@ -45,7 +44,8 @@ export type ApparelCategory =
   | "casual-dresses"
   | "tops-tunics"
   | "bottomwear"
-  | "dupattas";
+  | "dupattas"
+  | "accessories";
 
 /**
  * CategoryInfo:

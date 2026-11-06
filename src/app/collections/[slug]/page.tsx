@@ -130,7 +130,8 @@ export default async function CollectionDetailPage({ params }: CollectionPagePro
         p.category === "lehengas-anarkalis" ||
         p.category === "salwar-suits" ||
         p.category === "kurtis" ||
-        p.category === "dupattas"
+        p.category === "dupattas" ||
+        p.category === "accessories"
     );
   }
 

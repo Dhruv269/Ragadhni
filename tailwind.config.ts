@@ -48,41 +48,56 @@ const config: Config = {
         foreground: "var(--foreground)",
 
         /*
+         * HERITAGE LUXE × INDIAN EDITORIAL PALETTE:
+         * Bespoke luxury palette reflecting Indian royal architectural aesthetics & contemporary fashion.
+         */
+        luxe: {
+          burgundy: "#35131F",          // Royal Burgundy (Primary brand identity)
+          wine: "#501E2B",              // Wine (Rich secondary dark tone)
+          maroon: "#211419",            // Dark Maroon (Deepest contrast)
+          ivory: "#EDE0CD",             // Antique Ivory (Warm supporting surface)
+          gold: "#C3A16B",              // Muted Gold (Architectural borders & accents)
+          terracotta: "#9A6B57",        // Terracotta (Earthy Indian clay accent)
+          warmwhite: "#FAF5ED",         // Warm White (Clean luminous background)
+          charcoal: "#292326",          // Charcoal (High-readability text)
+          grey: "#77706B",              // Muted Grey (Subtle secondary copy)
+        },
+
+        /*
          * RAGADHNI INDIAN HERITAGE COLOR PALETTE:
-         * A bespoke palette reflecting Indian royal heritage, handlooms, and natural dyes.
+         * Harmonized with Heritage Luxe tokens for full backward compatibility across components.
          */
         heritage: {
-          // Modern Royal Heritage Palette Tokens:
-          burgundy: "#641E2B",          // Deep contrast & brand identity
-          "warm-ivory": "#F7F1E7",      // Dominant editorial canvas background
-          "antique-gold": "#B69A62",    // Hairlines, badges & delicate accents
-          "antique-gold-light": "#CFBC93", // Shimmer & hover state
-          terracotta: "#B65C43",        // Warm clay accent
-          espresso: "#30231F",          // Deep readable typography & borders
-
-          // Existing Tokens (Consolidated & preserved for backward compatibility):
-          ivory: "#F7F1E7",             // Standardized to warm ivory
-          cream: "#F5EFEB",             // Soft panel fills
-          sand: "#EDE4D7",              // Muted dividers & borders
-          earth: "#57534E",             // Secondary text
-          charcoal: "#30231F",          // High-contrast espresso charcoal
+          burgundy: "#35131F",          // Royal Burgundy
+          wine: "#501E2B",              // Wine
+          "warm-ivory": "#FAF5ED",      // Warm White / Ivory
+          "antique-gold": "#C3A16B",    // Muted Gold
+          "antique-gold-light": "#DFC99E", // Light Muted Gold shimmer
+          terracotta: "#9A6B57",        // Terracotta
+          espresso: "#292326",          // Charcoal / Espresso
+          ivory: "#FAF5ED",             // Warm White
+          cream: "#EDE0CD",             // Antique Ivory
+          sand: "#EDE0CD",              // Antique Ivory
+          earth: "#77706B",             // Muted Grey
+          charcoal: "#292326",          // Charcoal
           emerald: "#1B4332",           // Royal festive emerald
-          gold: "#B69A62",              // Antique gold
-          "gold-light": "#E9DCB9",      // Pale gold highlight
-          rosewood: "#8B2B3C",          // Burgundy hover state
-          maroon: "#641E2B",            // Burgundy accent
+          gold: "#C3A16B",              // Muted Gold
+          "gold-light": "#EFE4CE",      // Pale gold highlight
+          rosewood: "#501E2B",          // Wine hover state
+          maroon: "#211419",            // Dark Maroon
         },
       },
 
       /*
        * TYPOGRAPHY SYSTEM:
-       * Defines which font family is used when you write `font-serif` or `font-sans` in your code.
+       * Cormorant Garamond for editorial serif headlines.
+       * Manrope for UI navigation, buttons, prices, and functional typography.
        */
       fontFamily: {
         // `font-serif`: Cormorant Garamond — Used for large editorial headlines and brand names
         serif: ["var(--font-cormorant)", "Georgia", "serif"],
-        // `font-sans`: Plus Jakarta Sans — Clean, modern font for interface labels, prices, and body text
-        sans: ["var(--font-jakarta)", "system-ui", "sans-serif"],
+        // `font-sans`: Manrope — Clean, contemporary geometric sans for interface, navigation, buttons, and prices
+        sans: ["Manrope", "var(--font-jakarta)", "system-ui", "sans-serif"],
       },
 
       /*

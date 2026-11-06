@@ -27,9 +27,7 @@ export const metadata: Metadata = {
 
 export default function WomenCollectionPage() {
   // Filter all products belonging to women's wear
-  const womenProducts = mockProducts.filter(
-    (p) => p.gender === "WOMEN" || p.gender === "UNISEX"
-  );
+  const womenProducts = mockProducts.filter((p) => p.gender === "WOMEN");
 
   return (
     <CategoryListingClient

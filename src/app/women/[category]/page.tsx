@@ -73,6 +73,11 @@ const categoryDetailsMap: Record<
     badge: "Handloom Accents",
     description: "Pure Chanderi silk dupattas with Gota Patti borders and hand-stitched tassel details.",
   },
+  accessories: {
+    title: "Handcrafted Jewellery & Accessories",
+    badge: "Artisanal Accents",
+    description: "Traditional kundan jewellery, embroidered potli bags, and handcrafted accessories to complete your ethnic ensemble.",
+  },
 };
 
 /**

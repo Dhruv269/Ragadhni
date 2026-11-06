@@ -26,6 +26,8 @@
  * - components: Holds complex multi-class component utilities.
  * - utilities: Injects single-purpose utility classes (e.g., `pt-4`, `flex`, `text-sm`).
  */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -35,11 +37,11 @@
  * Global design tokens accessible anywhere in CSS via `var(--variable-name)`.
  */
 :root {
-  /* Default page background: Warm Ivory (dominant editorial canvas) */
-  --background: #F7F1E7;
+  /* Default page background: Warm White (#FAF5ED) */
+  --background: #FAF5ED;
 
-  /* Default text color: Espresso (deep readable typography) */
-  --foreground: #30231F;
+  /* Default text color: Charcoal (#292326) */
+  --foreground: #292326;
 }
 
 /*
@@ -71,30 +73,27 @@
 
   /*
    * Global Body Defaults:
-   * Sets the default background, text color, and primary sans-serif font family.
+   * Sets the default background, text color, and primary sans-serif font family (Manrope).
    */
   body {
     background-color: var(--background);
     color: var(--foreground);
-    font-family: var(--font-jakarta), system-ui, sans-serif;
+    font-family: 'Manrope', var(--font-jakarta), system-ui, sans-serif;
     min-height: 100vh;
   }
 
   /*
    * Text Selection Highlight:
-   * When a customer highlights text with their mouse/cursor on Ragadhni,
-   * instead of default electric blue, the highlight appears in our warm
-   * signature Terracotta (#9E3D2B) with ivory text.
+   * Highlight appears in Royal Burgundy (#35131F) with Antique Ivory text.
    */
   ::selection {
-    background-color: #9E3D2B;
-    color: #FAF7F2;
+    background-color: #35131F;
+    color: #FAF5ED;
   }
 
   /*
    * Custom Slim Heritage Scrollbar:
-   * Replaces the bulky default operating system scrollbars with a minimalist,
-   * warm Khadi Sand colored slim track.
+   * Minimalist, Antique Ivory track with Muted Gold thumb.
    */
   ::-webkit-scrollbar {
     width: 6px;
@@ -102,18 +101,58 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: #FAF7F2;
+    background: #FAF5ED;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #D7CEBE;
+    background: #C3A16B;
     border-radius: 3px;
   }
 
-  /* Scrollbar thumb hover state turns Terracotta */
+  /* Scrollbar thumb hover state turns Royal Burgundy */
   ::-webkit-scrollbar-thumb:hover {
-    background: #9E3D2B;
+    background: #35131F;
   }
+}
+
+/*
+ * ==============================================================================
+ * 4. HERITAGE LUXE × INDIAN ROYAL ARCHITECTURAL ANIMATIONS & SHAPES
+ * ==============================================================================
+ */
+
+/* Indian Palace Jaali / Lattice Subtle Architectural Texture */
+.jaali-bg {
+  background-image: radial-gradient(rgba(195, 161, 107, 0.15) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Royal Architectural Arch Frame */
+.royal-arch-frame {
+  border-top-left-radius: 320px;
+  border-top-right-radius: 320px;
+}
+
+@media (max-width: 640px) {
+  .royal-arch-frame {
+    border-top-left-radius: 200px;
+    border-top-right-radius: 200px;
+  }
+}
+
+@keyframes archEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-arch-reveal {
+  animation: archEntrance 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /*

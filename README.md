@@ -121,6 +121,7 @@ The project is being developed in structured, incremental phases. Below is the v
   - `/women/tops-tunics`
   - `/women/bottomwear`
   - `/women/dupattas`
+  - `/women/accessories`
 - **Thematic Curated Collections (`/collections/[slug]`):** Cross-category seasonal drops:
   - `/collections/ethnic-wear`
   - `/collections/casual-wear`
@@ -264,7 +265,7 @@ Ragadhni/
 
 ## 8. Product Catalogue & Discovery System
 
-The catalog engine provides complete product discovery across 25 statically pre-rendered routes:
+The catalog engine provides complete product discovery across 28 statically pre-rendered routes:
 
 ### Implemented Catalog Routes
 
@@ -272,9 +273,9 @@ The catalog engine provides complete product discovery across 25 statically pre-
 | :--- | :--- | :--- |
 | `/` | Brand Homepage & Curations | 1 static page |
 | `/women` | Women's Master Catalog | 1 static page |
-| `/women/[category]` | Women's Subcategory PLPs | 8 dynamic paths (`kurtis`, `sarees`, `salwar-suits`, `lehengas-anarkalis`, `casual-dresses`, `tops-tunics`, `bottomwear`, `dupattas`) |
+| `/women/[category]` | Women's Subcategory PLPs | 9 dynamic paths (`kurtis`, `sarees`, `salwar-suits`, `lehengas-anarkalis`, `casual-dresses`, `tops-tunics`, `bottomwear`, `dupattas`, `accessories`) |
 | `/collections/[slug]` | Curated Thematic Drops | 5 dynamic paths (`ethnic-wear`, `casual-wear`, `new-arrivals`, `bestsellers`, `festive-wear`) |
-| `/product/[slug]` | Individual Product Detail Pages | 10 dynamic paths (1 for each sample garment) |
+| `/product/[slug]` | Individual Product Detail Pages | 12 dynamic paths (1 for each sample garment and accessory) |
 
 ### Faceted Filtering & Sorting Capabilities
 - **Fabric Filter:** Multi-select checkboxes filtering by handloom fabrics (Chanderi Silk, Organic Mulmul Cotton, Raw Tussar Silk, Handspun Khadi, Georgette, Handloom Cotton).

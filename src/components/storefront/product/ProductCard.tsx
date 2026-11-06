@@ -57,6 +57,15 @@ export function ProductCard({ product }: ProductCardProps) {
   // Tracks which size chip the shopper has clicked in the desktop quick-add overlay
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
 
+  // Extract unique colors available for this garment
+  const uniqueColors = Array.from(
+    new Map(
+      product.variants
+        .filter((v) => v.colorHex || v.color)
+        .map((v) => [v.colorHex || v.color, v])
+    ).values()
+  );
+
   // Primary cover photo URL (with fallback placeholder if an image is missing)
   const primaryImage = product.images[0]?.url || "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80";
 
@@ -71,22 +80,16 @@ export function ProductCard({ product }: ProductCardProps) {
 
   return (
     // Outer card container with hover group
-    <div className="group relative flex flex-col bg-heritage-ivory transition-all duration-300">
+    <div className="group relative flex flex-col bg-transparent transition-all duration-300">
       {/*
        * ========================================================================
        * 1. IMAGE CONTAINER (4:5 Ratio):
-       * `aspect-[4/5]`: Standard fashion editorial aspect ratio.
-       * Allows full drape of kurtas, sarees, and dupattas without awkward cropping.
+       * Standard fashion editorial aspect ratio.
        * ========================================================================
        */}
-      <div className="relative aspect-[4/5] w-full overflow-hidden bg-heritage-sand/30">
+      <div className="relative aspect-[4/5] w-full overflow-hidden bg-[#F2ECE3] border border-[#E8DEC\-B] border-opacity-40">
         {/* Link wrapping the photo so clicking anywhere opens the product page */}
         <Link href={`/product/${product.slug}`} className="block w-full h-full">
-          {/*
-           * Next.js <Image /> component:
-           * Automatically resizes, compresses, and generates WebP images for fast mobile loads.
-           * `group-hover:scale-105`: Image subtly expands by 5% when the mouse hovers over the card.
-           */}
           <Image
             src={primaryImage}
             alt={product.title}
@@ -97,62 +100,61 @@ export function ProductCard({ product }: ProductCardProps) {
         </Link>
 
         {/*
-         * TEXTILE & PROMOTION BADGES (Top-Left):
-         * Displays the fabric name (e.g. "Pure Chanderi Silk") and status badges.
+         * TEXTILE & STATUS BADGES (Top-Left):
+         * Clean minimal editorial chips with backdrop-blur.
          */}
-        <div className="absolute top-3 left-3 flex flex-col gap-1.5 z-10">
+        <div className="absolute top-2.5 left-2.5 flex flex-col gap-1 z-10">
           {product.fabric && (
-            <Badge variant="outline" className="shadow-xs backdrop-blur-xs">
+            <span className="inline-block bg-white/90 backdrop-blur-xs text-[9px] uppercase tracking-wider text-luxe-charcoal font-medium px-2 py-0.5 shadow-xs border border-black/5">
               {product.fabric}
-            </Badge>
+            </span>
           )}
           {product.isBestseller && (
-            <Badge variant="gold">Bestseller</Badge>
+            <span className="inline-block bg-luxe-gold/95 text-luxe-maroon text-[9px] uppercase tracking-wider font-semibold px-2 py-0.5 shadow-xs">
+              Bestseller
+            </span>
           )}
           {product.isNewArrival && !product.isBestseller && (
-            <Badge variant="terracotta">New Arrival</Badge>
+            <span className="inline-block bg-luxe-terracotta/95 text-white text-[9px] uppercase tracking-wider font-semibold px-2 py-0.5 shadow-xs">
+              New Arrival
+            </span>
           )}
         </div>
 
         {/*
          * WISHLIST TOGGLE BUTTON (Top-Right):
-         * Clicking toggles `isWishlisted` state.
-         * `e.preventDefault()` prevents the click from navigating to the product page.
          */}
         <button
           onClick={(e) => {
             e.preventDefault();
             setIsWishlisted(!isWishlisted);
           }}
-          className="absolute top-3 right-3 p-2 bg-heritage-ivory/90 backdrop-blur-xs rounded-full text-heritage-charcoal hover:text-heritage-terracotta hover:bg-heritage-ivory transition-all shadow-sm z-10"
+          className="absolute top-2.5 right-2.5 w-8 h-8 bg-white/90 backdrop-blur-xs rounded-full text-luxe-charcoal hover:text-luxe-burgundy hover:bg-white transition-all shadow-xs flex items-center justify-center z-10"
           aria-label={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
         >
           <Heart
             className={`w-4 h-4 transition-colors ${
               isWishlisted
-                ? "fill-heritage-terracotta text-heritage-terracotta"
-                : "text-heritage-charcoal stroke-[1.75]"
+                ? "fill-luxe-burgundy text-luxe-burgundy"
+                : "text-luxe-charcoal stroke-[1.75]"
             }`}
           />
         </button>
 
         {/*
-         * QUICK ADD OVERLAY (Slides up on desktop hover):
-         * `hidden lg:flex`: Hidden on mobile to prevent clutter; active on desktop screens.
-         * `translate-y-full group-hover:translate-y-0`: Glides smoothly up from the bottom.
+         * QUICK ADD OVERLAY (Slides up smoothly on desktop hover):
          */}
-        <div className="hidden lg:flex absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-heritage-charcoal/80 via-heritage-charcoal/40 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-300 flex-col items-center justify-end">
+        <div className="hidden lg:flex absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-luxe-maroon/90 via-luxe-maroon/60 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-300 flex-col items-center justify-end z-20">
           {/* Size Selection Chips */}
           <div className="flex items-center space-x-1.5 mb-2">
-            {/* Loop through available sizes (XS, S, M, L, XL) */}
             {product.variants.map((v) => (
               <button
                 key={v.id}
                 onClick={() => setSelectedSize(v.size)}
-                className={`text-[11px] px-2 py-1 font-medium transition-colors ${
+                className={`text-[10px] px-2 py-1 font-medium transition-colors ${
                   selectedSize === v.size
-                    ? "bg-heritage-terracotta text-heritage-ivory"
-                    : "bg-heritage-ivory/90 text-heritage-charcoal hover:bg-heritage-ivory"
+                    ? "bg-luxe-gold text-luxe-maroon font-semibold"
+                    : "bg-white/90 text-luxe-charcoal hover:bg-white"
                 }`}
               >
                 {v.size}
@@ -165,7 +167,7 @@ export function ProductCard({ product }: ProductCardProps) {
             onClick={() => {
               alert(`Added ${product.title} (${selectedSize || product.variants[0]?.size}) to your bag.`);
             }}
-            className="w-full bg-heritage-ivory text-heritage-charcoal hover:bg-heritage-terracotta hover:text-heritage-ivory text-xs uppercase tracking-widest py-2 font-medium flex items-center justify-center space-x-2 transition-colors"
+            className="w-full bg-luxe-gold hover:bg-[#D5B984] text-luxe-maroon text-[11px] uppercase tracking-widest py-2 font-semibold flex items-center justify-center space-x-1.5 transition-colors shadow-sm"
           >
             <ShoppingBag className="w-3.5 h-3.5" />
             <span>Quick Add</span>
@@ -178,31 +180,48 @@ export function ProductCard({ product }: ProductCardProps) {
        * 2. PRODUCT DETAILS & PRICING:
        * ========================================================================
        */}
-      <div className="pt-3.5 pb-2 flex flex-col flex-1">
-        {/* Category breadcrumb (e.g., "Lehengas & Anarkalis") */}
-        <span className="text-[10px] uppercase tracking-widest text-heritage-earth/80">
+      <div className="pt-3 pb-1 flex flex-col flex-1">
+        {/* Category breadcrumb */}
+        <span className="text-[10px] uppercase tracking-[0.2em] text-luxe-grey font-medium">
           {product.categoryName}
         </span>
 
-        {/* Product Title (Cormorant Garamond serif with single-line clamp) */}
-        <h3 className="font-serif text-sm tracking-wide text-heritage-charcoal font-normal line-clamp-1 mt-1 group-hover:text-heritage-terracotta transition-colors">
+        {/* Product Title */}
+        <h3 className="font-serif text-[15px] sm:text-base tracking-wide text-luxe-charcoal font-normal line-clamp-1 mt-0.5 group-hover:text-luxe-burgundy transition-colors">
           <Link href={`/product/${product.slug}`}>{product.title}</Link>
         </h3>
 
-        {/* Pricing & Discount Display */}
-        <div className="mt-2 flex items-baseline space-x-2">
+        {/* Available Color Swatch Dots */}
+        {uniqueColors.length > 0 && (
+          <div className="flex items-center space-x-1.5 mt-1.5" title={`${uniqueColors.length} color(s) available`}>
+            {uniqueColors.map((colorVariant) => (
+              <span
+                key={colorVariant.id}
+                className="w-2.5 h-2.5 rounded-full border border-black/10 shrink-0 shadow-2xs"
+                style={{ backgroundColor: colorVariant.colorHex || "#C3A16B" }}
+                title={colorVariant.color}
+              />
+            ))}
+            <span className="text-[10px] text-luxe-grey font-light truncate">
+              {uniqueColors[0]?.color}
+            </span>
+          </div>
+        )}
+
+        {/* Pricing Display */}
+        <div className="mt-1.5 flex items-baseline space-x-2">
           {/* Selling Price */}
-          <span className="font-sans text-sm font-semibold text-heritage-charcoal">
+          <span className="font-sans text-sm font-semibold text-luxe-charcoal">
             {formatPrice(product.basePrice)}
           </span>
 
-          {/* Crossed-out original price & discount percentage badge (if on sale) */}
+          {/* Crossed-out original price & discount */}
           {product.compareAtPrice && product.compareAtPrice > product.basePrice && (
             <>
-              <span className="font-sans text-xs text-heritage-earth/60 line-through">
+              <span className="font-sans text-xs text-luxe-grey/70 line-through font-normal">
                 {formatPrice(product.compareAtPrice)}
               </span>
-              <span className="text-[10px] font-semibold text-heritage-maroon uppercase tracking-wider">
+              <span className="text-[10px] font-semibold text-luxe-burgundy uppercase tracking-wider">
                 ({discountPercent}% OFF)
               </span>
             </>

@@ -73,40 +73,39 @@ export function Header() {
       {/*
        * STICKY HEADER:
        * `sticky top-0 z-40`: Pins the header to the top of the viewport.
-       * `backdrop-blur-md bg-heritage-warm-ivory/95`: Frosted glass effect in Warm Ivory
-       * with an Antique Gold hairline bottom separator.
+       * Frosted glass effect in Warm White with Muted Gold hairline bottom separator.
        */}
-      <header className="sticky top-0 z-40 bg-heritage-warm-ivory/95 backdrop-blur-md border-b border-heritage-antique-gold/25 transition-all">
+      <header className="sticky top-0 z-40 bg-luxe-warmwhite/95 backdrop-blur-md border-b border-luxe-gold/25 transition-all">
         {/* Main Brand Bar */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
+          <div className="flex items-center justify-between h-16 sm:h-[72px]">
             {/*
              * LEFT SECTION:
              * On mobile: Hamburger button to open mobile menu.
-             * On desktop: Quick curated shortcut links ("Ethnic | Casuals").
+             * On desktop: Subtle editorial line or quick collection link.
              */}
             <div className="flex items-center lg:w-1/4">
               <button
                 onClick={() => setMobileMenuOpen(true)}
-                className="lg:hidden p-2 -ml-2 text-heritage-espresso hover:text-heritage-burgundy transition-colors"
+                className="lg:hidden p-2 -ml-2 text-luxe-charcoal hover:text-luxe-burgundy transition-colors"
                 aria-label="Open mobile menu"
               >
-                <Menu className="w-6 h-6" />
+                <Menu className="w-5 h-5" />
               </button>
 
-              <div className="hidden lg:flex items-center space-x-6 text-xs uppercase tracking-widest text-heritage-espresso/70">
+              <div className="hidden lg:flex items-center space-x-3 text-[11px] uppercase tracking-[0.2em] text-luxe-grey font-medium">
                 <Link
                   href="/collections/ethnic-wear"
-                  className="hover:text-heritage-burgundy transition-colors"
+                  className="hover:text-luxe-burgundy transition-colors"
                 >
-                  Ethnic
+                  Heirlooms
                 </Link>
-                <span className="text-heritage-antique-gold/40">|</span>
+                <span className="text-luxe-gold/50">&bull;</span>
                 <Link
                   href="/collections/casual-wear"
-                  className="hover:text-heritage-burgundy transition-colors"
+                  className="hover:text-luxe-burgundy transition-colors"
                 >
-                  Casuals
+                  Daily Casuals
                 </Link>
               </div>
             </div>
@@ -114,15 +113,15 @@ export function Header() {
             {/*
              * CENTER SECTION:
              * Brand Wordmark & Heritage Subtitle.
-             * Uses Cormorant Garamond (`font-serif`) with wide tracking for an editorial look.
+             * Balanced Cormorant Garamond typography.
              */}
             <div className="text-center flex-1 lg:w-2/4">
-              <Link href="/" className="inline-block group">
-                <h1 className="font-serif text-2xl sm:text-3xl lg:text-4xl tracking-[0.28em] text-heritage-espresso uppercase font-normal transition-colors group-hover:text-heritage-burgundy">
+              <Link href="/" className="inline-block group py-1">
+                <h1 className="font-serif text-2xl sm:text-3xl lg:text-[32px] tracking-[0.24em] text-luxe-charcoal uppercase font-normal transition-colors group-hover:text-luxe-burgundy leading-none">
                   Ragadhni
                 </h1>
-                <p className="text-[9px] sm:text-[10px] tracking-[0.38em] uppercase text-heritage-espresso/70 mt-0.5 font-light">
-                  Indian Ethnic &bull; Traditional Casuals
+                <p className="text-[9px] sm:text-[10px] tracking-[0.34em] uppercase text-luxe-grey mt-1 font-medium">
+                  Women&apos;s Indian Ethnic
                 </p>
               </Link>
             </div>
@@ -131,11 +130,11 @@ export function Header() {
              * RIGHT SECTION:
              * Utility icons: Search, Customer Account, Wishlist, and Shopping Bag.
              */}
-            <div className="flex items-center justify-end space-x-4 sm:space-x-6 lg:w-1/4">
+            <div className="flex items-center justify-end space-x-3 sm:space-x-5 lg:w-1/4">
               {/* Search Toggle Button */}
               <button
                 onClick={() => setSearchOpen(!searchOpen)}
-                className="p-1.5 text-heritage-espresso hover:text-heritage-burgundy transition-colors"
+                className="p-1.5 text-luxe-charcoal hover:text-luxe-burgundy transition-colors"
                 aria-label="Search collection"
               >
                 <Search className="w-5 h-5 stroke-[1.75]" />
@@ -144,7 +143,7 @@ export function Header() {
               {/* Customer Account Icon (hidden on small mobile screens to save space) */}
               <Link
                 href="/account"
-                className="hidden sm:block p-1.5 text-heritage-espresso hover:text-heritage-burgundy transition-colors"
+                className="hidden sm:block p-1.5 text-luxe-charcoal hover:text-luxe-burgundy transition-colors"
                 aria-label="Customer account"
               >
                 <User className="w-5 h-5 stroke-[1.75]" />
@@ -153,26 +152,26 @@ export function Header() {
               {/* Wishlist Link with Live Counter Badge */}
               <Link
                 href="/wishlist"
-                className="relative p-1.5 text-heritage-espresso hover:text-heritage-burgundy transition-colors"
+                className="relative p-1.5 text-luxe-charcoal hover:text-luxe-burgundy transition-colors"
                 aria-label="Wishlist"
               >
                 <Heart className="w-5 h-5 stroke-[1.75]" />
                 {wishlistCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-heritage-antique-gold/20 text-heritage-espresso text-[10px] font-semibold w-4 h-4 rounded-full flex items-center justify-center border border-heritage-antique-gold/40">
+                  <span className="absolute -top-1 -right-1 bg-luxe-ivory text-luxe-burgundy text-[9px] font-semibold w-4 h-4 rounded-full flex items-center justify-center border border-luxe-gold/50 shadow-2xs">
                     {wishlistCount}
                   </span>
                 )}
               </Link>
 
-              {/* Shopping Bag Link with Live Burgundy Counter Badge */}
+              {/* Shopping Bag Link with Live Counter Badge */}
               <Link
                 href="/cart"
-                className="relative p-1.5 text-heritage-espresso hover:text-heritage-burgundy transition-colors"
+                className="relative p-1.5 text-luxe-charcoal hover:text-luxe-burgundy transition-colors"
                 aria-label="Shopping bag"
               >
                 <ShoppingBag className="w-5 h-5 stroke-[1.75]" />
                 {cartCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-heritage-burgundy text-heritage-warm-ivory text-[10px] font-semibold w-4 h-4 rounded-full flex items-center justify-center shadow-xs">
+                  <span className="absolute -top-1 -right-1 bg-luxe-burgundy text-luxe-warmwhite text-[9px] font-semibold w-4 h-4 rounded-full flex items-center justify-center shadow-xs">
                     {cartCount}
                   </span>
                 )}
@@ -183,12 +182,10 @@ export function Header() {
 
         {/*
          * DESKTOP PRIMARY NAVIGATION BAR (Hidden on mobile via `hidden lg:block`):
-         * Displays horizontal categories. Hovering over items with subcategories
-         * triggers `setActiveMegaMenu(item.label)` to show the floating mega-menu.
          */}
-        <nav className="hidden lg:block border-t border-heritage-antique-gold/20 bg-heritage-warm-ivory/80">
+        <nav className="hidden lg:block border-t border-luxe-gold/20 bg-luxe-warmwhite/80">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <ul className="flex items-center justify-center space-x-8 text-xs font-medium uppercase tracking-[0.18em] py-3.5">
+            <ul className="flex items-center justify-center space-x-8 text-xs font-medium uppercase tracking-[0.16em] py-2.5">
               {siteConfig.navItems.map((item) => {
                 const hasChildren = item.children && item.children.length > 0;
 
@@ -196,33 +193,28 @@ export function Header() {
                   <li
                     key={item.label}
                     className="relative group"
-                    // On mouse enter, show the mega-menu; on mouse leave, hide it
                     onMouseEnter={() => hasChildren && setActiveMegaMenu(item.label)}
                     onMouseLeave={() => setActiveMegaMenu(null)}
                   >
                     <Link
                       href={item.href}
-                      className="inline-flex items-center space-x-1.5 py-1 text-heritage-espresso hover:text-heritage-burgundy transition-colors"
+                      className="inline-flex items-center space-x-1.5 py-1 text-luxe-charcoal hover:text-luxe-burgundy transition-colors"
                     >
                       <span>{item.label}</span>
                       {item.badge && (
-                        <Badge variant="gold" className="ml-1 text-[9px] py-0 px-1.5">
+                        <span className="ml-1 text-[9px] bg-luxe-gold/20 text-luxe-maroon border border-luxe-gold/40 px-1.5 py-0.2 rounded-xs font-semibold">
                           {item.badge}
-                        </Badge>
+                        </span>
                       )}
                     </Link>
 
-                    {/*
-                     * FLOATING MEGA-MENU DROPDOWN:
-                     * Appears directly below the hovered menu item.
-                     * Formatted as a 2-column grid showing sub-groups (e.g. Ethnic vs Casual).
-                     */}
+                    {/* FLOATING MEGA-MENU DROPDOWN */}
                     {hasChildren && activeMegaMenu === item.label && (
-                      <div className="absolute top-full left-1/2 -translate-x-1/2 w-[540px] bg-heritage-warm-ivory border border-heritage-antique-gold/30 shadow-2xl p-6 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+                      <div className="absolute top-full left-1/2 -translate-x-1/2 w-[560px] bg-luxe-warmwhite border border-luxe-gold/30 shadow-2xl p-6 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
                         <div className="grid grid-cols-2 gap-8">
                           {item.children?.map((group) => (
                             <div key={group.title} className="space-y-3">
-                              <h3 className="font-serif text-sm tracking-widest text-heritage-burgundy border-b border-heritage-antique-gold/25 pb-2 font-normal uppercase">
+                              <h3 className="font-serif text-sm tracking-widest text-luxe-burgundy border-b border-luxe-gold/25 pb-2 font-normal uppercase">
                                 {group.title}
                               </h3>
                               <ul className="space-y-2">
@@ -230,13 +222,13 @@ export function Header() {
                                   <li key={subItem.label}>
                                     <Link
                                       href={subItem.href}
-                                      className="flex items-center justify-between text-xs text-heritage-espresso hover:text-heritage-burgundy normal-case tracking-normal transition-colors py-0.5"
+                                      className="flex items-center justify-between text-xs text-luxe-charcoal hover:text-luxe-burgundy normal-case tracking-normal transition-colors py-0.5"
                                     >
                                       <span>{subItem.label}</span>
                                       {subItem.badge && (
-                                        <Badge variant="gold" className="text-[9px] py-0 px-1">
+                                        <span className="text-[9px] bg-luxe-gold/20 text-luxe-maroon border border-luxe-gold/30 px-1 py-0.2 font-medium">
                                           {subItem.badge}
-                                        </Badge>
+                                        </span>
                                       )}
                                     </Link>
                                   </li>
@@ -283,7 +275,7 @@ export function Header() {
               </form>
 
               {/* Popular Indian Fashion Suggestions */}
-              <div className="mt-2.5 flex items-center space-x-2 text-xs text-heritage-espresso/70">
+              <div className="mt-2.5 flex flex-wrap items-center gap-2 text-xs text-heritage-espresso/70">
                 <span className="font-medium text-heritage-espresso">Popular:</span>
                 <Link
                   href="/search?q=Chanderi+Kurti"
@@ -293,10 +285,10 @@ export function Header() {
                 </Link>
                 <span>&bull;</span>
                 <Link
-                  href="/search?q=Cotton+Saree"
+                  href="/search?q=Pure+Silk+Saree"
                   className="hover:text-heritage-burgundy underline underline-offset-2"
                 >
-                  Cotton Saree
+                  Silk Saree
                 </Link>
                 <span>&bull;</span>
                 <Link
@@ -304,6 +296,20 @@ export function Header() {
                   className="hover:text-heritage-burgundy underline underline-offset-2"
                 >
                   Anarkali Suit
+                </Link>
+                <span>&bull;</span>
+                <Link
+                  href="/search?q=Banarasi+Lehenga"
+                  className="hover:text-heritage-burgundy underline underline-offset-2"
+                >
+                  Banarasi Lehenga
+                </Link>
+                <span>&bull;</span>
+                <Link
+                  href="/search?q=Kundan+Jewellery"
+                  className="hover:text-heritage-burgundy underline underline-offset-2"
+                >
+                  Kundan Jewellery
                 </Link>
               </div>
             </div>

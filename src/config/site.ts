@@ -58,82 +58,72 @@ export const siteConfig = {
    * Adding or editing a string here instantly updates the banner.
    */
   announcements: [
-    "Complimentary Shipping on all orders above ₹1,499 across India",
-    "Discover the Festive Handloom Edit — Handcrafted Silhouettes in Pure Silk & Chanderi",
-    "COD Available across 25,000+ Indian Pincodes with Instant Order Tracking",
+    "Complimentary Express Shipping on all orders above ₹1,499 across India",
+    "The Royal Heritage Edit — Handcrafted Sarees, Anarkalis & Festive Silk Ensembles",
+    "COD Available across 25,000+ Indian Pincodes with Instant Doorstep Tracking",
   ],
 
   /*
    * Primary navigation hierarchy:
    * Used by both the desktop header (`Header.tsx`) and the mobile slide-out drawer (`MobileDrawer.tsx`).
-   * Structured exclusively for women's Indian ethnic and traditional casual collections.
+   * Structured exclusively for women's Indian ethnic wear, traditional casuals, and handcrafted accessories.
    */
   navItems: [
     {
-      label: "Ethnic Wear",
+      label: "Home",
+      href: "/",
+    },
+    {
+      label: "Shop",
+      href: "/women",
+      children: [
+        {
+          title: "Women's Silhouettes",
+          items: [
+            { label: "Handcrafted Sarees", href: "/women/sarees", badge: "Heirloom" },
+            { label: "Kurtas & Suits", href: "/women/kurtis", badge: "Popular" },
+            { label: "Festive Lehengas", href: "/women/lehengas-anarkalis", badge: "Festive" },
+            { label: "Ethnic Dresses", href: "/women/casual-dresses" },
+            { label: "Artisanal Dupattas", href: "/women/dupattas" },
+            { label: "Jewellery & Accessories", href: "/women/accessories", badge: "New" },
+          ],
+        },
+        {
+          title: "Artisan Crafts & Edits",
+          items: [
+            { label: "Pure Chanderi Silk", href: "/collections/ethnic-wear" },
+            { label: "Organic Mulmul Cotton", href: "/collections/casual-wear" },
+            { label: "Salwar Suits & Sets", href: "/women/salwar-suits" },
+            { label: "Tops & Tunics", href: "/women/tops-tunics" },
+            { label: "Palazzos & Bottomwear", href: "/women/bottomwear" },
+            { label: "Explore All Women's", href: "/women" },
+          ],
+        },
+      ],
+    },
+    {
+      label: "Collections",
       href: "/collections/ethnic-wear",
       children: [
         {
-          title: "Traditional Heirlooms",
+          title: "Occasion Edits",
           items: [
-            { label: "Handcrafted Sarees", href: "/women/sarees", badge: "Trending" },
-            { label: "Lehengas & Anarkalis", href: "/women/lehengas-anarkalis", badge: "Festive" },
-            { label: "Kurtis & Kurta Sets", href: "/women/kurtis" },
-            { label: "Salwar Suits", href: "/women/salwar-suits" },
-          ],
-        },
-        {
-          title: "Celebration Edits",
-          items: [
-            { label: "Pure Chanderi Silk", href: "/women/sarees" },
-            { label: "Banarasi Brocade", href: "/women/lehengas-anarkalis" },
-            { label: "Handcrafted Dupattas", href: "/women/dupattas" },
-            { label: "All Ethnic Wear", href: "/collections/ethnic-wear" },
+            { label: "Everyday Elegance", href: "/collections/casual-wear" },
+            { label: "Festive Edit", href: "/collections/festive-wear", badge: "Celebration" },
+            { label: "Traditional Classics", href: "/collections/ethnic-wear" },
+            { label: "Contemporary Ethnic", href: "/collections/new-arrivals", badge: "Fresh" },
+            { label: "Wedding Guest Edit", href: "/collections/bestsellers" },
           ],
         },
       ],
     },
     {
-      label: "Traditional Casuals",
-      href: "/collections/casual-wear",
-      children: [
-        {
-          title: "Everyday Grace",
-          items: [
-            { label: "Ethnic Casual Dresses", href: "/women/casual-dresses", badge: "New" },
-            { label: "Handblock Tops & Tunics", href: "/women/tops-tunics" },
-            { label: "Palazzos & Trousers", href: "/women/bottomwear" },
-            { label: "Organic Mulmul Sets", href: "/women/kurtis" },
-          ],
-        },
-        {
-          title: "Textile Crafts",
-          items: [
-            { label: "Bagru & Ajrakh Prints", href: "/women/casual-dresses" },
-            { label: "Handspun Khadi", href: "/women/tops-tunics" },
-            { label: "Pure Cotton Mulmul", href: "/women/kurtis" },
-            { label: "All Casual Wear", href: "/collections/casual-wear" },
-          ],
-        },
-      ],
+      label: "Our Story",
+      href: "/about",
     },
     {
-      label: "All Women's",
-      href: "/women",
-    },
-    {
-      label: "New Arrivals",
-      href: "/collections/new-arrivals",
-      badge: "Fresh",
-    },
-    {
-      label: "Festive Edit",
-      href: "/collections/festive-wear",
-      badge: "Celebration",
-    },
-    {
-      label: "Bestsellers",
-      href: "/collections/bestsellers",
+      label: "Contact",
+      href: "/contact",
     },
   ] as NavItem[],
 
