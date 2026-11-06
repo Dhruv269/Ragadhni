@@ -30,7 +30,7 @@
 
 ## 1. About Ragadhni
 
-**Ragadhni** is an authentic Indian clothing brand specializing in handcrafted ethnic wear and traditional casual apparel for women and men. Rooted in traditional Indian craftsmanship, Ragadhni eliminates distributor markups by partnering directly with artisan weaving clusters across Madhya Pradesh, Rajasthan, and Bengal to offer premium handloom textiles at accessible, honest prices.
+**Ragadhni** is an authentic Indian clothing brand specializing in handcrafted ethnic wear and traditional casual apparel exclusively for women. Rooted in traditional Indian craftsmanship, Ragadhni eliminates distributor markups by partnering directly with artisan weaving clusters across Madhya Pradesh, Rajasthan, and Bengal to offer premium handloom textiles at accessible, honest prices.
 
 ### Supported Product Categories
 
@@ -43,14 +43,6 @@
 - **Tops and Tunics:** Contemporary short kurtis and tunics for daily wear.
 - **Bottomwear:** 100% handloom cotton pleated palazzos and straight trousers.
 - **Dupattas & Stoles:** Pure Chanderi silk dupattas with Gota Patti borders and tassels.
-
-#### Men's Collection
-- **Kurtas and Kurta Sets:** Mandarin-collar festive kurtas in raw textured Tussar silk blends.
-- **Casual Handloom Shirts:** 100% handspun Khadi cotton shirts with natural coconut shell buttons.
-- **Traditional Casual Wear:** Artisanal Indigo short kurtas for everyday comfort.
-- **Festive Wear:** Heirloom woven garments for weddings, celebrations, and festive occasions.
-- **Sherwanis & Nehru Jackets:** Structured sleeveless waistcoats woven with Jamawar paisley brocades.
-- **Ethnic Bottomwear:** Traditional cotton churidars and ready-to-wear pleated dhoti pants.
 
 ---
 
@@ -110,7 +102,7 @@ The project is being developed in structured, incremental phases. Below is the v
 - **Persistent Root Layout:** Master frame in `src/app/layout.tsx` hosting self-hosted fonts, global SEO metadata, announcement bar, header, and footer.
 - **Cycling Announcement Bar:** Client component rotating through key purchasing incentives (free shipping above ₹1,499, festive edits, verified COD) every 5 seconds with manual arrow overrides.
 - **Brand Navigation Header:** Sticky frosted-glass header featuring the letter-spaced wordmark ("RAGADHNI"), expandable search drawer with popular keyword suggestions, and live action counters.
-- **Mobile Navigation Drawer:** Slide-out drawer with accordion navigation for Women's and Men's subcategories, account links, and customer support contact details.
+- **Mobile Navigation Drawer:** Slide-out drawer with accordion navigation for Women's ethnic and traditional casual subcategories, account links, and customer support contact details.
 - **Trust Pillars & Footer:** 4 trust signals (*Authentic Indian Craft*, *Free Express Shipping*, *7-Day Easy Exchange*, *100% Secure Checkout*), brand story, sitemap, interactive newsletter subscription, and payment badges (UPI, RuPay, Netbanking, COD).
 - **Reusable UI Primitives:** Headless, accessible components: `Button` (6 variants), `Badge` (textile, gold, terracotta, discount), and `Container` (responsive layout wrapper).
 - **Product Card (`ProductCard.tsx`):** 4:5 vertical portrait ratio, image hover zoom, textile badge overlays, interactive wishlist toggle, hover quick-add size selector, and INR currency formatting.
@@ -129,14 +121,6 @@ The project is being developed in structured, incremental phases. Below is the v
   - `/women/tops-tunics`
   - `/women/bottomwear`
   - `/women/dupattas`
-- **Men's Master Catalog (`/men`):** Full catalog listing of all men's garments with real-time filtering and sorting.
-- **Men's Subcategory Pages (`/men/[category]`):** Dynamic, statically pre-rendered routes for 6 specific categories:
-  - `/men/kurtas`
-  - `/men/casual-shirts`
-  - `/men/traditional-casual`
-  - `/men/festive-wear`
-  - `/men/sherwanis`
-  - `/men/bottomwear`
 - **Thematic Curated Collections (`/collections/[slug]`):** Cross-category seasonal drops:
   - `/collections/ethnic-wear`
   - `/collections/casual-wear`
@@ -208,10 +192,6 @@ Ragadhni/
     │   ├── collections/
     │   │   └── [slug]/
     │   │       └── page.tsx          # Curated thematic drops (ethnic-wear, casual-wear, etc.)
-    │   ├── men/
-    │   │   ├── page.tsx              # Men's master catalog
-    │   │   └── [category]/
-    │   │       └── page.tsx          # Men's subcategories (kurtas, casual-shirts, sherwanis)
     │   ├── women/
     │   │   ├── page.tsx              # Women's master catalog
     │   │   └── [category]/
@@ -260,7 +240,7 @@ Ragadhni/
 - Pinned to the top of the viewport with a frosted glass backdrop (`backdrop-blur-md`).
 - Letter-spaced serif brand wordmark ("RAGADHNI").
 - Desktop mega-menu revealing two-column subcategories (Ethnic vs. Traditional Casuals) on hover.
-- Expandable search drawer with autofocus input and clickable popular Indian ethnic keywords ("Chanderi Kurti", "Cotton Saree", "Nehru Jacket").
+- Expandable search drawer with autofocus input and clickable popular Indian ethnic keywords ("Chanderi Kurti", "Cotton Saree", "Anarkali Suit").
 - Live counter badges for Customer Wishlist and Shopping Bag.
 
 ### Announcement Ticker (`AnnouncementBar.tsx`)
@@ -270,13 +250,13 @@ Ragadhni/
 
 ### Mobile Navigation Drawer (`MobileDrawer.tsx`)
 - Slide-out navigation drawer optimized for thumb-reach ergonomics.
-- Collapsible accordions for Women's and Men's clothing categories.
+- Collapsible accordions for Women's ethnic and traditional casual clothing categories.
 - Direct links to My Account, Wishlist, and Shopping Bag with live counters.
 - Dedicated customer care card with direct phone and WhatsApp support details.
 
 ### Reassurance Footer (`Footer.tsx`)
 - 4-column trust strip emphasizing authentic handlooms, free shipping above ₹1,499, 7-day exchanges, and secure payments.
-- 5-column sitemap covering brand philosophy, women's apparel, men's apparel, customer help, and legal policies.
+- 5-column sitemap covering brand philosophy, ethnic wear, traditional casuals, customer help, and legal policies.
 - Interactive newsletter subscription with instant confirmation state.
 - Supported Indian payment badges: UPI, RuPay, Netbanking, Visa, Mastercard, and Cash on Delivery.
 
@@ -284,7 +264,7 @@ Ragadhni/
 
 ## 8. Product Catalogue & Discovery System
 
-The catalog engine provides complete product discovery across 35 statically pre-rendered routes:
+The catalog engine provides complete product discovery across 25 statically pre-rendered routes:
 
 ### Implemented Catalog Routes
 
@@ -293,8 +273,6 @@ The catalog engine provides complete product discovery across 35 statically pre-
 | `/` | Brand Homepage & Curations | 1 static page |
 | `/women` | Women's Master Catalog | 1 static page |
 | `/women/[category]` | Women's Subcategory PLPs | 8 dynamic paths (`kurtis`, `sarees`, `salwar-suits`, `lehengas-anarkalis`, `casual-dresses`, `tops-tunics`, `bottomwear`, `dupattas`) |
-| `/men` | Men's Master Catalog | 1 static page |
-| `/men/[category]` | Men's Subcategory PLPs | 6 dynamic paths (`kurtas`, `casual-shirts`, `traditional-casual`, `festive-wear`, `sherwanis`, `bottomwear`) |
 | `/collections/[slug]` | Curated Thematic Drops | 5 dynamic paths (`ethnic-wear`, `casual-wear`, `new-arrivals`, `bestsellers`, `festive-wear`) |
 | `/product/[slug]` | Individual Product Detail Pages | 10 dynamic paths (1 for each sample garment) |
 
@@ -321,7 +299,7 @@ Every garment features an editorial Product Detail Page (`/product/[slug]`):
 3. **Price & Discount Engine:** Prominent INR price with crossed-out compare price and calculated discount percentage badge.
 4. **Color Swatch Selector:** Visual color dots with selected shade label.
 5. **Interactive Size Selector:** Size chips with low-stock alerts (*"Hurry! Only 3 left in size S"*).
-6. **Indian Size Guide Modal:** Interactive popup showing Bust/Chest, Waist, Hip, Collar, and Length with an Inches/Centimeters toggle and tailoring ease guidance.
+6. **Indian Ethnic Size Guide Modal:** Interactive popup showing Bust, Waist, Hip, and Kurta/Dress Length with an Inches/Centimeters toggle and tailoring ease guidance.
 7. **Postal PIN Code Checker:** Validates 6-digit Indian PIN codes, calculates dynamic delivery dates (3-5 days), and confirms COD availability.
 8. **Specifications Accordions:** Three structured drawers:
    - *Fabric & Craftsmanship Details* (weave type, embroidery work, fit cut).
@@ -387,7 +365,7 @@ erDiagram
 
 1. **User:** Customers, warehouse staff, and store administrators with Role-Based Access Control (`Role: CUSTOMER | STAFF | ADMIN`).
 2. **Address:** Indian delivery addresses storing recipient name, phone, street address, landmark, city, state, and 6-digit postal PIN code.
-3. **Category:** High-level apparel categories (`Gender: WOMEN | MEN | UNISEX`) with display ordering.
+3. **Category:** High-level apparel categories (`Gender: WOMEN`) with display ordering.
 4. **Collection:** Curated thematic drops (e.g., "The Royal Chanderi Edit").
 5. **Product:** Core garment record holding title, slug, fabric composition, weave technique, embroidery work, fit cut, wash care, and base price.
 6. **ProductVariant:** Specific size (`XS` to `XXL`), color, SKU code, and exact inventory stock quantity to prevent overselling.
@@ -486,14 +464,12 @@ Route (app)                                                Size  First Load JS
 ┌ ○ /                                                   2.06 kB         123 kB
 ├ ○ /_not-found                                           992 B         104 kB
 ├ ● /collections/[slug]                                   127 B         127 kB (5 paths)
-├ ○ /men                                                  130 B         127 kB
-├ ● /men/[category]                                       130 B         127 kB (6 paths)
 ├ ● /product/[slug]                                     5.69 kB         129 kB (10 paths)
 ├ ○ /women                                                130 B         127 kB
 └ ● /women/[category]                                     130 B         127 kB (8 paths)
 + First Load JS shared by all                            103 kB
 ○ (Static) prerendered as static content
-● (SSG)    prerendered as static HTML (35/35 pages generated successfully)
+● (SSG)    prerendered as static HTML (25/25 pages generated successfully)
 ```
 
 ---

@@ -11,14 +11,14 @@
  * 3. Product count banner.
  *
  * WHY IT EXISTS:
- * Keeping the catalog grid modular ensures that all collection pages (`/women`, `/men`,
+ * Keeping the catalog grid modular ensures that all collection pages (`/women`,
  * `/collections/ethnic-wear`, etc.) look completely unified and handle edge cases
  * (like zero search results) consistently.
  *
  * HOW IT CONNECTS TO THE REST OF THE PROJECT:
  * - Accepts an array of `products: Product[]` and an optional `onResetFilters` callback.
  * - Renders `<ProductCard />` for each clothing item.
- * - Used inside `/women/page.tsx`, `/men/page.tsx`, and `/collections/[slug]/page.tsx`.
+ * - Used inside `/women/page.tsx`, `/women/[category]/page.tsx`, and `/collections/[slug]/page.tsx`.
  */
 
 "use client";

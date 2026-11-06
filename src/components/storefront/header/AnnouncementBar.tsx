@@ -59,7 +59,12 @@ export function AnnouncementBar() {
   }, [announcements.length]);
 
   return (
-    <div className="bg-heritage-charcoal text-heritage-ivory text-xs tracking-wider py-2 px-4 select-none relative z-50">
+    /*
+     * Modern Royal Heritage Announcement Bar:
+     * Styled in Deep Burgundy (#641E2B) with an Antique Gold bottom hairline border.
+     * Communicates key incentives (Free Shipping, COD) with high contrast and brand authority.
+     */
+    <div className="bg-heritage-burgundy text-heritage-warm-ivory text-xs tracking-widest py-2.5 px-4 select-none relative z-50 border-b border-heritage-antique-gold/30">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/*
          * Previous Announcement Button:
@@ -69,16 +74,18 @@ export function AnnouncementBar() {
           onClick={() =>
             setCurrentIndex((prev) => (prev - 1 + announcements.length) % announcements.length)
           }
-          className="text-heritage-sand/60 hover:text-heritage-ivory transition-colors p-1"
+          className="text-heritage-antique-gold-light/70 hover:text-heritage-warm-ivory transition-colors p-1"
           aria-label="Previous announcement"
         >
           <ChevronLeft className="w-3.5 h-3.5" />
         </button>
 
-        {/* The Currently Active Announcement Text */}
+        {/* The Currently Active Announcement Text with Antique Gold bullet ornaments */}
         <div className="overflow-hidden text-center flex-1 px-4">
-          <p className="transition-opacity duration-300 font-normal">
-            {announcements[currentIndex]}
+          <p className="transition-opacity duration-300 font-normal flex items-center justify-center space-x-2 text-[11px] sm:text-xs">
+            <span className="text-heritage-antique-gold-light text-[10px] hidden sm:inline">&bull;</span>
+            <span className="tracking-widest uppercase">{announcements[currentIndex]}</span>
+            <span className="text-heritage-antique-gold-light text-[10px] hidden sm:inline">&bull;</span>
           </p>
         </div>
 
@@ -87,7 +94,7 @@ export function AnnouncementBar() {
           onClick={() =>
             setCurrentIndex((prev) => (prev + 1) % announcements.length)
           }
-          className="text-heritage-sand/60 hover:text-heritage-ivory transition-colors p-1"
+          className="text-heritage-antique-gold-light/70 hover:text-heritage-warm-ivory transition-colors p-1"
           aria-label="Next announcement"
         >
           <ChevronRight className="w-3.5 h-3.5" />

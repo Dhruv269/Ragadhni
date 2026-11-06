@@ -9,7 +9,7 @@
  * 1. Customer Trust Signals: 4 reassurance cards highlighting Authentic Craft,
  *    Free Shipping above ₹1,499, 7-Day Easy Exchange, and 100% Secure Checkout.
  * 2. Brand Story Summary: Concise statement of Ragadhni's handloom philosophy.
- * 3. Categorized Sitemap Links: Women's Wear, Men's Wear, Customer Help, and Legal Policies.
+ * 3. Categorized Sitemap Links: Ethnic Wear, Traditional Casuals, and Help & Policies.
  * 4. Interactive Newsletter Subscription: Lets shoppers sign up for drops with instant confirmation.
  * 5. Copyright & Indian Payment Methods: UPI, RuPay, Netbanking, Cards, and Cash on Delivery.
  *
@@ -135,20 +135,20 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Column 3: Women's Wear Links */}
+          {/* Column 3: Ethnic Wear Links */}
           <div className="space-y-3">
             <h4 className="font-serif text-xs font-semibold uppercase tracking-[0.18em] text-heritage-terracotta">
-              Women&apos;s Wear
+              Ethnic Wear
             </h4>
             <ul className="space-y-2 text-xs text-heritage-charcoal/80">
               <li>
-                <Link href="/women/kurtis" className="hover:text-heritage-terracotta transition-colors">
-                  Kurtis & Kurta Sets
+                <Link href="/women/sarees" className="hover:text-heritage-terracotta transition-colors">
+                  Handcrafted Sarees
                 </Link>
               </li>
               <li>
-                <Link href="/women/sarees" className="hover:text-heritage-terracotta transition-colors">
-                  Handcrafted Sarees
+                <Link href="/women/kurtis" className="hover:text-heritage-terracotta transition-colors">
+                  Kurtis & Kurta Sets
                 </Link>
               </li>
               <li>
@@ -162,47 +162,52 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/women/casual-dresses" className="hover:text-heritage-terracotta transition-colors">
-                  Ethnic Casual Dresses
+                <Link href="/women/dupattas" className="hover:text-heritage-terracotta transition-colors">
+                  Handcrafted Dupattas
                 </Link>
               </li>
               <li>
-                <Link href="/women/bottomwear" className="hover:text-heritage-terracotta transition-colors">
-                  Palazzos & Pants
+                <Link href="/collections/ethnic-wear" className="hover:text-heritage-terracotta transition-colors">
+                  View All Ethnic
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Column 4: Men's Wear Links */}
+          {/* Column 4: Traditional Casuals & Edits */}
           <div className="space-y-3">
             <h4 className="font-serif text-xs font-semibold uppercase tracking-[0.18em] text-heritage-terracotta">
-              Men&apos;s Wear
+              Traditional Casuals
             </h4>
             <ul className="space-y-2 text-xs text-heritage-charcoal/80">
               <li>
-                <Link href="/men/kurtas" className="hover:text-heritage-terracotta transition-colors">
-                  Kurtas & Sets
+                <Link href="/women/casual-dresses" className="hover:text-heritage-terracotta transition-colors">
+                  Ethnic Casual Dresses
                 </Link>
               </li>
               <li>
-                <Link href="/men/casual-shirts" className="hover:text-heritage-terracotta transition-colors">
-                  Handloom Casual Shirts
+                <Link href="/women/tops-tunics" className="hover:text-heritage-terracotta transition-colors">
+                  Handblock Tops & Tunics
                 </Link>
               </li>
               <li>
-                <Link href="/men/traditional-casual" className="hover:text-heritage-terracotta transition-colors">
-                  Traditional Casuals
+                <Link href="/women/bottomwear" className="hover:text-heritage-terracotta transition-colors">
+                  Palazzos & Bottomwear
                 </Link>
               </li>
               <li>
-                <Link href="/men/festive-wear" className="hover:text-heritage-terracotta transition-colors">
-                  Festive & Occasion
+                <Link href="/collections/casual-wear" className="hover:text-heritage-terracotta transition-colors">
+                  Everyday Handblocks
                 </Link>
               </li>
               <li>
-                <Link href="/men/sherwanis" className="hover:text-heritage-terracotta transition-colors">
-                  Nehru Jackets & Sherwanis
+                <Link href="/collections/festive-wear" className="hover:text-heritage-terracotta transition-colors">
+                  Festive Celebrations
+                </Link>
+              </li>
+              <li>
+                <Link href="/collections/new-arrivals" className="hover:text-heritage-terracotta transition-colors">
+                  New Arrivals
                 </Link>
               </li>
             </ul>

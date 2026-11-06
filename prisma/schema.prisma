@@ -50,11 +50,9 @@ enum Role {
   ADMIN    // Store owners managing products, analytics, and staff
 }
 
-// Target audience for clothing collections
+// Target audience for clothing collections (Ragadhni is exclusively Women's wear)
 enum Gender {
   WOMEN
-  MEN
-  UNISEX
 }
 
 // The lifecycle milestones of a customer's order
@@ -143,7 +141,7 @@ model Address {
   @@index([postalCode])
 }
 
-/// Category: High-level garment categories (e.g. Kurtis, Sarees, Men's Kurtas, Casual Shirts).
+/// Category: High-level garment categories (e.g. Kurtis, Sarees, Salwar Suits, Lehengas, Palazzos).
 model Category {
   id           String    @id @default(uuid())
   name         String    // Category display name (e.g., "Kurtis & Kurta Sets")

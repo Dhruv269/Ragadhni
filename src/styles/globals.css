@@ -35,11 +35,11 @@
  * Global design tokens accessible anywhere in CSS via `var(--variable-name)`.
  */
 :root {
-  /* Default page background: Raw Silk Ivory (soft, warm heritage canvas) */
-  --background: #FAF7F2;
+  /* Default page background: Warm Ivory (dominant editorial canvas) */
+  --background: #F7F1E7;
 
-  /* Default text color: Deep Charcoal (high contrast and crisp legibility) */
-  --foreground: #1C1917;
+  /* Default text color: Espresso (deep readable typography) */
+  --foreground: #30231F;
 }
 
 /*
@@ -115,3 +115,87 @@
     background: #9E3D2B;
   }
 }
+
+/*
+ * ==============================================================================
+ * 4. MODERN ROYAL HERITAGE HERO ANIMATIONS
+ * ==============================================================================
+ * Pure CSS keyframes and entrance utilities for the editorial hero section.
+ * Built with cubic-bezier easing to feel graceful, dignified, and editorial.
+ */
+@keyframes heroFadeScale {
+  0% {
+    opacity: 0;
+    transform: scale(1.06);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes heroFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Entrance class for the hero campaign photograph panels */
+.animate-hero-image {
+  animation: heroFadeScale 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Base entrance class for hero typography blocks (starts hidden at opacity 0) */
+.animate-hero-text {
+  opacity: 0;
+  animation: heroFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Staggered delay classes so text reveals in a rhythmic cascade */
+.hero-delay-1 {
+  animation-delay: 0.12s;
+}
+
+.hero-delay-2 {
+  animation-delay: 0.25s;
+}
+
+.hero-delay-3 {
+  animation-delay: 0.38s;
+}
+
+.hero-delay-4 {
+  animation-delay: 0.52s;
+}
+
+/* Smooth editorial image zoom on interactive campaign portals */
+.editorial-hover-zoom {
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.group:hover .editorial-hover-zoom {
+  transform: scale(1.045);
+}
+
+/*
+ * ACCESSIBILITY GUARD (prefers-reduced-motion):
+ * Respects system settings for users who experience vestibular motion disorders.
+ * All animations are stripped away, instantly rendering at full opacity.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .animate-hero-image,
+  .animate-hero-text,
+  .editorial-hover-zoom,
+  .group:hover .editorial-hover-zoom {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+

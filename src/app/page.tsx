@@ -6,9 +6,9 @@
  * WHAT THIS FILE DOES:
  * This is the root landing page (route: `/`) of the Ragadhni e-commerce platform.
  * It is structured into 5 editorial sections:
- * 1. Hero Showcase: Brand headline, calls-to-action ("Explore Women", "Explore Men"),
+ * 1. Hero Showcase: Brand headline, calls-to-action ("Explore Sarees & Heirlooms", "Shop Everyday Handblocks"),
  *    Indian D2C trust signals, and a high-resolution editorial portrait.
- * 2. Silhouette Matrix: 4 curated visual categories (Kurtis, Sarees, Festive Kurtas, Casual Shirts).
+ * 2. Silhouette Matrix: 4 curated visual categories (Kurtis, Sarees, Salwar Suits, Palazzos & Bottomwear).
  * 3. Craft & Philosophy: Explains Ragadhni's direct weaver partnerships and honest pricing.
  * 4. Fresh Drops / New Arrivals Grid: 4-column product grid rendering `<ProductCard />` components.
  * 5. Festive Celebration Banner: Dark, regal showcase highlighting festive silk collections.
@@ -60,18 +60,18 @@ export default function HomePage() {
       tag: "Women",
     },
     {
-      title: "Festive Men's Kurtas",
-      subtitle: "Raw Tussar & Chanderi blends",
-      link: "/men/kurtas",
-      image: "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=900&q=80",
-      tag: "Men",
+      title: "Salwar Suits & Sets",
+      subtitle: "Pure handspun cotton & chanderi",
+      link: "/women/salwar-suits",
+      image: "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=900&q=80",
+      tag: "Women",
     },
     {
-      title: "Traditional Casual Shirts",
-      subtitle: "Pure handspun Khadi comfort",
-      link: "/men/casual-shirts",
-      image: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=900&q=80",
-      tag: "Men",
+      title: "Palazzos & Bottomwear",
+      subtitle: "Breezy handblock printed pants",
+      link: "/women/bottomwear",
+      image: "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=900&q=80",
+      tag: "Women",
     },
   ];
 
@@ -80,98 +80,218 @@ export default function HomePage() {
     <div className="space-y-20 lg:space-y-28">
       {/*
        * ========================================================================
-       * SECTION 1: EDITORIAL HERO BANNER
-       * Welcomes the visitor with the core brand identity and primary CTAs.
+       * SECTION 1: MODERN ROYAL HERITAGE FULL-BLEED EDITORIAL CAMPAIGN HERO
        * ========================================================================
+       * WHAT THIS SECTION DOES:
+       * This is the visual centrepiece of Ragadhni. Rather than a conventional
+       * 2-column e-commerce layout, it presents an expansive editorial diptych
+       * featuring two complementary women's Indian ethnic & casual collections side-by-side.
+       *
+       * WHY IT EXISTS:
+       * Ragadhni is an exclusively women's Indian ethnic clothing brand. An editorial
+       * diptych showcases both celebratory handloom heirlooms (pure silk sarees & lehengas)
+       * and everyday artisan casuals (organic mulmul kurtis & sets), establishing
+       * brand authority, textile heritage, and effortless product discovery.
+       *
+       * HOW IT CONNECTS TO THE REST OF THE PROJECT:
+       * - "Explore Sarees & Heirlooms" connects directly to `/collections/ethnic-wear`.
+       * - "Shop Everyday Casuals" connects directly to `/collections/casual-wear`.
+       * - Interactive campaign panels feature direct deep links with visual hover states.
+       * - Uses consolidated Modern Royal Heritage tokens: Warm Ivory (#F7F1E7),
+       *   Deep Burgundy (#641E2B), Antique Gold (#B69A62), and Espresso (#30231F).
        */}
-      <section className="relative bg-[#F4EFE6] border-b border-[#E3D8C6] overflow-hidden">
-        <Container className="py-16 sm:py-24 lg:py-32">
-          {/* 12-column responsive grid: 7 columns for text, 5 columns for model shot */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            {/* Left Column: Brand Tagline, Description, and CTAs */}
-            <div className="lg:col-span-7 space-y-6 text-center lg:text-left z-10">
-              {/* Weaver Badge */}
-              <div className="inline-flex items-center space-x-2 bg-heritage-ivory/80 border border-[#DFD3C0] px-3.5 py-1.5 rounded-full">
-                <Sparkles className="w-3.5 h-3.5 text-heritage-terracotta" />
-                <span className="text-[11px] uppercase tracking-widest font-medium text-heritage-charcoal">
-                  Direct from Indian Weavers &bull; Handcrafted Luxury
+      <section className="relative w-full bg-heritage-warm-ivory border-b border-heritage-antique-gold/30 overflow-hidden pt-8 sm:pt-12 pb-12 sm:pb-16">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10 space-y-8 sm:space-y-12">
+          {/*
+           * PART 1: THE EDITORIAL MASTHEAD & BRAND DECLARATION
+           * Centered luxury editorial header with Cormorant Garamond typography.
+           */}
+          <div className="text-center max-w-4xl mx-auto space-y-4 sm:space-y-5">
+            {/* Seasonal Editorial Badge */}
+            <div className="animate-hero-text hero-delay-1 inline-flex items-center space-x-2.5 bg-heritage-warm-ivory border border-heritage-antique-gold/60 px-4 py-1.5 shadow-xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-heritage-burgundy" />
+              <span className="text-[11px] uppercase tracking-[0.22em] font-medium text-heritage-espresso">
+                Autumn / Festive 2026 &bull; The Royal Heritage Edit
+              </span>
+            </div>
+
+            {/* Grand Editorial Headline in Cormorant Garamond */}
+            <h1 className="animate-hero-text hero-delay-2 font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight text-heritage-espresso font-normal leading-[1.1]">
+              The Splendour of Heritage, <br className="hidden sm:inline" />
+              <span className="italic font-light text-heritage-burgundy">
+                Redefined for Today.
+              </span>
+            </h1>
+
+            {/* Supporting Brand Philosophy */}
+            <p className="animate-hero-text hero-delay-3 text-sm sm:text-base lg:text-lg text-heritage-espresso/80 max-w-2xl mx-auto leading-relaxed font-light">
+              Honouring India&apos;s timeless handloom legacy through pure Chanderi weaves,
+              breathable mulmul, and raw Tussar silk. Thoughtfully tailored silhouettes
+              crafted for everyday grace and celebratory grandeur.
+            </p>
+
+            {/* Dual Master CTAs for Immediate Category Discovery */}
+            <div className="animate-hero-text hero-delay-4 pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link href="/collections/ethnic-wear" className="w-full sm:w-auto">
+                <Button
+                  size="lg"
+                  className="w-full sm:w-auto bg-heritage-burgundy hover:bg-[#501822] text-heritage-warm-ivory border border-heritage-burgundy tracking-widest text-xs uppercase font-medium px-8 py-4 shadow-sm transition-all duration-300 group"
+                >
+                  <span>Explore Sarees &amp; Heirlooms</span>
+                  <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1 text-heritage-antique-gold-light" />
+                </Button>
+              </Link>
+
+              <Link href="/collections/casual-wear" className="w-full sm:w-auto">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="w-full sm:w-auto border-heritage-espresso text-heritage-espresso hover:bg-heritage-espresso hover:text-heritage-warm-ivory tracking-widest text-xs uppercase font-medium px-8 py-4 transition-all duration-300"
+                >
+                  <span>Shop Everyday Casuals</span>
+                </Button>
+              </Link>
+            </div>
+          </div>
+
+          {/*
+           * PART 2: THE EXPANSIVE EDITORIAL DIPTYCH (CAMPAIGN PHOTOGRAPHY HERO)
+           * Side-by-side full-scale campaign portals featuring Festive Heirlooms and Everyday Handblocks.
+           * On desktop: 2 equal-width majestic panels spanning nearly the full viewport.
+           * On mobile: 2 distinct full-width cards with clear framing and dedicated actions.
+           */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 items-stretch animate-hero-image">
+            {/*
+             * LEFT PORTAL: WOMEN'S EDITORIAL CAMPAIGN
+             * Features the rich deep maroon & pure antique gold Zari handloom Chanderi drape.
+             */}
+            <Link
+              href="/women"
+              className="group relative h-[480px] sm:h-[540px] lg:h-[620px] overflow-hidden border border-heritage-antique-gold/30 bg-heritage-espresso/5 shadow-xl block"
+            >
+              {/* Campaign Image with Cinematic Hover Zoom */}
+              <Image
+                src="https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=1800&q=85"
+                alt="Ragadhni Women's Royal Heritage Collection — Pure Chanderi Saree and Anarkali Drapes"
+                fill
+                priority
+                className="object-cover object-top editorial-hover-zoom"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+
+              {/* Rich Multi-Stage Vignette Gradients for Text Legibility */}
+              <div className="absolute inset-0 bg-gradient-to-t from-heritage-espresso/90 via-heritage-espresso/30 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-b from-heritage-espresso/40 via-transparent to-transparent opacity-60" />
+
+              {/* Top Collection Pill */}
+              <div className="absolute top-5 left-5 z-10">
+                <span className="inline-block bg-heritage-warm-ivory/90 backdrop-blur-xs border border-heritage-antique-gold/50 text-heritage-espresso text-[10px] tracking-[0.2em] uppercase font-medium px-3 py-1 shadow-xs">
+                  The Festive Edit
                 </span>
               </div>
 
-              {/* Main Headline (Cormorant Garamond serif with italic terracotta accent) */}
-              <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl tracking-tight text-heritage-charcoal font-normal leading-[1.15]">
-                The Poetry of Handcrafted <br className="hidden sm:inline" />
-                <span className="italic font-light text-heritage-terracotta">Indian Silhouettes</span>
-              </h1>
-
-              {/* Brand Positioning Paragraph */}
-              <p className="text-sm sm:text-base text-heritage-earth/90 max-w-xl mx-auto lg:mx-0 leading-relaxed font-light">
-                Thoughtfully tailored ethnic wear and effortless traditional casuals.
-                Woven from pure Chanderi, Mulmul, and Handspun Khadi for everyday
-                comfort and festive elegance.
-              </p>
-
-              {/* Primary Call-to-Action Buttons */}
-              <div className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-                <Link href="/women">
-                  <Button size="lg" className="w-full sm:w-auto shadow-md">
-                    <span>Explore Women&apos;s Collection</span>
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </Button>
-                </Link>
-
-                <Link href="/men">
-                  <Button variant="outline" size="lg" className="w-full sm:w-auto">
-                    <span>Explore Men&apos;s Collection</span>
-                  </Button>
-                </Link>
-              </div>
-
-              {/* Quick Customer Reassurances */}
-              <div className="pt-4 flex items-center justify-center lg:justify-start space-x-6 text-xs text-heritage-earth">
-                <div className="flex items-center space-x-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-heritage-terracotta" />
-                  <span>Free Shipping &gt; ₹1,499</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-heritage-terracotta" />
-                  <span>Cash on Delivery Available</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-heritage-terracotta" />
-                  <span>7-Day Easy Exchange</span>
+              {/* Bottom Editorial Content & Action Button */}
+              <div className="absolute bottom-6 sm:bottom-8 left-6 sm:left-8 right-6 sm:right-8 z-10 space-y-2 text-heritage-warm-ivory">
+                <p className="text-[11px] uppercase tracking-[0.25em] text-heritage-antique-gold-light font-medium">
+                  Pure Handloom Silk &bull; Handcrafted Drapes
+                </p>
+                <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl text-heritage-warm-ivory tracking-wide leading-tight group-hover:text-heritage-antique-gold-light transition-colors duration-300">
+                  Royal Chanderi Sarees &amp; Sets
+                </h2>
+                <p className="text-xs sm:text-sm text-heritage-warm-ivory/80 max-w-md line-clamp-2 font-light">
+                  Woven with intricate antique gold zari borders and floral buttis, tailored for festive elegance.
+                </p>
+                <div className="pt-2">
+                  <span className="inline-flex items-center text-xs uppercase tracking-widest text-heritage-warm-ivory font-medium border-b border-heritage-antique-gold/60 pb-1 group-hover:border-heritage-antique-gold-light group-hover:text-heritage-antique-gold-light transition-all">
+                    <span>Shop Festive Collection</span>
+                    <ArrowRight className="w-3.5 h-3.5 ml-1.5 transition-transform duration-300 group-hover:translate-x-1" />
+                  </span>
                 </div>
               </div>
+            </Link>
+
+            {/*
+             * RIGHT PORTAL: EVERYDAY HANDBLOCK & CASUAL EDIT
+             * Features handcrafted organic mulmul kurtis, tunics, and breezy traditional sets.
+             */}
+            <Link
+              href="/women/kurtis"
+              className="group relative h-[480px] sm:h-[540px] lg:h-[620px] overflow-hidden border border-heritage-antique-gold/30 bg-heritage-espresso/5 shadow-xl block"
+            >
+              {/* Campaign Image with Cinematic Hover Zoom */}
+              <Image
+                src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=1800&q=85"
+                alt="Ragadhni Women's Everyday Casual Collection — Handblock Mulmul Kurtis and Kurta Sets"
+                fill
+                priority
+                className="object-cover object-top editorial-hover-zoom"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+
+              {/* Rich Multi-Stage Vignette Gradients for Text Legibility */}
+              <div className="absolute inset-0 bg-gradient-to-t from-heritage-espresso/90 via-heritage-espresso/30 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-b from-heritage-espresso/40 via-transparent to-transparent opacity-60" />
+
+              {/* Top Collection Pill */}
+              <div className="absolute top-5 left-5 z-10">
+                <span className="inline-block bg-heritage-warm-ivory/90 backdrop-blur-xs border border-heritage-antique-gold/50 text-heritage-espresso text-[10px] tracking-[0.2em] uppercase font-medium px-3 py-1 shadow-xs">
+                  Everyday Elegance
+                </span>
+              </div>
+
+              {/* Bottom Editorial Content & Action Button */}
+              <div className="absolute bottom-6 sm:bottom-8 left-6 sm:left-8 right-6 sm:right-8 z-10 space-y-2 text-heritage-warm-ivory">
+                <p className="text-[11px] uppercase tracking-[0.25em] text-heritage-antique-gold-light font-medium">
+                  Organic Mulmul &bull; Lucknowi Chikankari
+                </p>
+                <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl text-heritage-warm-ivory tracking-wide leading-tight group-hover:text-heritage-antique-gold-light transition-colors duration-300">
+                  Handblock Kurtis &amp; Sets
+                </h2>
+                <p className="text-xs sm:text-sm text-heritage-warm-ivory/80 max-w-md line-clamp-2 font-light">
+                  Breezy silhouettes hand-printed with natural vegetable dyes, crafted for daily comfort and effortless grace.
+                </p>
+                <div className="pt-2">
+                  <span className="inline-flex items-center text-xs uppercase tracking-widest text-heritage-warm-ivory font-medium border-b border-heritage-antique-gold/60 pb-1 group-hover:border-heritage-antique-gold-light group-hover:text-heritage-antique-gold-light transition-all">
+                    <span>Shop Kurtis &amp; Suits</span>
+                    <ArrowRight className="w-3.5 h-3.5 ml-1.5 transition-transform duration-300 group-hover:translate-x-1" />
+                  </span>
+                </div>
+              </div>
+            </Link>
+          </div>
+
+          {/*
+           * PART 3: HERITAGE REASSURANCE RIBBON
+           * 4 minimal, dignified trust points building customer confidence.
+           */}
+          <div className="border-t border-heritage-antique-gold/25 pt-6 flex flex-wrap items-center justify-around gap-4 text-xs text-heritage-espresso/75">
+            <div className="flex items-center space-x-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-heritage-burgundy" />
+              <span className="tracking-wide font-medium">Artisan Handloom Weaves</span>
             </div>
-
-            {/* Right Column: Editorial Hero Portrait with Floating Card */}
-            <div className="lg:col-span-5 relative">
-              <div className="relative aspect-[4/5] w-full max-w-md mx-auto rounded-none overflow-hidden shadow-2xl border-4 border-heritage-ivory">
-                <Image
-                  src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1200&q=85"
-                  alt="Ragadhni Editorial Festive Collection"
-                  fill
-                  priority // Loads immediately above-the-fold to improve LCP (Largest Contentful Paint)
-                  className="object-cover object-top"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
-                {/* Subtle dark gradient overlay so bottom text is always legible */}
-                <div className="absolute inset-0 bg-gradient-to-t from-heritage-charcoal/60 via-transparent to-transparent" />
-                <div className="absolute bottom-6 left-6 right-6 text-heritage-ivory space-y-1">
-                  <Badge variant="gold">Festive Edit</Badge>
-                  <p className="font-serif text-lg tracking-wide">The Royal Chanderi Ensemble</p>
-                  <p className="text-xs text-heritage-sand/90">Starting from ₹1,899</p>
-                </div>
-              </div>
+            <span className="text-heritage-antique-gold/40 hidden md:inline">&bull;</span>
+            <div className="flex items-center space-x-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-heritage-burgundy" />
+              <span className="tracking-wide font-medium">100% Pure Natural Fibers</span>
+            </div>
+            <span className="text-heritage-antique-gold/40 hidden md:inline">&bull;</span>
+            <div className="flex items-center space-x-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-heritage-burgundy" />
+              <span className="tracking-wide font-medium">Complimentary Shipping &gt; ₹1,499</span>
+            </div>
+            <span className="text-heritage-antique-gold/40 hidden md:inline">&bull;</span>
+            <div className="flex items-center space-x-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-heritage-burgundy" />
+              <span className="tracking-wide font-medium">Direct Weaver Honesty</span>
             </div>
           </div>
-        </Container>
+        </div>
       </section>
 
       {/*
        * ========================================================================
        * SECTION 2: CURATED CATEGORY SHOWCASE
-       * Visual cards highlighting primary silhouettes for men and women.
+       * Visual cards highlighting primary silhouettes for women's Indian ethnic & casual wardrobes.
        * ========================================================================
        */}
       <section>
@@ -210,7 +330,7 @@ export default function HomePage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-heritage-charcoal/85 via-heritage-charcoal/30 to-transparent" />
 
-                {/* Audience Badge (e.g., "Women" or "Men") */}
+                {/* Category Badge (e.g., "Women") */}
                 <div className="absolute top-4 left-4">
                   <span className="text-[10px] uppercase tracking-widest text-heritage-ivory bg-heritage-charcoal/60 px-2 py-0.5">
                     {cat.tag}
@@ -327,7 +447,7 @@ export default function HomePage() {
                 Fresh Drops
               </span>
               <h2 className="font-serif text-3xl sm:text-4xl text-heritage-charcoal font-normal mt-1">
-                New Arrivals for Men & Women
+                New Arrivals in Women&apos;s Handlooms
               </h2>
             </div>
             <Link
@@ -364,8 +484,8 @@ export default function HomePage() {
             The Celebration Edit
           </h2>
           <p className="text-sm sm:text-base text-heritage-sand/80 leading-relaxed font-light">
-            An exclusive curation of shimmering Chanderi silk anarkalis, festive handwoven kurtas,
-            and regal Nehru jackets designed to make every occasion memorable.
+            An exclusive curation of shimmering Chanderi silk sarees, handcrafted lehenga sets,
+            and regal anarkali drapes designed to make every occasion memorable.
           </p>
           <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/collections/festive-wear">

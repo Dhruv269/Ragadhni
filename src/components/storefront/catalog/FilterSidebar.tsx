@@ -19,7 +19,7 @@
  * effortless and directly increases sales conversion.
  *
  * HOW IT CONNECTS TO THE REST OF THE PROJECT:
- * - Rendered on Category Listing Pages (`/women`, `/men`, `/collections/*`).
+ * - Rendered on Category Listing Pages (`/women`, `/women/[category]`, `/collections/*`).
  * - Passes selected filter criteria up to the parent catalog page to filter the product list.
  * - Works both as a desktop sidebar and as a slide-over drawer on mobile devices.
  */

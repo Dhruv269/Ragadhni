@@ -4,9 +4,10 @@
  * ==============================================================================
  *
  * WHAT THIS FILE DOES:
- * This file contains realistic sample Indian clothing items (Kurtis, Anarkalis,
- * Sarees, Salwar Suits, Bottomwear, Men's Kurtas, Casual Shirts, and Nehru Jackets)
+ * This file contains realistic sample women's Indian clothing items (Kurtis, Anarkalis,
+ * Sarees, Salwar Suits, Lehengas, Ethnic Dresses, Palazzos, and Dupattas)
  * shaped strictly according to the `Product` interface defined in `src/types/index.ts`.
+ * Ragadhni is an exclusively women's Indian ethnic and traditional clothing brand.
  *
  * WHY IT EXISTS:
  * In professional e-commerce development, building the user interface (UI) and
@@ -18,7 +19,7 @@
  *
  * HOW IT CONNECTS TO THE REST OF THE PROJECT:
  * - Imported by `src/app/page.tsx` to render the "New Arrivals" grid.
- * - Used by Category Product Listing Pages (`/women`, `/men`, `/collections/*`).
+ * - Used by Category Product Listing Pages (`/women`, `/women/[category]`, `/collections/*`).
  * - Used by the Product Detail Page (`/product/[slug]`) to render the full product view.
  * - When we connect the real database via Prisma later, we simply replace
  *   `mockProducts` with a database query (e.g. `await prisma.product.findMany()`).
@@ -115,83 +116,84 @@ export const mockProducts: Product[] = [
   },
 
   // ----------------------------------------------------------------------------
-  // Product 3: Men's Raw Tussar Silk Festive Kurta
+  // Product 3: Women's Banarasi Silk Festive Lehenga Set
   // ----------------------------------------------------------------------------
   {
     id: "rag-003",
-    title: "Tussar Silk Handloom Festive Men's Kurta",
-    slug: "tussar-silk-handloom-festive-mens-kurta",
+    title: "Banarasi Silk Woven Festive Lehenga Set",
+    slug: "banarasi-silk-woven-festive-lehenga-set",
     description:
-      "A tailored men's festive kurta crafted from raw textured Tussar silk featuring a mandarin collar and subtle antique brass buttoning.",
-    gender: "MEN",
-    category: "kurtas",
-    categoryName: "Men's Kurtas",
-    fabric: "Raw Tussar Silk Blend",
-    weave: "Handloom Tussar",
-    work: "Slub Texture & Brass Accents",
-    fit: "Tailored Modern Ethnic Fit",
-    washCare: "Dry Clean Recommended",
-    basePrice: 2699,
-    compareAtPrice: 3499,
-    isNewArrival: false,
+      "A handcrafted Banarasi silk lehenga woven with floral antique gold zari buttis, paired with an embroidered blouse and a lightweight organza dupatta.",
+    gender: "WOMEN",
+    category: "lehengas-anarkalis",
+    categoryName: "Lehengas & Anarkalis",
+    fabric: "Pure Banarasi Silk Blend",
+    weave: "Brocade Jacquard",
+    work: "Antique Gold Zari & Gota Patti",
+    fit: "Voluminous Flared Flare",
+    washCare: "Dry Clean Only",
+    basePrice: 4999,
+    compareAtPrice: 6999,
+    isNewArrival: true,
     isBestseller: true,
     isFeatured: true,
     rating: 4.9,
-    reviewCount: 42,
-    tags: ["Tussar", "Festive", "Men Ethnic", "Mandarin Collar"],
+    reviewCount: 48,
+    tags: ["Banarasi", "Lehenga", "Festive", "Silk", "Zari", "Wedding"],
     images: [
       {
         id: "img-003-a",
-        url: "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=900&q=80",
-        altText: "Tussar Silk Men's Festive Kurta in Warm Ochre",
+        url: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=900&q=80",
+        altText: "Banarasi Silk Woven Festive Lehenga Set in Royal Ruby & Gold",
         isPrimary: true,
       },
     ],
     variants: [
-      { id: "var-003-38", sku: "RAG-MKR-TS-38", size: "S", color: "Warm Ochre", colorHex: "#C29B38", price: 2699, stockQuantity: 9 },
-      { id: "var-003-40", sku: "RAG-MKR-TS-40", size: "M", color: "Warm Ochre", colorHex: "#C29B38", price: 2699, stockQuantity: 14 },
-      { id: "var-003-42", sku: "RAG-MKR-TS-42", size: "L", color: "Warm Ochre", colorHex: "#C29B38", price: 2699, stockQuantity: 11 },
-      { id: "var-003-44", sku: "RAG-MKR-TS-44", size: "XL", color: "Warm Ochre", colorHex: "#C29B38", price: 2699, stockQuantity: 7 },
+      { id: "var-003-xs", sku: "RAG-LHG-BN-XS", size: "XS", color: "Royal Ruby & Gold", colorHex: "#8B1E2B", price: 4999, stockQuantity: 5 },
+      { id: "var-003-s", sku: "RAG-LHG-BN-S", size: "S", color: "Royal Ruby & Gold", colorHex: "#8B1E2B", price: 4999, stockQuantity: 9 },
+      { id: "var-003-m", sku: "RAG-LHG-BN-M", size: "M", color: "Royal Ruby & Gold", colorHex: "#8B1E2B", price: 4999, stockQuantity: 12 },
+      { id: "var-003-l", sku: "RAG-LHG-BN-L", size: "L", color: "Royal Ruby & Gold", colorHex: "#8B1E2B", price: 4999, stockQuantity: 7 },
     ],
   },
 
   // ----------------------------------------------------------------------------
-  // Product 4: Men's Handspun Khadi Traditional Casual Shirt
+  // Product 4: Women's Lucknowi Chikankari Embroidered Mulmul Kurti Set
   // ----------------------------------------------------------------------------
   {
     id: "rag-004",
-    title: "Handspun Khadi Traditional Casual Shirt",
-    slug: "handspun-khadi-traditional-casual-shirt",
+    title: "Lucknowi Chikankari Embroidered Mulmul Kurti Set",
+    slug: "lucknowi-chikankari-embroidered-mulmul-kurti-set",
     description:
-      "Crafted from breathable 100% handspun Khadi cotton, combining Indian heritage weaving with an effortless casual button-down silhouette.",
-    gender: "MEN",
-    category: "casual-shirts",
-    categoryName: "Men's Casual Shirts",
-    fabric: "100% Handspun Khadi",
-    weave: "Traditional Khadi",
-    work: "Natural Coconut Shell Buttons",
-    fit: "Relaxed Casual",
-    washCare: "Machine Wash Cold with Similar Colors",
-    basePrice: 1599,
-    compareAtPrice: 2199,
+      "Crafted from breathable 100% fine cotton mulmul featuring intricate floral Lucknowi Chikankari needlework, paired with straight palazzo trousers.",
+    gender: "WOMEN",
+    category: "kurtis",
+    categoryName: "Kurtis & Sets",
+    fabric: "100% Fine Mulmul Cotton",
+    weave: "Soft Sheer Mulmul",
+    work: "Lucknowi Hand Chikankari",
+    fit: "Straight Regular Fit",
+    washCare: "Gentle Hand Wash in Cold Water",
+    basePrice: 2299,
+    compareAtPrice: 2999,
     isNewArrival: true,
     isBestseller: false,
     isFeatured: true,
-    rating: 4.6,
-    reviewCount: 19,
-    tags: ["Khadi", "Casual Shirt", "Summer", "Handcrafted"],
+    rating: 4.8,
+    reviewCount: 27,
+    tags: ["Chikankari", "Mulmul", "Handcrafted", "Kurtis", "Summer"],
     images: [
       {
         id: "img-004-a",
-        url: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=900&q=80",
-        altText: "Handspun Khadi Traditional Casual Shirt in Raw Ivory",
+        url: "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=900&q=80",
+        altText: "Lucknowi Chikankari Embroidered Mulmul Kurti Set in Ivory White",
         isPrimary: true,
       },
     ],
     variants: [
-      { id: "var-004-s", sku: "RAG-MSH-KD-S", size: "S", color: "Raw Ivory", colorHex: "#F7F5EE", price: 1599, stockQuantity: 10 },
-      { id: "var-004-m", sku: "RAG-MSH-KD-M", size: "M", color: "Raw Ivory", colorHex: "#F7F5EE", price: 1599, stockQuantity: 16 },
-      { id: "var-004-l", sku: "RAG-MSH-KD-L", size: "L", color: "Raw Ivory", colorHex: "#F7F5EE", price: 1599, stockQuantity: 8 },
+      { id: "var-004-xs", sku: "RAG-CHK-ML-XS", size: "XS", color: "Ivory White", colorHex: "#FDFCF7", price: 2299, stockQuantity: 8 },
+      { id: "var-004-s", sku: "RAG-CHK-ML-S", size: "S", color: "Ivory White", colorHex: "#FDFCF7", price: 2299, stockQuantity: 14 },
+      { id: "var-004-m", sku: "RAG-CHK-ML-M", size: "M", color: "Ivory White", colorHex: "#FDFCF7", price: 2299, stockQuantity: 18 },
+      { id: "var-004-l", sku: "RAG-CHK-ML-L", size: "L", color: "Ivory White", colorHex: "#FDFCF7", price: 2299, stockQuantity: 11 },
     ],
   },
 
@@ -316,84 +318,82 @@ export const mockProducts: Product[] = [
   },
 
   // ----------------------------------------------------------------------------
-  // Product 8: Men's Royal Jamawar Embroidered Nehru Jacket
+  // Product 8: Women's Pure Tussar Silk Handwoven Festive Saree
   // ----------------------------------------------------------------------------
   {
     id: "rag-008",
-    title: "Royal Jamawar Silk Nehru Jacket",
-    slug: "royal-jamawar-silk-nehru-jacket",
+    title: "Pure Tussar Silk Handwoven Festive Saree",
+    slug: "pure-tussar-silk-handwoven-festive-saree",
     description:
-      "A regal sleeveless Nehru jacket woven with traditional Kashmiri Jamawar paisley motifs, finished with a structured mandarin collar and antique brass buttons.",
-    gender: "MEN",
-    category: "sherwanis",
-    categoryName: "Nehru Jackets & Sherwanis",
-    fabric: "Jamawar Silk Blend",
-    weave: "Brocade Jacquard",
-    work: "Paisley Jamawar Weave",
-    fit: "Tailored Slim Fit",
+      "A radiant 6-yard saree woven from natural textured Tussar silk with contrasting temple borders and a rich tribal pallu. Includes an unstitched blouse piece (0.8m).",
+    gender: "WOMEN",
+    category: "sarees",
+    categoryName: "Sarees & Drapes",
+    fabric: "100% Pure Tussar Silk",
+    weave: "Handloom Slub Tussar",
+    work: "Woven Temple Border",
+    fit: "Classic 6-Yard Drape",
     washCare: "Dry Clean Only",
-    basePrice: 3499,
-    compareAtPrice: 4799,
-    isNewArrival: true,
-    isBestseller: false,
+    basePrice: 3799,
+    compareAtPrice: 4999,
+    isNewArrival: false,
+    isBestseller: true,
     isFeatured: true,
     rating: 4.9,
-    reviewCount: 22,
-    tags: ["Nehru Jacket", "Festive", "Jamawar", "Men Ethnic", "Wedding"],
+    reviewCount: 34,
+    tags: ["Tussar", "Saree", "Handloom", "Silk", "Festive"],
     images: [
       {
         id: "img-008-a",
-        url: "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=900&q=80",
-        altText: "Royal Jamawar Silk Nehru Jacket in Deep Emerald",
+        url: "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=900&q=80",
+        altText: "Pure Tussar Silk Handwoven Festive Saree in Golden Sand & Maroon",
         isPrimary: true,
       },
     ],
     variants: [
-      { id: "var-008-38", sku: "RAG-NJ-JM-38", size: "S", color: "Deep Emerald", colorHex: "#1B4332", price: 3499, stockQuantity: 6 },
-      { id: "var-008-40", sku: "RAG-NJ-JM-40", size: "M", color: "Deep Emerald", colorHex: "#1B4332", price: 3499, stockQuantity: 10 },
-      { id: "var-008-42", sku: "RAG-NJ-JM-42", size: "L", color: "Deep Emerald", colorHex: "#1B4332", price: 3499, stockQuantity: 8 },
-      { id: "var-008-44", sku: "RAG-NJ-JM-44", size: "XL", color: "Deep Emerald", colorHex: "#1B4332", price: 3499, stockQuantity: 5 },
+      { id: "var-008-free", sku: "RAG-SAR-TS-01", size: "Free Size", color: "Golden Sand & Maroon", colorHex: "#C29B38", price: 3799, stockQuantity: 12 },
     ],
   },
 
   // ----------------------------------------------------------------------------
-  // Product 9: Men's Indigo Handblock Short Casual Kurta
+  // Product 9: Women's Ajrakh Handblock Printed Modal Silk Casual Dress
   // ----------------------------------------------------------------------------
   {
     id: "rag-009",
-    title: "Indigo Handblock Short Casual Kurta",
-    slug: "indigo-handblock-short-casual-kurta",
+    title: "Ajrakh Handblock Printed Modal Silk Casual Dress",
+    slug: "ajrakh-handblock-printed-modal-silk-casual-dress",
     description:
-      "A contemporary short kurta cut from naturally dyed Indigo cotton. Features an artisanal Dabu mud-resist block print and a relaxed notched collar.",
-    gender: "MEN",
-    category: "traditional-casual",
-    categoryName: "Traditional Casuals",
-    fabric: "100% Indigo Dyed Cotton",
-    weave: "Slub Cotton",
-    work: "Dabu Mud Resist Handblock",
-    fit: "Relaxed Short Kurta Fit",
-    washCare: "Hand Wash Separately in Cold Water",
-    basePrice: 1499,
-    compareAtPrice: 1999,
-    isNewArrival: false,
-    isBestseller: true,
+      "An effortless tiered ethnic casual dress crafted from lustrous modal silk, featuring traditional Kutch Ajrakh geometric handblock prints and side pockets.",
+    gender: "WOMEN",
+    category: "casual-dresses",
+    categoryName: "Ethnic Casual Dresses",
+    fabric: "Lustrous Modal Silk",
+    weave: "Plain Weave Modal",
+    work: "Natural Dye Ajrakh Handblock",
+    fit: "Tiered Flared Fit",
+    washCare: "Gentle Cold Wash Separately",
+    basePrice: 2499,
+    compareAtPrice: 3299,
+    isNewArrival: true,
+    isBestseller: false,
     isFeatured: false,
     rating: 4.7,
-    reviewCount: 35,
-    tags: ["Indigo", "Short Kurta", "Casual", "Handblock"],
+    reviewCount: 29,
+    tags: ["Ajrakh", "Handblock", "Casual Dress", "Modal Silk", "Everyday"],
     images: [
       {
         id: "img-009-a",
-        url: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=900&q=80",
-        altText: "Indigo Handblock Short Casual Kurta",
+        url: "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=900&q=80",
+        altText: "Ajrakh Handblock Printed Modal Silk Casual Dress in Indigo & Madder Red",
         isPrimary: true,
       },
     ],
     variants: [
-      { id: "var-009-s", sku: "RAG-MSK-ID-S", size: "S", color: "Indigo Blue", colorHex: "#1A2B4C", price: 1499, stockQuantity: 11 },
-      { id: "var-009-m", sku: "RAG-MSK-ID-M", size: "M", color: "Indigo Blue", colorHex: "#1A2B4C", price: 1499, stockQuantity: 18 },
-      { id: "var-009-l", sku: "RAG-MSK-ID-L", size: "L", color: "Indigo Blue", colorHex: "#1A2B4C", price: 1499, stockQuantity: 14 },
-      { id: "var-009-xl", sku: "RAG-MSK-ID-XL", size: "XL", color: "Indigo Blue", colorHex: "#1A2B4C", price: 1499, stockQuantity: 7 },
+      { id: "var-009-xs", sku: "RAG-DRS-AJ-XS", size: "XS", color: "Indigo & Madder Red", colorHex: "#1A2B4C", price: 2499, stockQuantity: 6 },
+      { id: "var-009-s", sku: "RAG-DRS-AJ-S", size: "S", color: "Indigo & Madder Red", colorHex: "#1A2B4C", price: 2499, stockQuantity: 10 },
+      { id: "var-009-m", sku: "RAG-DRS-AJ-M", size: "M", color: "Indigo & Madder Red", colorHex: "#1A2B4C", price: 2499, stockQuantity: 15 },
+      { id: "var-009-l", sku: "RAG-DRS-AJ-L", size: "L", color: "Indigo & Madder Red", colorHex: "#1A2B4C", price: 2499, stockQuantity: 8 },
+      { id: "var-009-xl", sku: "RAG-DRS-AJ-XL", size: "XL", color: "Indigo & Madder Red", colorHex: "#1A2B4C", price: 2499, stockQuantity: 4 },
     ],
   },
 
@@ -407,7 +407,7 @@ export const mockProducts: Product[] = [
     description:
       "A radiant 2.5-meter pure Chanderi silk dupatta framed with lustrous hand-stitched Gota Patti borders and delicate tassel details.",
     gender: "WOMEN",
-    category: "kurtis",
+    category: "dupattas",
     categoryName: "Dupattas & Stoles",
     fabric: "Pure Chanderi Silk",
     weave: "Fine Sheer Chanderi",

@@ -49,7 +49,7 @@ export function Header() {
   // Holds the text currently typed into the search input box
   const [searchQuery, setSearchQuery] = useState("");
 
-  // Tracks which top-level menu item is currently hovered on desktop (e.g., "Women" or "Men")
+  // Tracks which top-level menu item is currently hovered on desktop (e.g., "Ethnic Wear" or "Traditional Casuals")
   const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
 
   // Mock counters for Phase 1 (these connect to real Cart & Wishlist state in Phase 3)
@@ -73,10 +73,10 @@ export function Header() {
       {/*
        * STICKY HEADER:
        * `sticky top-0 z-40`: Pins the header to the top of the viewport.
-       * `backdrop-blur-md bg-heritage-ivory/95`: Frosted glass effect that lets colors
-       * subtly blur behind the header as products scroll underneath.
+       * `backdrop-blur-md bg-heritage-warm-ivory/95`: Frosted glass effect in Warm Ivory
+       * with an Antique Gold hairline bottom separator.
        */}
-      <header className="sticky top-0 z-40 bg-heritage-ivory/95 backdrop-blur-md border-b border-[#E8DFD0] transition-all">
+      <header className="sticky top-0 z-40 bg-heritage-warm-ivory/95 backdrop-blur-md border-b border-heritage-antique-gold/25 transition-all">
         {/* Main Brand Bar */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
@@ -88,23 +88,23 @@ export function Header() {
             <div className="flex items-center lg:w-1/4">
               <button
                 onClick={() => setMobileMenuOpen(true)}
-                className="lg:hidden p-2 -ml-2 text-heritage-charcoal hover:text-heritage-terracotta transition-colors"
+                className="lg:hidden p-2 -ml-2 text-heritage-espresso hover:text-heritage-burgundy transition-colors"
                 aria-label="Open mobile menu"
               >
                 <Menu className="w-6 h-6" />
               </button>
 
-              <div className="hidden lg:flex items-center space-x-6 text-xs uppercase tracking-widest text-heritage-earth">
+              <div className="hidden lg:flex items-center space-x-6 text-xs uppercase tracking-widest text-heritage-espresso/70">
                 <Link
                   href="/collections/ethnic-wear"
-                  className="hover:text-heritage-terracotta transition-colors"
+                  className="hover:text-heritage-burgundy transition-colors"
                 >
                   Ethnic
                 </Link>
-                <span className="text-heritage-sand">|</span>
+                <span className="text-heritage-antique-gold/40">|</span>
                 <Link
                   href="/collections/casual-wear"
-                  className="hover:text-heritage-terracotta transition-colors"
+                  className="hover:text-heritage-burgundy transition-colors"
                 >
                   Casuals
                 </Link>
@@ -118,10 +118,10 @@ export function Header() {
              */}
             <div className="text-center flex-1 lg:w-2/4">
               <Link href="/" className="inline-block group">
-                <h1 className="font-serif text-2xl sm:text-3xl lg:text-4xl tracking-[0.25em] text-heritage-charcoal uppercase font-normal transition-colors group-hover:text-heritage-terracotta">
+                <h1 className="font-serif text-2xl sm:text-3xl lg:text-4xl tracking-[0.28em] text-heritage-espresso uppercase font-normal transition-colors group-hover:text-heritage-burgundy">
                   Ragadhni
                 </h1>
-                <p className="text-[9px] sm:text-[10px] tracking-[0.35em] uppercase text-heritage-earth/80 mt-0.5">
+                <p className="text-[9px] sm:text-[10px] tracking-[0.38em] uppercase text-heritage-espresso/70 mt-0.5 font-light">
                   Indian Ethnic &bull; Traditional Casuals
                 </p>
               </Link>
@@ -135,7 +135,7 @@ export function Header() {
               {/* Search Toggle Button */}
               <button
                 onClick={() => setSearchOpen(!searchOpen)}
-                className="p-1.5 text-heritage-charcoal hover:text-heritage-terracotta transition-colors"
+                className="p-1.5 text-heritage-espresso hover:text-heritage-burgundy transition-colors"
                 aria-label="Search collection"
               >
                 <Search className="w-5 h-5 stroke-[1.75]" />
@@ -144,7 +144,7 @@ export function Header() {
               {/* Customer Account Icon (hidden on small mobile screens to save space) */}
               <Link
                 href="/account"
-                className="hidden sm:block p-1.5 text-heritage-charcoal hover:text-heritage-terracotta transition-colors"
+                className="hidden sm:block p-1.5 text-heritage-espresso hover:text-heritage-burgundy transition-colors"
                 aria-label="Customer account"
               >
                 <User className="w-5 h-5 stroke-[1.75]" />
@@ -153,26 +153,26 @@ export function Header() {
               {/* Wishlist Link with Live Counter Badge */}
               <Link
                 href="/wishlist"
-                className="relative p-1.5 text-heritage-charcoal hover:text-heritage-terracotta transition-colors"
+                className="relative p-1.5 text-heritage-espresso hover:text-heritage-burgundy transition-colors"
                 aria-label="Wishlist"
               >
                 <Heart className="w-5 h-5 stroke-[1.75]" />
                 {wishlistCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-heritage-sand text-heritage-charcoal text-[10px] font-semibold w-4 h-4 rounded-full flex items-center justify-center border border-heritage-ivory">
+                  <span className="absolute -top-1 -right-1 bg-heritage-antique-gold/20 text-heritage-espresso text-[10px] font-semibold w-4 h-4 rounded-full flex items-center justify-center border border-heritage-antique-gold/40">
                     {wishlistCount}
                   </span>
                 )}
               </Link>
 
-              {/* Shopping Bag Link with Live Terracotta Counter Badge */}
+              {/* Shopping Bag Link with Live Burgundy Counter Badge */}
               <Link
                 href="/cart"
-                className="relative p-1.5 text-heritage-charcoal hover:text-heritage-terracotta transition-colors"
+                className="relative p-1.5 text-heritage-espresso hover:text-heritage-burgundy transition-colors"
                 aria-label="Shopping bag"
               >
                 <ShoppingBag className="w-5 h-5 stroke-[1.75]" />
                 {cartCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-heritage-terracotta text-heritage-ivory text-[10px] font-semibold w-4 h-4 rounded-full flex items-center justify-center shadow-sm">
+                  <span className="absolute -top-1 -right-1 bg-heritage-burgundy text-heritage-warm-ivory text-[10px] font-semibold w-4 h-4 rounded-full flex items-center justify-center shadow-xs">
                     {cartCount}
                   </span>
                 )}
@@ -186,7 +186,7 @@ export function Header() {
          * Displays horizontal categories. Hovering over items with subcategories
          * triggers `setActiveMegaMenu(item.label)` to show the floating mega-menu.
          */}
-        <nav className="hidden lg:block border-t border-[#EFE7D8]/80 bg-heritage-ivory/80">
+        <nav className="hidden lg:block border-t border-heritage-antique-gold/20 bg-heritage-warm-ivory/80">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <ul className="flex items-center justify-center space-x-8 text-xs font-medium uppercase tracking-[0.18em] py-3.5">
               {siteConfig.navItems.map((item) => {
@@ -202,11 +202,11 @@ export function Header() {
                   >
                     <Link
                       href={item.href}
-                      className="inline-flex items-center space-x-1.5 py-1 text-heritage-charcoal hover:text-heritage-terracotta transition-colors"
+                      className="inline-flex items-center space-x-1.5 py-1 text-heritage-espresso hover:text-heritage-burgundy transition-colors"
                     >
                       <span>{item.label}</span>
                       {item.badge && (
-                        <Badge variant="terracotta" className="ml-1 text-[9px] py-0 px-1.5">
+                        <Badge variant="gold" className="ml-1 text-[9px] py-0 px-1.5">
                           {item.badge}
                         </Badge>
                       )}
@@ -218,11 +218,11 @@ export function Header() {
                      * Formatted as a 2-column grid showing sub-groups (e.g. Ethnic vs Casual).
                      */}
                     {hasChildren && activeMegaMenu === item.label && (
-                      <div className="absolute top-full left-1/2 -translate-x-1/2 w-[540px] bg-heritage-ivory border border-[#E8DFD0] shadow-xl p-6 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+                      <div className="absolute top-full left-1/2 -translate-x-1/2 w-[540px] bg-heritage-warm-ivory border border-heritage-antique-gold/30 shadow-2xl p-6 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
                         <div className="grid grid-cols-2 gap-8">
                           {item.children?.map((group) => (
                             <div key={group.title} className="space-y-3">
-                              <h3 className="font-serif text-sm tracking-widest text-heritage-terracotta border-b border-[#E8DFD0] pb-2 font-normal uppercase">
+                              <h3 className="font-serif text-sm tracking-widest text-heritage-burgundy border-b border-heritage-antique-gold/25 pb-2 font-normal uppercase">
                                 {group.title}
                               </h3>
                               <ul className="space-y-2">
@@ -230,7 +230,7 @@ export function Header() {
                                   <li key={subItem.label}>
                                     <Link
                                       href={subItem.href}
-                                      className="flex items-center justify-between text-xs text-heritage-charcoal hover:text-heritage-terracotta normal-case tracking-normal transition-colors py-0.5"
+                                      className="flex items-center justify-between text-xs text-heritage-espresso hover:text-heritage-burgundy normal-case tracking-normal transition-colors py-0.5"
                                     >
                                       <span>{subItem.label}</span>
                                       {subItem.badge && (
@@ -260,22 +260,22 @@ export function Header() {
          * Contains an autofocus search input and clickable popular Indian ethnic keywords.
          */}
         {searchOpen && (
-          <div className="border-t border-[#E8DFD0] bg-heritage-cream/90 backdrop-blur-md px-4 py-4 animate-in fade-in duration-200">
+          <div className="border-t border-heritage-antique-gold/25 bg-heritage-warm-ivory/98 backdrop-blur-md px-4 py-4 animate-in fade-in duration-200">
             <div className="max-w-2xl mx-auto">
               <form onSubmit={handleSearchSubmit} className="relative flex items-center">
-                <Search className="absolute left-3 w-5 h-5 text-heritage-earth" />
+                <Search className="absolute left-3 w-5 h-5 text-heritage-espresso/60" />
                 <input
                   type="text"
-                  placeholder="Search kurtas, sarees, lehengas, handloom shirts..."
+                  placeholder="Search kurtis, sarees, anarkalis, salwar suits, palazzos..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   autoFocus
-                  className="w-full bg-heritage-ivory border border-[#D5C9B5] rounded-none pl-11 pr-10 py-3 text-sm text-heritage-charcoal placeholder:text-heritage-earth/60 focus:outline-none focus:border-heritage-terracotta focus:ring-1 focus:ring-heritage-terracotta"
+                  className="w-full bg-heritage-warm-ivory border border-heritage-antique-gold/40 rounded-none pl-11 pr-10 py-3 text-sm text-heritage-espresso placeholder:text-heritage-espresso/50 focus:outline-none focus:border-heritage-burgundy focus:ring-1 focus:ring-heritage-burgundy"
                 />
                 <button
                   type="button"
                   onClick={() => setSearchOpen(false)}
-                  className="absolute right-3 p-1 text-heritage-earth hover:text-heritage-charcoal"
+                  className="absolute right-3 p-1 text-heritage-espresso/60 hover:text-heritage-espresso"
                   aria-label="Close search"
                 >
                   <X className="w-4 h-4" />
@@ -283,27 +283,27 @@ export function Header() {
               </form>
 
               {/* Popular Indian Fashion Suggestions */}
-              <div className="mt-2.5 flex items-center space-x-2 text-xs text-heritage-earth">
-                <span className="font-medium text-heritage-charcoal">Popular:</span>
+              <div className="mt-2.5 flex items-center space-x-2 text-xs text-heritage-espresso/70">
+                <span className="font-medium text-heritage-espresso">Popular:</span>
                 <Link
                   href="/search?q=Chanderi+Kurti"
-                  className="hover:text-heritage-terracotta underline underline-offset-2"
+                  className="hover:text-heritage-burgundy underline underline-offset-2"
                 >
                   Chanderi Kurti
                 </Link>
                 <span>&bull;</span>
                 <Link
                   href="/search?q=Cotton+Saree"
-                  className="hover:text-heritage-terracotta underline underline-offset-2"
+                  className="hover:text-heritage-burgundy underline underline-offset-2"
                 >
                   Cotton Saree
                 </Link>
                 <span>&bull;</span>
                 <Link
-                  href="/search?q=Nehru+Jacket"
-                  className="hover:text-heritage-terracotta underline underline-offset-2"
+                  href="/search?q=Anarkali+Suit"
+                  className="hover:text-heritage-burgundy underline underline-offset-2"
                 >
-                  Nehru Jacket
+                  Anarkali Suit
                 </Link>
               </div>
             </div>

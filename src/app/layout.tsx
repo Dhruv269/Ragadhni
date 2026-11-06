@@ -71,15 +71,16 @@ const plusJakarta = Plus_Jakarta_Sans({
  * (e.g. when someone shares a link to Ragadhni on WhatsApp, Instagram, or Twitter).
  */
 export const metadata: Metadata = {
-  title: "Ragadhni — Indian Ethnic & Traditional Casual Wear",
+  title: "Ragadhni — Women's Indian Ethnic & Traditional Casual Wear",
   description:
-    "Direct-to-consumer Indian ethnic wear and traditional casual clothing. Pure handloom weaves, elegant silhouettes, and contemporary tailoring for everyday grace and celebrations.",
+    "Direct-to-consumer women's Indian ethnic wear and traditional casual clothing. Pure handloom weaves, elegant silhouettes, and contemporary tailoring for everyday grace and celebrations.",
   keywords: [
     "Ragadhni",
     "Indian ethnic wear",
     "kurtis",
     "sarees",
-    "men kurtas",
+    "anarkalis",
+    "salwar suits",
     "traditional casual wear",
     "chanderi silk",
     "festive wear",
@@ -90,9 +91,9 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
     url: "https://ragadhni.com",
-    title: "Ragadhni — Indian Ethnic & Traditional Casual Wear",
+    title: "Ragadhni — Women's Indian Ethnic & Traditional Casual Wear",
     description:
-      "Direct-to-consumer Indian ethnic wear and traditional casual clothing.",
+      "Direct-to-consumer women's Indian ethnic wear and traditional casual clothing.",
     siteName: "Ragadhni",
   },
 };

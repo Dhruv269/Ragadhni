@@ -41,6 +41,26 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+
+  /*
+   * Permanent Redirects:
+   * Ragadhni transitioned from dual-gender to an exclusively women's brand.
+   * Any legacy requests to `/men` or its subroutes are permanently (308) redirected to `/women`.
+   */
+  async redirects() {
+    return [
+      {
+        source: "/men/:path*",
+        destination: "/women",
+        permanent: true,
+      },
+      {
+        source: "/men",
+        destination: "/women",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 // Export the configuration object so Next.js build tools can read it

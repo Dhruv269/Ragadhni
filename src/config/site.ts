@@ -31,7 +31,7 @@ export const siteConfig = {
 
   // Brand description used for Google search engine previews (SEO) and social media cards
   description:
-    "Direct-to-consumer Indian ethnic wear and traditional casual clothing. Handcrafted fabrics, contemporary silhouettes, and timeless elegance.",
+    "Direct-to-consumer women's Indian ethnic wear and traditional casual clothing. Handcrafted fabrics, contemporary silhouettes, and timeless elegance.",
 
   // Canonical base web address
   url: "https://ragadhni.com",
@@ -66,68 +66,70 @@ export const siteConfig = {
   /*
    * Primary navigation hierarchy:
    * Used by both the desktop header (`Header.tsx`) and the mobile slide-out drawer (`MobileDrawer.tsx`).
-   * Items with `children` automatically render as a multi-column dropdown mega-menu on desktop
-   * and an expandable accordion on mobile devices.
+   * Structured exclusively for women's Indian ethnic and traditional casual collections.
    */
   navItems: [
     {
-      label: "Women",
-      href: "/women",
-      children: [
-        {
-          title: "Ethnic Wear",
-          items: [
-            { label: "Kurtis & Kurta Sets", href: "/women/kurtis" },
-            { label: "Sarees & Drapes", href: "/women/sarees", badge: "Trending" },
-            { label: "Salwar Suits", href: "/women/salwar-suits" },
-            { label: "Lehengas & Anarkalis", href: "/women/lehengas-anarkalis" },
-          ],
-        },
-        {
-          title: "Traditional Casuals",
-          items: [
-            { label: "Casual Dresses", href: "/women/casual-dresses" },
-            { label: "Tops & Tunics", href: "/women/tops-tunics" },
-            { label: "Palazzos & Trousers", href: "/women/bottomwear" },
-            { label: "Dupattas & Stoles", href: "/women/dupattas" },
-          ],
-        },
-      ],
-    },
-    {
-      label: "Men",
-      href: "/men",
-      children: [
-        {
-          title: "Ethnic & Festive",
-          items: [
-            { label: "Kurtas & Kurta Sets", href: "/men/kurtas" },
-            { label: "Festive & Wedding Wear", href: "/men/festive-wear", badge: "New" },
-            { label: "Sherwanis & Nehru Jackets", href: "/men/sherwanis" },
-          ],
-        },
-        {
-          title: "Traditional Casuals",
-          items: [
-            { label: "Casual Handloom Shirts", href: "/men/casual-shirts" },
-            { label: "Short Kurtas & Tunics", href: "/men/traditional-casual" },
-            { label: "Churidars & Dhoti Pants", href: "/men/bottomwear" },
-          ],
-        },
-      ],
-    },
-    {
       label: "Ethnic Wear",
       href: "/collections/ethnic-wear",
+      children: [
+        {
+          title: "Traditional Heirlooms",
+          items: [
+            { label: "Handcrafted Sarees", href: "/women/sarees", badge: "Trending" },
+            { label: "Lehengas & Anarkalis", href: "/women/lehengas-anarkalis", badge: "Festive" },
+            { label: "Kurtis & Kurta Sets", href: "/women/kurtis" },
+            { label: "Salwar Suits", href: "/women/salwar-suits" },
+          ],
+        },
+        {
+          title: "Celebration Edits",
+          items: [
+            { label: "Pure Chanderi Silk", href: "/women/sarees" },
+            { label: "Banarasi Brocade", href: "/women/lehengas-anarkalis" },
+            { label: "Handcrafted Dupattas", href: "/women/dupattas" },
+            { label: "All Ethnic Wear", href: "/collections/ethnic-wear" },
+          ],
+        },
+      ],
     },
     {
-      label: "Casual Wear",
+      label: "Traditional Casuals",
       href: "/collections/casual-wear",
+      children: [
+        {
+          title: "Everyday Grace",
+          items: [
+            { label: "Ethnic Casual Dresses", href: "/women/casual-dresses", badge: "New" },
+            { label: "Handblock Tops & Tunics", href: "/women/tops-tunics" },
+            { label: "Palazzos & Trousers", href: "/women/bottomwear" },
+            { label: "Organic Mulmul Sets", href: "/women/kurtis" },
+          ],
+        },
+        {
+          title: "Textile Crafts",
+          items: [
+            { label: "Bagru & Ajrakh Prints", href: "/women/casual-dresses" },
+            { label: "Handspun Khadi", href: "/women/tops-tunics" },
+            { label: "Pure Cotton Mulmul", href: "/women/kurtis" },
+            { label: "All Casual Wear", href: "/collections/casual-wear" },
+          ],
+        },
+      ],
+    },
+    {
+      label: "All Women's",
+      href: "/women",
     },
     {
       label: "New Arrivals",
       href: "/collections/new-arrivals",
       badge: "Fresh",
+    },
+    {
+      label: "Festive Edit",
+      href: "/collections/festive-wear",
+      badge: "Celebration",
     },
     {
       label: "Bestsellers",

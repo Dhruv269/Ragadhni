@@ -49,30 +49,28 @@ const config: Config = {
 
         /*
          * RAGADHNI INDIAN HERITAGE COLOR PALETTE:
-         * A bespoke palette reflecting Indian handlooms, natural vegetable dyes, and clay architecture.
+         * A bespoke palette reflecting Indian royal heritage, handlooms, and natural dyes.
          */
         heritage: {
-          // Primary Canvas: Raw Silk Ivory (#FAF7F2) — warmer and softer than harsh pure white (#FFF)
-          ivory: "#FAF7F2",
-          // Secondary Canvas: Soft cream (#F5EFEB) used for subtle card panels and backgrounds
-          cream: "#F5EFEB",
-          // Neutral: Handspun Khadi Sand (#EDE4D7) used for borders, chip badges, and dividers
-          sand: "#EDE4D7",
-          // Muted Body: Slate Earth (#57534E) for secondary text, metadata, and fabric details
-          earth: "#57534E",
-          // Primary Typography: Deep Charcoal (#1C1917) providing high-contrast editorial elegance
-          charcoal: "#1C1917",
-          // Jewel Accent: Deep Royal Emerald (#1B4332) for festive touches and success states
-          emerald: "#1B4332",
-          // Metallic Accent: Antique Kansa Gold (#C2A673) for celebratory badges and ratings
-          gold: "#C2A673",
-          "gold-light": "#E9DCB9",
-          // Signature Brand Color: Terracotta / Sindoor (#9E3D2B) for primary buttons & active links
-          terracotta: "#9E3D2B",
-          // Hover State: Rosewood (#B85D4A) used when hovering over terracotta elements
-          rosewood: "#B85D4A",
-          // Special Accent: Jamun Maroon (#681D23) for discount badges and sale highlights
-          maroon: "#681D23",
+          // Modern Royal Heritage Palette Tokens:
+          burgundy: "#641E2B",          // Deep contrast & brand identity
+          "warm-ivory": "#F7F1E7",      // Dominant editorial canvas background
+          "antique-gold": "#B69A62",    // Hairlines, badges & delicate accents
+          "antique-gold-light": "#CFBC93", // Shimmer & hover state
+          terracotta: "#B65C43",        // Warm clay accent
+          espresso: "#30231F",          // Deep readable typography & borders
+
+          // Existing Tokens (Consolidated & preserved for backward compatibility):
+          ivory: "#F7F1E7",             // Standardized to warm ivory
+          cream: "#F5EFEB",             // Soft panel fills
+          sand: "#EDE4D7",              // Muted dividers & borders
+          earth: "#57534E",             // Secondary text
+          charcoal: "#30231F",          // High-contrast espresso charcoal
+          emerald: "#1B4332",           // Royal festive emerald
+          gold: "#B69A62",              // Antique gold
+          "gold-light": "#E9DCB9",      // Pale gold highlight
+          rosewood: "#8B2B3C",          // Burgundy hover state
+          maroon: "#641E2B",            // Burgundy accent
         },
       },
 

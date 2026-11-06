@@ -4,10 +4,10 @@
  * ==============================================================================
  *
  * WHAT THIS FILE DOES:
- * This dynamic route page displays curated cross-category edits that combine both
- * men's and women's clothing under thematic drops:
- * - `/collections/ethnic-wear`: Authentic Indian sarees, lehengas, and festive kurtas.
- * - `/collections/casual-wear`: Handloom cotton kurtis, casual khadi shirts, and palazzos.
+ * This dynamic route page displays curated cross-category edits that combine
+ * women's Indian ethnic clothing under thematic drops:
+ * - `/collections/ethnic-wear`: Authentic Indian sarees, lehengas, and anarkali sets.
+ * - `/collections/casual-wear`: Handloom cotton kurtis, casual ethnic dresses, and palazzos.
  * - `/collections/new-arrivals`: Freshly launched drops for the upcoming season.
  * - `/collections/bestsellers`: Most-loved community favorites with high ratings.
  * - `/collections/festive-wear`: Celebration edits for Diwali, weddings, and family festivities.
@@ -36,7 +36,7 @@ const collectionDetailsMap: Record<
   "ethnic-wear": {
     title: "The Ethnic Wear Collection",
     badge: "Traditional Heritage",
-    description: "An homage to Indian textile grandeur — Chanderi silks, handloom sarees, zari-embroidered anarkalis, and raw Tussar silk kurtas.",
+    description: "An homage to Indian textile grandeur — Chanderi silks, handloom sarees, zari-embroidered anarkalis, and Banarasi lehengas.",
     filterKey: "ethnic",
   },
   "casual-wear": {
@@ -48,7 +48,7 @@ const collectionDetailsMap: Record<
   "new-arrivals": {
     title: "Fresh Drops & New Arrivals",
     badge: "Season 2026",
-    description: "Discover our newest handcrafted arrivals for women and men, fresh off the artisan looms.",
+    description: "Discover our newest handcrafted arrivals for women, fresh off the artisan looms.",
     filterKey: "new",
   },
   bestsellers: {
@@ -60,7 +60,7 @@ const collectionDetailsMap: Record<
   "festive-wear": {
     title: "The Celebration Edit",
     badge: "Festive Grandeur",
-    description: "Curated heirloom ensembles, shimmering zari borders, and regal Nehru jackets designed for Indian celebrations.",
+    description: "Curated heirloom ensembles, shimmering zari borders, and regal anarkali sets designed for Indian celebrations.",
     filterKey: "festive",
   },
 };
@@ -111,7 +111,6 @@ export default async function CollectionDetailPage({ params }: CollectionPagePro
         p.tags.includes("Festive") ||
         p.tags.includes("Silk") ||
         p.category === "lehengas-anarkalis" ||
-        p.category === "sherwanis" ||
         p.category === "sarees"
     );
   } else if (details.filterKey === "casual") {
@@ -119,8 +118,8 @@ export default async function CollectionDetailPage({ params }: CollectionPagePro
       (p) =>
         p.tags.includes("Casual") ||
         p.tags.includes("Summer") ||
-        p.category === "casual-shirts" ||
-        p.category === "traditional-casual" ||
+        p.category === "casual-dresses" ||
+        p.category === "tops-tunics" ||
         p.category === "bottomwear" ||
         p.category === "kurtis"
     );
@@ -130,8 +129,8 @@ export default async function CollectionDetailPage({ params }: CollectionPagePro
         p.category === "sarees" ||
         p.category === "lehengas-anarkalis" ||
         p.category === "salwar-suits" ||
-        p.category === "kurtas" ||
-        p.category === "sherwanis"
+        p.category === "kurtis" ||
+        p.category === "dupattas"
     );
   }
 

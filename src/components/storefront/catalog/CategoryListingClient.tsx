@@ -19,7 +19,7 @@
  * a slow server round-trip or page reload.
  *
  * HOW IT CONNECTS TO THE REST OF THE PROJECT:
- * - Used by `/women/page.tsx`, `/men/page.tsx`, `/women/[category]/page.tsx`, and `/collections/[slug]/page.tsx`.
+ * - Used by `/women/page.tsx`, `/women/[category]/page.tsx`, and `/collections/[slug]/page.tsx`.
  * - Imports `<FilterSidebar>` from `FilterSidebar.tsx`.
  * - Imports `<ProductGrid>` from `ProductGrid.tsx`.
  * - Uses `<Container>` from `src/components/ui/Container.tsx`.

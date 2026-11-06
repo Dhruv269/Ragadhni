@@ -7,7 +7,7 @@
  * This component renders the slide-out navigation menu for smartphones and tablets.
  * It contains:
  * 1. Brand logo and close button ("X").
- * 2. Expandable accordion menus for Women's and Men's Indian ethnic categories.
+ * 2. Expandable accordion menus for Indian ethnic & traditional casual categories.
  * 3. Direct links to customer account, wishlist, and shopping bag.
  * 4. Direct phone and WhatsApp customer support contact info.
  *
@@ -52,8 +52,8 @@ export function MobileDrawer({
   cartCount,
   wishlistCount,
 }: MobileDrawerProps) {
-  // Tracks which accordion section is currently open (defaults to "Women" so first-time shoppers see options)
-  const [expandedSection, setExpandedSection] = useState<string | null>("Women");
+  // Tracks which accordion section is currently open (defaults to "Ethnic Wear" so first-time shoppers see options)
+  const [expandedSection, setExpandedSection] = useState<string | null>("Ethnic Wear");
 
   /*
    * EARLY EXIT (PERFORMANCE OPTIMIZATION):
@@ -96,7 +96,7 @@ export function MobileDrawer({
               Ragadhni
             </span>
             <span className="block text-[10px] tracking-widest uppercase text-heritage-earth/70 mt-0.5">
-              Indian Ethnic & Casuals
+              Women&apos;s Indian Ethnic & Casuals
             </span>
           </div>
           <button
@@ -119,7 +119,7 @@ export function MobileDrawer({
               const hasChildren = item.children && item.children.length > 0;
               const isExpanded = expandedSection === item.label;
 
-              // If this item has subcategories (e.g. Women, Men) -> Render Accordion
+              // If this item has subcategories (e.g. Ethnic Wear, Traditional Casuals) -> Render Accordion
               if (hasChildren) {
                 return (
                   <div key={item.label} className="rounded-md overflow-hidden">

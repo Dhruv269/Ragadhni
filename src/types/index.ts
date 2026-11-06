@@ -26,18 +26,18 @@
 
 /**
  * Gender:
- * A union type restricting gender to three valid values.
- * The `|` symbol means "OR" (it can ONLY be "WOMEN", "MEN", or "UNISEX").
+ * Ragadhni is an exclusively women's Indian ethnic and traditional clothing brand.
+ * The Gender type is strictly restricted to "WOMEN".
  */
-export type Gender = "WOMEN" | "MEN" | "UNISEX";
+export type Gender = "WOMEN";
 
 /**
  * ApparelCategory:
- * The complete list of clothing categories supported by the Ragadhni brand.
+ * The complete list of women's clothing categories supported by the Ragadhni brand.
  * Using a union type prevents spelling mistakes when creating new products or category routes.
+ * Accessories are strictly excluded.
  */
 export type ApparelCategory =
-  // Women's Categories
   | "kurtis"
   | "sarees"
   | "salwar-suits"
@@ -45,12 +45,7 @@ export type ApparelCategory =
   | "casual-dresses"
   | "tops-tunics"
   | "bottomwear"
-  // Men's Categories
-  | "kurtas"
-  | "casual-shirts"
-  | "traditional-casual"
-  | "festive-wear"
-  | "sherwanis";
+  | "dupattas";
 
 /**
  * CategoryInfo:
@@ -174,7 +169,7 @@ export interface Cart {
  * Can contain nested child categories to power the desktop mega-menu.
  */
 export interface NavItem {
-  label: string; // Display text (e.g., "Women", "Men", "New Arrivals")
+  label: string; // Display text (e.g., "Ethnic Wear", "Traditional Casuals", "New Arrivals")
   href: string; // Target link URL (e.g., "/women")
   isFeatured?: boolean;
   badge?: string; // Optional chip badge (e.g., "Fresh", "Trending")

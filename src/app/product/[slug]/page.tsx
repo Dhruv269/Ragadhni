@@ -118,19 +118,26 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
           aria-label="Breadcrumb"
           className="flex items-center space-x-2 text-[11px] uppercase tracking-wider text-heritage-earth mb-8"
         >
-          <Link href="/" className="hover:text-heritage-terracotta transition-colors">
+          <Link href="/" className="hover:text-heritage-burgundy transition-colors">
             Home
           </Link>
           <ChevronRight className="w-3 h-3 text-heritage-sand" />
           <Link
-            href={product.gender === "WOMEN" ? "/women" : "/men"}
-            className="hover:text-heritage-terracotta transition-colors"
+            href="/women"
+            className="hover:text-heritage-burgundy transition-colors"
           >
-            {product.gender === "WOMEN" ? "Women" : "Men"}
+            Women
+          </Link>
+          <ChevronRight className="w-3 h-3 text-heritage-sand" />
+          <Link
+            href={`/women/${product.category}`}
+            className="hover:text-heritage-burgundy transition-colors"
+          >
+            {product.categoryName}
           </Link>
           <ChevronRight className="w-3 h-3 text-heritage-sand" />
           <span className="text-heritage-charcoal font-medium line-clamp-1">
-            {product.categoryName}
+            {product.title}
           </span>
         </nav>
 
@@ -175,8 +182,8 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
                 </h2>
               </div>
               <Link
-                href={product.gender === "WOMEN" ? "/women" : "/men"}
-                className="text-xs uppercase tracking-widest text-heritage-charcoal hover:text-heritage-terracotta font-medium transition-colors"
+                href={`/women/${product.category}`}
+                className="text-xs uppercase tracking-widest text-heritage-charcoal hover:text-heritage-burgundy font-medium transition-colors"
               >
                 View Full Collection &rarr;
               </Link>
