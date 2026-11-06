@@ -1,0 +1,39 @@
+{
+  // ============================================================================
+  // Ragadhni — TypeScript Compiler Configuration (`tsconfig.json`)
+  // ============================================================================
+  // WHAT THIS FILE DOES:
+  // This file configures the TypeScript compiler (`tsc`). It tells TypeScript:
+  // 1. Which JavaScript features to support (ES2017/esnext).
+  // 2. How strictly to check your code for bugs (`strict: true`).
+  // 3. How import shortcuts (like `@/components/...`) should resolve to `./src/...`.
+  // ============================================================================
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    // Strict mode: Catches null/undefined errors and prevents accidental bugs
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    // JSX Preserve: Next.js compiler transforms JSX into React 19 elements
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    // Path Aliases: Allows importing from `@/...` instead of `../../...`
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}

@@ -1,0 +1,117 @@
+/*
+ * ==============================================================================
+ * Ragadhni — Global Stylesheet (`src/styles/globals.css`)
+ * ==============================================================================
+ *
+ * WHAT THIS FILE DOES:
+ * This is the root CSS stylesheet for the entire Ragadhni website.
+ * It imports Tailwind CSS, configures the baseline canvas colors, and defines
+ * global rules for typography smoothing, text selection, and custom scrollbars.
+ *
+ * WHY IT EXISTS:
+ * Next.js imports this file once inside `src/app/layout.tsx`. Any styles placed
+ * here apply universally across all pages, layouts, and components.
+ *
+ * HOW IT CONNECTS TO THE REST OF THE PROJECT:
+ * - The `@tailwind` directives inject Tailwind's CSS engine.
+ * - The CSS variables (`--background` and `--foreground`) match our heritage palette
+ *   configured in `tailwind.config.ts`.
+ * - It references `var(--font-jakarta)` which is loaded from Google Fonts in `src/app/layout.tsx`.
+ */
+
+/*
+ * 1. TAILWIND DIRECTIVES:
+ * These three lines tell Tailwind's compiler to inject its standard stylesheets:
+ * - base: Resets default browser margins and unifies styles across browsers (Preflight).
+ * - components: Holds complex multi-class component utilities.
+ * - utilities: Injects single-purpose utility classes (e.g., `pt-4`, `flex`, `text-sm`).
+ */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * 2. ROOT CSS VARIABLES:
+ * Global design tokens accessible anywhere in CSS via `var(--variable-name)`.
+ */
+:root {
+  /* Default page background: Raw Silk Ivory (soft, warm heritage canvas) */
+  --background: #FAF7F2;
+
+  /* Default text color: Deep Charcoal (high contrast and crisp legibility) */
+  --foreground: #1C1917;
+}
+
+/*
+ * 3. BASE STYLING LAYER:
+ * `@layer base` allows us to target raw HTML elements (like `body`, `html`, `*`)
+ * while still allowing Tailwind utility classes to override them when needed.
+ */
+@layer base {
+  /*
+   * Box Sizing:
+   * `border-box` ensures that adding padding or borders to an element does NOT
+   * make it wider than its specified width. This prevents unexpected layout overflow bugs.
+   */
+  * {
+    box-sizing: border-box;
+  }
+
+  /*
+   * Smooth Scrolling & Font Anti-Aliasing:
+   * - `scroll-behavior: smooth` makes internal page links glide smoothly instead of jumping.
+   * - `-webkit-font-smoothing` and `-moz-osx-font-smoothing` ensure letters look crisp
+   *   and elegant on high-density Retina screens (MacBooks, iPhones, modern displays).
+   */
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /*
+   * Global Body Defaults:
+   * Sets the default background, text color, and primary sans-serif font family.
+   */
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-jakarta), system-ui, sans-serif;
+    min-height: 100vh;
+  }
+
+  /*
+   * Text Selection Highlight:
+   * When a customer highlights text with their mouse/cursor on Ragadhni,
+   * instead of default electric blue, the highlight appears in our warm
+   * signature Terracotta (#9E3D2B) with ivory text.
+   */
+  ::selection {
+    background-color: #9E3D2B;
+    color: #FAF7F2;
+  }
+
+  /*
+   * Custom Slim Heritage Scrollbar:
+   * Replaces the bulky default operating system scrollbars with a minimalist,
+   * warm Khadi Sand colored slim track.
+   */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #FAF7F2;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #D7CEBE;
+    border-radius: 3px;
+  }
+
+  /* Scrollbar thumb hover state turns Terracotta */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #9E3D2B;
+  }
+}

@@ -1,0 +1,381 @@
+// ==============================================================================
+// Ragadhni — Database Schema (`prisma/schema.prisma`)
+// ==============================================================================
+//
+// WHAT THIS FILE DOES:
+// This file is the complete blueprint for your database. It defines:
+// 1. The database provider (PostgreSQL).
+// 2. The tables (called "Models" in Prisma) like Products, Users, Orders, and Addresses.
+// 3. The columns in each table (like prices, names, and images).
+// 4. The relationships between tables (e.g., each Order belongs to a User, and each Product has many Variants).
+//
+// WHY IT EXISTS:
+// In professional e-commerce, you cannot store orders, payments, and stock counts
+// in plain files. You need a secure, fast relational database (PostgreSQL).
+// Prisma reads this file and automatically:
+// - Creates and updates your database tables via migrations.
+// - Generates strictly-typed TypeScript functions (e.g., `prisma.product.findMany()`)
+//   so you can query your database without writing raw SQL queries.
+//
+// HOW IT CONNECTS TO THE REST OF THE PROJECT:
+// - Frontend components (like `ProductCard` and `page.tsx`) display data shaped by these models.
+// - Admin dashboards use these models to update stock levels, prices, and orders.
+// - Future API routes and Server Actions will import `prisma` to create orders and update stock.
+// ==============================================================================
+
+// 1. CLIENT GENERATOR:
+// Tells Prisma to generate the TypeScript client library (`@prisma/client`)
+// whenever you run `npx prisma generate`.
+generator client {
+  provider = "prisma-client-js"
+}
+
+// 2. DATA SOURCE:
+// Tells Prisma which database engine to connect to. We use PostgreSQL,
+// which is the industry standard for transactional e-commerce platforms.
+// The connection URL is kept secure inside the `.env` file (`DATABASE_URL`).
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ==============================================================================
+// ENUMS (Fixed choices for specific fields)
+// ==============================================================================
+
+// User permissions inside Ragadhni
+enum Role {
+  CUSTOMER // Normal shoppers browsing and placing orders
+  STAFF    // Warehouse staff packing orders and updating stock
+  ADMIN    // Store owners managing products, analytics, and staff
+}
+
+// Target audience for clothing collections
+enum Gender {
+  WOMEN
+  MEN
+  UNISEX
+}
+
+// The lifecycle milestones of a customer's order
+enum OrderStatus {
+  PENDING           // Checkout started, awaiting payment confirmation or COD verification
+  CONFIRMED         // Payment successful or COD confirmed; ready to pack
+  PROCESSING        // Garment being packaged and quality checked at the warehouse
+  SHIPPED           // Handed over to the courier partner (Shiprocket/Delhivery)
+  OUT_FOR_DELIVERY  // Courier delivery agent is out for doorstep delivery today
+  DELIVERED         // Customer received package
+  CANCELLED         // Cancelled by customer or out of stock
+  RETURN_REQUESTED  // Customer requested 7-day exchange or return
+  RETURNED          // Returned garment received and inspected
+}
+
+// Payment method chosen at checkout
+enum PaymentMethod {
+  PREPAID // Paid online upfront via UPI, RuPay, Netbanking, or Cards
+  COD     // Cash on Delivery to be collected at the customer's doorstep
+}
+
+// Current status of the financial transaction
+enum PaymentStatus {
+  PENDING  // Payment link or modal opened, waiting for bank confirmation
+  PAID     // Bank/UPI confirmed successful transaction
+  FAILED   // Insufficient funds, gateway timeout, or bank decline
+  REFUNDED // Money returned to customer for cancelled/returned orders
+}
+
+// Tracking states received from courier webhooks (Shiprocket / Delhivery)
+enum ShipmentStatus {
+  MANIFESTED    // Shipping label and AWB tracking code created in the system
+  PICKED_UP     // Courier van picked up package from Ragadhni warehouse
+  IN_TRANSIT    // Package traveling between logistics distribution hubs
+  OUT_FOR_DELIVERY // On the delivery agent's bike/van for delivery
+  DELIVERED     // Successfully handed over to customer
+  RTO_INITIATED // Return-to-Origin: Customer unavailable or refused COD
+  RTO_DELIVERED // Returned back to Ragadhni warehouse
+}
+
+// ==============================================================================
+// DATABASE MODELS (Tables)
+// ==============================================================================
+
+/// User: Represents registered customers, warehouse staff, and brand administrators.
+model User {
+  id            String         @id @default(uuid()) // Unique auto-generated identifier
+  email         String?        @unique              // Customer's email address
+  phone         String?        @unique              // Customer's mobile number (primary for Indian OTP login)
+  passwordHash  String?                             // Encrypted password (if using password login)
+  name          String?                             // Customer's display name
+  role          Role           @default(CUSTOMER)   // Access level
+  createdAt     DateTime       @default(now())      // Timestamp when user joined
+  updatedAt     DateTime       @updatedAt           // Automatically updates whenever user record changes
+
+  // Relationships (Connections to other tables):
+  addresses     Address[]      // A user can save multiple Indian delivery addresses (Home, Office)
+  orders        Order[]        // All orders placed by this customer
+  wishlistItems WishlistItem[] // Saved favorite garments
+  reviews       Review[]       // Product reviews written by this customer
+
+  // Database indexes make searching by email or phone ultra-fast
+  @@index([email])
+  @@index([phone])
+}
+
+/// Address: Stores Indian delivery and billing addresses for customer orders.
+model Address {
+  id            String   @id @default(uuid())
+  userId        String
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  fullName      String   // Recipient's full name
+  phone         String   // 10-digit Indian mobile number for courier delivery contact
+  streetAddress String   // Flat/House No, Building, Street, Area
+  landmark      String?  // Nearby landmark (e.g., "Near Temple", "Opposite Metro Station")
+  city          String   // e.g., "Jaipur", "Mumbai", "Bengaluru"
+  state         String   // e.g., "Rajasthan", "Maharashtra", "Karnataka"
+  postalCode    String   // 6-digit Indian PIN code (used for courier serviceability check)
+  country       String   @default("India")
+  isDefault     Boolean  @default(false)
+  addressType   String   @default("HOME") // "HOME", "WORK", or "OTHER"
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([userId])
+  @@index([postalCode])
+}
+
+/// Category: High-level garment categories (e.g. Kurtis, Sarees, Men's Kurtas, Casual Shirts).
+model Category {
+  id           String    @id @default(uuid())
+  name         String    // Category display name (e.g., "Kurtis & Kurta Sets")
+  slug         String    @unique // URL-friendly identifier (e.g., "kurtis")
+  gender       Gender    @default(WOMEN)
+  description  String?   // Short summary shown on Category Landing Pages
+  image        String?   // Cover image for homepage category showcases
+  displayOrder Int       @default(0) // Used to order menu links in the header
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  products     Product[] // All garments belonging to this category
+
+  @@index([slug])
+  @@index([gender])
+}
+
+/// Collection: Curated drops and festive edits (e.g., "The Royal Chanderi Edit", "Handloom Essentials").
+model Collection {
+  id          String              @id @default(uuid())
+  title       String              // Collection title
+  slug        String              @unique // URL slug (e.g., "royal-chanderi-edit")
+  description String?
+  bannerImage String?             // Wide hero banner image for collection landing page
+  isFeatured  Boolean             @default(false) // Show on homepage if true
+  createdAt   DateTime            @default(now())
+
+  products    ProductCollection[] // Connects multiple products to this collection (many-to-many)
+
+  @@index([slug])
+}
+
+/// Product: The central apparel item record (e.g., "Chanderi Silk Embroidered Anarkali Set").
+model Product {
+  id             String              @id @default(uuid())
+  title          String              // Garment name
+  slug           String              @unique // URL slug (e.g., "chanderi-silk-embroidered-anarkali-set")
+  description    String              // Detailed editorial styling & description
+  gender         Gender              @default(WOMEN)
+  categoryId     String
+  category       Category            @relation(fields: [categoryId], references: [id])
+  fabric         String              // Fabric weave (e.g., "Pure Chanderi Silk", "Organic Mulmul")
+  weave          String?             // Weaving technique (e.g., "Handloom", "Jacquard", "Bagru")
+  work           String?             // Artistry (e.g., "Zari & Thread Work", "Handblock Print")
+  fit            String?             // Cut of the outfit (e.g., "Flared", "Straight Fit", "Relaxed")
+  washCare       String              @default("Dry clean or gentle hand wash in cold water.")
+  basePrice      Decimal             @db.Decimal(10, 2) // Current selling price in INR
+  compareAtPrice Decimal?            @db.Decimal(10, 2) // Original higher price for discount calculation
+  isNewArrival   Boolean             @default(false) // Flags fresh drops
+  isBestseller   Boolean             @default(false) // Flags popular pieces
+  isFeatured     Boolean             @default(false) // Controls prominence on homepage
+  isPublished    Boolean             @default(true)  // Set to false to hide draft items
+  createdAt      DateTime            @default(now())
+  updatedAt      DateTime            @updatedAt
+
+  // Relationships:
+  variants       ProductVariant[]    // Size and color variations (XS, S, M, L, XL)
+  images         ProductImage[]      // Editorial model shots and weave close-ups
+  collections    ProductCollection[] // Collections this product belongs to
+  reviews        Review[]            // Customer ratings and feedback
+  orderItems     OrderItem[]         // Historical record in customer orders
+  wishlistItems  WishlistItem[]      // Customer wishlist bookmarks
+
+  @@index([slug])
+  @@index([categoryId])
+  @@index([gender])
+}
+
+/// ProductCollection: Junction table linking Products and Collections (Many-to-Many).
+model ProductCollection {
+  productId    String
+  collectionId String
+  product      Product    @relation(fields: [productId], references: [id], onDelete: Cascade)
+  collection   Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+
+  @@id([productId, collectionId])
+}
+
+/// ProductVariant: Holds specific size, color, SKU code, and exact inventory stock.
+/// Why this exists: One Kurti product comes in multiple sizes (XS to XXL).
+/// We track stock count separately for every size so we never oversell.
+model ProductVariant {
+  id             String      @id @default(uuid())
+  productId      String
+  product        Product     @relation(fields: [productId], references: [id], onDelete: Cascade)
+  sku            String      @unique // Unique Stock Keeping Unit (e.g., "RAG-ANK-CH-M")
+  size           String      // "XS", "S", "M", "L", "XL", "XXL", "Free Size"
+  color          String      // Human readable color (e.g., "Rust Terracotta")
+  colorHex       String?     // Hex color for swatch dot (e.g., "#9E3D2B")
+  price          Decimal     @db.Decimal(10, 2) // Price for this variant
+  compareAtPrice Decimal?    @db.Decimal(10, 2)
+  stockQuantity  Int         @default(0) // Available units in the warehouse
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+
+  orderItems     OrderItem[]
+
+  @@index([productId])
+  @@index([sku])
+  @@index([size])
+}
+
+/// ProductImage: Stores image URLs and display orders for product photography.
+model ProductImage {
+  id           String   @id @default(uuid())
+  productId    String
+  product      Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  url          String   // Cloudinary, S3, or CDN image URL
+  altText      String   // Accessibility description for screen readers and SEO
+  displayOrder Int      @default(0) // 0 is primary cover photo; 1, 2, 3 are secondary angles
+  isPrimary    Boolean  @default(false)
+
+  @@index([productId])
+}
+
+/// Order: Represents a finalized customer purchase.
+model Order {
+  id                  String         @id @default(uuid())
+  orderNumber         String         @unique // Customer-facing order code (e.g., "RAG-2026-1042")
+  userId              String?
+  user                User?          @relation(fields: [userId], references: [id], onDelete: SetNull)
+  customerName        String         // Saved at checkout in case user profile changes later
+  customerEmail       String
+  customerPhone       String
+  status              OrderStatus    @default(PENDING)
+  subtotal            Decimal        @db.Decimal(10, 2) // Sum of items
+  discount            Decimal        @default(0) @db.Decimal(10, 2) // Coupon savings
+  shippingFee         Decimal        @default(0) @db.Decimal(10, 2) // Free above ₹1,499
+  totalAmount         Decimal        @db.Decimal(10, 2) // Final payable total in INR
+  paymentMethod       PaymentMethod  @default(PREPAID)  // PREPAID or COD
+  paymentStatus       PaymentStatus  @default(PENDING)
+  shippingAddressJson String         // Complete snapshot of Indian address at time of purchase
+  billingAddressJson  String?
+  customerNotes       String?        // Delivery instructions (e.g., "Leave with security")
+  createdAt           DateTime       @default(now())
+  updatedAt           DateTime       @updatedAt
+
+  items               OrderItem[]    // Individual garments in this order
+  payment             Payment?       // Payment gateway verification record
+  shipment            Shipment?      // Courier partner tracking record
+
+  @@index([orderNumber])
+  @@index([userId])
+  @@index([status])
+}
+
+/// OrderItem: Represents a single clothing item inside an order.
+/// Snapshots the price, size, and title so changes to product catalog later don't corrupt past receipts.
+model OrderItem {
+  id         String          @id @default(uuid())
+  orderId    String
+  order      Order           @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId  String?
+  product    Product?        @relation(fields: [productId], references: [id], onDelete: SetNull)
+  variantId  String?
+  variant    ProductVariant? @relation(fields: [variantId], references: [id], onDelete: SetNull)
+  title      String          // Product title at time of order
+  size       String          // Size purchased (e.g., "M")
+  color      String          // Color purchased
+  sku        String          // Variant SKU
+  unitPrice  Decimal         @db.Decimal(10, 2)
+  quantity   Int
+  total      Decimal         @db.Decimal(10, 2) // unitPrice * quantity
+
+  @@index([orderId])
+}
+
+/// Payment: Stores online transaction details verified from payment gateway webhooks.
+model Payment {
+  id              String        @id @default(uuid())
+  orderId         String        @unique
+  order           Order         @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  gateway         String        @default("RAZORPAY") // Gateway name (e.g., "RAZORPAY", "CASHFREE")
+  gatewayOrderId  String?       // Order ID generated by Razorpay
+  transactionId   String?       // Payment ID returned after bank approval
+  signature       String?       // Cryptographic HMAC-SHA256 signature proving payment authenticity
+  status          PaymentStatus @default(PENDING)
+  amount          Decimal       @db.Decimal(10, 2)
+  currency        String        @default("INR")
+  rawResponseJson String?       // Raw webhook payload for dispute audit trails
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  @@index([transactionId])
+  @@index([gatewayOrderId])
+}
+
+/// Shipment: Tracks courier delivery milestones and shipping labels.
+model Shipment {
+  id           String         @id @default(uuid())
+  orderId      String         @unique
+  order        Order          @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  courierName  String?        // Courier partner (e.g., "Delhivery Express", "BlueDart")
+  awbCode      String?        @unique // Air Waybill number (the tracking number printed on the package)
+  trackingUrl  String?        // Direct link for the customer to see real-time updates
+  labelUrl     String?        // PDF link for warehouse to print packaging slip
+  status       ShipmentStatus @default(MANIFESTED)
+  manifestedAt DateTime?
+  deliveredAt  DateTime?
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+
+  @@index([awbCode])
+}
+
+/// WishlistItem: Allows shoppers to bookmark garments they love before purchasing.
+model WishlistItem {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  // A customer cannot bookmark the exact same product twice
+  @@unique([userId, productId])
+}
+
+/// Review: Customer ratings and feedback on fabrics, fit, and craftsmanship.
+model Review {
+  id                 String   @id @default(uuid())
+  productId          String
+  product            Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  userId             String?
+  user               User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  authorName         String   // Name displayed publicly (e.g., "Ananya S.")
+  rating             Int      @default(5) // Star rating (1 to 5)
+  title              String?  // Short review headline (e.g., "Exquisite weave and drape")
+  comment            String   // In-depth review text
+  isVerifiedPurchase Boolean  @default(false) // True if customer actually bought the item
+  isApproved         Boolean  @default(true)  // Admin moderation flag
+  createdAt          DateTime @default(now())
+
+  @@index([productId])
+}
