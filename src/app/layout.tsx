@@ -33,6 +33,7 @@ import "@/styles/globals.css";
 import { AnnouncementBar } from "@/components/storefront/header/AnnouncementBar";
 import { Header } from "@/components/storefront/header/Header";
 import { Footer } from "@/components/storefront/footer/Footer";
+import { EditorialIntro } from "@/components/storefront/intro/EditorialIntro";
 
 /*
  * ==============================================================================
@@ -109,6 +110,32 @@ export default function RootLayout({
   return (
     // Inject the font CSS variable class names onto the root <html> element
     <html lang="en" className={`${cormorant.variable} ${plusJakarta.variable}`}>
+      <head>
+        {/*
+         * Zero-Flash Editorial Intro Session Check:
+         * Synchronously executes before first paint. If this is a first-time homepage visit
+         * within this session and reduced-motion is not requested, sets `data-intro="active"`
+         * on <html> so "Cinematic Editorial Intro" is painted on Frame 0 over the viewport without delay or flash.
+         */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                var isHome = window.location.pathname === '/' || window.location.pathname === '';
+                var seen = sessionStorage.getItem('ragadhni_editorial_intro_seen');
+                var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                if (isHome && !seen && !reduced) {
+                  document.documentElement.setAttribute('data-intro', 'active');
+                } else {
+                  document.documentElement.setAttribute('data-intro', 'disabled');
+                }
+              } catch (e) {
+                document.documentElement.setAttribute('data-intro', 'disabled');
+              }
+            `,
+          }}
+        />
+      </head>
       {/*
        * Body Layout:
        * `flex flex-col min-h-screen`: Flexbox column layout taking at least full screen height.
@@ -116,6 +143,9 @@ export default function RootLayout({
        * is pushed to the bottom of the screen even on short pages.
        */}
       <body className="bg-luxe-warmwhite text-luxe-charcoal font-sans flex flex-col min-h-screen selection:bg-luxe-gold/30 selection:text-luxe-maroon">
+        {/* Cinematic Editorial Loading Introduction (session-aware) */}
+        <EditorialIntro />
+
         {/* Top promotional announcement bar */}
         <AnnouncementBar />
 

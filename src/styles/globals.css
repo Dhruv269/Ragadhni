@@ -225,6 +225,32 @@
 }
 
 /*
+ * ==============================================================================
+ * 5. CINEMATIC EDITORIAL INTRO ANIMATION UTILITIES
+ * ==============================================================================
+ */
+
+/* By default, the intro is hidden so returning visitors and subpages NEVER see a flash */
+#cinematic-editorial-intro {
+  display: none;
+  background-color: #123D32;
+  background-image:
+    radial-gradient(ellipse at 60% 50%, rgba(33, 102, 83, 0.45) 0%, rgba(18, 61, 50, 0.95) 70%, #0A241E 100%),
+    repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(217, 200, 165, 0.04) 3px, rgba(217, 200, 165, 0.04) 4px),
+    repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(217, 200, 165, 0.04) 3px, rgba(217, 200, 165, 0.04) 4px);
+}
+
+/* ONLY when data-intro="active" on <html> is the intro rendered on Frame 0 */
+html[data-intro="active"] #cinematic-editorial-intro {
+  display: flex !important;
+}
+
+/* Prevent scrolling while intro is active */
+html[data-intro="active"] {
+  overflow: hidden !important;
+}
+
+/*
  * ACCESSIBILITY GUARD (prefers-reduced-motion):
  * Respects system settings for users who experience vestibular motion disorders.
  * All animations and transitions are stripped away, instantly rendering at full opacity.
@@ -249,6 +275,10 @@
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
+  }
+
+  #cinematic-editorial-intro {
+    display: none !important;
   }
 }
 
