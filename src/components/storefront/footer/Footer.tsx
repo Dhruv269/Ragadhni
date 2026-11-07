@@ -30,6 +30,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Sparkles, Truck, RotateCcw, ShieldCheck, Mail, ArrowRight, Phone, Check } from "lucide-react";
 
 export function Footer() {
@@ -264,46 +265,48 @@ export function Footer() {
          * Switches conditionally between the input form and a success message.
          * ========================================================================
          */}
-        <div className="mt-14 pt-8 border-t border-luxe-gold/25 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="w-full md:w-auto">
-            <h5 className="font-serif text-base text-luxe-charcoal font-normal">
-              Join the Ragadhni Circle
-            </h5>
-            <p className="text-xs text-luxe-grey mt-0.5 font-light">
-              Receive private preview invites, festive lookbooks, and textile stories.
-            </p>
-          </div>
-
-          {/*
-           * Conditional Rendering:
-           * If `subscribed` is true -> Show confirmation message
-           * If `subscribed` is false -> Show email input form
-           */}
-          {subscribed ? (
-            <div className="flex items-center space-x-2 text-xs text-luxe-maroon bg-luxe-gold/20 border border-luxe-gold/40 px-4 py-2.5">
-              <Check className="w-4 h-4 text-luxe-maroon" />
-              <span>You have joined the Ragadhni Circle.</span>
+        <ScrollReveal variant="fade-up">
+          <div className="mt-14 pt-8 border-t border-luxe-gold/25 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="w-full md:w-auto">
+              <h5 className="font-serif text-base text-luxe-charcoal font-normal">
+                Join the Ragadhni Circle
+              </h5>
+              <p className="text-xs text-luxe-grey mt-0.5 font-light">
+                Receive private preview invites, festive lookbooks, and textile stories.
+              </p>
             </div>
-          ) : (
-            <form onSubmit={handleSubscribe} className="w-full md:w-80 flex">
-              <input
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email address"
-                className="bg-luxe-warmwhite border border-luxe-gold/40 px-3.5 py-2.5 text-xs text-luxe-charcoal placeholder:text-luxe-grey/60 focus:outline-none focus:border-luxe-burgundy w-full"
-              />
-              <button
-                type="submit"
-                className="bg-luxe-burgundy text-luxe-warmwhite px-5 py-2.5 text-xs uppercase tracking-wider font-medium hover:bg-luxe-wine transition-colors flex items-center shrink-0"
-              >
-                <span>Join</span>
-                <ArrowRight className="w-3.5 h-3.5 ml-1" />
-              </button>
-            </form>
-          )}
-        </div>
+
+            {/*
+             * Conditional Rendering:
+             * If `subscribed` is true -> Show confirmation message
+             * If `subscribed` is false -> Show email input form
+             */}
+            {subscribed ? (
+              <div className="flex items-center space-x-2 text-xs text-luxe-maroon bg-luxe-gold/20 border border-luxe-gold/40 px-4 py-2.5">
+                <Check className="w-4 h-4 text-luxe-maroon" />
+                <span>You have joined the Ragadhni Circle.</span>
+              </div>
+            ) : (
+              <form onSubmit={handleSubscribe} className="w-full md:w-80 flex">
+                <input
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email address"
+                  className="bg-luxe-warmwhite border border-luxe-gold/40 px-3.5 py-2.5 text-xs text-luxe-charcoal placeholder:text-luxe-grey/60 focus:outline-none focus:border-luxe-burgundy w-full"
+                />
+                <button
+                  type="submit"
+                  className="bg-luxe-burgundy text-luxe-warmwhite px-5 py-2.5 text-xs uppercase tracking-wider font-medium hover:bg-luxe-wine transition-colors flex items-center shrink-0"
+                >
+                  <span>Join</span>
+                  <ArrowRight className="w-3.5 h-3.5 ml-1" />
+                </button>
+              </form>
+            )}
+          </div>
+        </ScrollReveal>
       </div>
 
       {/*

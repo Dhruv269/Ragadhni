@@ -27,6 +27,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { Product } from "@/types";
 import { ProductCard } from "@/components/storefront/product/ProductCard";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { ArrowRight, Sparkles } from "lucide-react";
 
 interface FeaturedProductTabsProps {
@@ -53,69 +54,80 @@ export function FeaturedProductTabs({ products }: FeaturedProductTabsProps) {
   return (
     <div className="space-y-8 sm:space-y-10">
       {/* Tab Navigation Header */}
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between border-b border-luxe-gold/30 pb-5 gap-4">
-        <div>
-          <div className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.25em] text-luxe-terracotta font-medium mb-1">
-            <Sparkles className="w-3.5 h-3.5 text-luxe-gold" />
-            <span>The Curated Wardrobe</span>
+      <ScrollReveal variant="fade-up">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between border-b border-luxe-gold/30 pb-5 gap-4">
+          <div>
+            <div className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.25em] text-luxe-terracotta font-medium mb-1">
+              <Sparkles className="w-3.5 h-3.5 text-luxe-gold" />
+              <span>The Curated Wardrobe</span>
+            </div>
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-luxe-charcoal font-normal tracking-tight">
+              Curated Women&apos;s Heirlooms
+            </h2>
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-luxe-charcoal font-normal tracking-tight">
-            Curated Women&apos;s Heirlooms
-          </h2>
-        </div>
 
-        {/* Tab Controls */}
-        <div className="flex items-center space-x-1 sm:space-x-2 text-xs uppercase tracking-widest font-medium">
-          <button
-            onClick={() => setActiveTab("bestsellers")}
-            className={`px-3 sm:px-4 py-2 transition-all duration-200 border-b-2 ${
-              activeTab === "bestsellers"
-                ? "border-luxe-burgundy text-luxe-burgundy font-semibold"
-                : "border-transparent text-luxe-grey hover:text-luxe-charcoal"
-            }`}
-          >
-            Bestsellers
-          </button>
-          <button
-            onClick={() => setActiveTab("new-arrivals")}
-            className={`px-3 sm:px-4 py-2 transition-all duration-200 border-b-2 ${
-              activeTab === "new-arrivals"
-                ? "border-luxe-burgundy text-luxe-burgundy font-semibold"
-                : "border-transparent text-luxe-grey hover:text-luxe-charcoal"
-            }`}
-          >
-            New Arrivals
-          </button>
-          <button
-            onClick={() => setActiveTab("all")}
-            className={`hidden sm:inline-block px-3 sm:px-4 py-2 transition-all duration-200 border-b-2 ${
-              activeTab === "all"
-                ? "border-luxe-burgundy text-luxe-burgundy font-semibold"
-                : "border-transparent text-luxe-grey hover:text-luxe-charcoal"
-            }`}
-          >
-            All Pieces
-          </button>
+          {/* Tab Controls */}
+          <div className="flex items-center space-x-1 sm:space-x-2 text-xs uppercase tracking-widest font-medium">
+            <button
+              onClick={() => setActiveTab("bestsellers")}
+              className={`px-3 sm:px-4 py-2 transition-all duration-200 border-b-2 ${
+                activeTab === "bestsellers"
+                  ? "border-luxe-burgundy text-luxe-burgundy font-semibold"
+                  : "border-transparent text-luxe-grey hover:text-luxe-charcoal"
+              }`}
+            >
+              Bestsellers
+            </button>
+            <button
+              onClick={() => setActiveTab("new-arrivals")}
+              className={`px-3 sm:px-4 py-2 transition-all duration-200 border-b-2 ${
+                activeTab === "new-arrivals"
+                  ? "border-luxe-burgundy text-luxe-burgundy font-semibold"
+                  : "border-transparent text-luxe-grey hover:text-luxe-charcoal"
+              }`}
+            >
+              New Arrivals
+            </button>
+            <button
+              onClick={() => setActiveTab("all")}
+              className={`hidden sm:inline-block px-3 sm:px-4 py-2 transition-all duration-200 border-b-2 ${
+                activeTab === "all"
+                  ? "border-luxe-burgundy text-luxe-burgundy font-semibold"
+                  : "border-transparent text-luxe-grey hover:text-luxe-charcoal"
+              }`}
+            >
+              All Pieces
+            </button>
+          </div>
         </div>
-      </div>
+      </ScrollReveal>
 
-      {/* 4-Column Product Grid */}
+      {/* 4-Column Product Grid with subtle staggered reveal */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-        {displayedProducts.map((product) => (
-          <ProductCard key={product.id} product={product} />
+        {displayedProducts.map((product, idx) => (
+          <ScrollReveal
+            key={`${product.id}-${activeTab}`}
+            variant="fade-up"
+            staggerIndex={idx}
+            staggerStep={80}
+          >
+            <ProductCard product={product} />
+          </ScrollReveal>
         ))}
       </div>
 
       {/* Bottom View All Link */}
-      <div className="pt-4 text-center">
-        <Link
-          href="/women"
-          className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.22em] font-medium text-luxe-burgundy hover:text-luxe-terracotta border-b border-luxe-burgundy/40 pb-1 hover:border-luxe-terracotta transition-colors group"
-        >
-          <span>Explore Complete Women&apos;s Collection ({products.length} Designs)</span>
-          <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-        </Link>
-      </div>
+      <ScrollReveal variant="fade-up" delay={120}>
+        <div className="pt-4 text-center">
+          <Link
+            href="/women"
+            className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.22em] font-medium text-luxe-burgundy hover:text-luxe-terracotta border-b border-luxe-burgundy/40 pb-1 hover:border-luxe-terracotta transition-colors group"
+          >
+            <span>Explore Complete Women&apos;s Collection ({products.length} Designs)</span>
+            <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+          </Link>
+        </div>
+      </ScrollReveal>
     </div>
   );
 }

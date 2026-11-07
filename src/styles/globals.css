@@ -64,11 +64,13 @@
    * - `scroll-behavior: smooth` makes internal page links glide smoothly instead of jumping.
    * - `-webkit-font-smoothing` and `-moz-osx-font-smoothing` ensure letters look crisp
    *   and elegant on high-density Retina screens (MacBooks, iPhones, modern displays).
+   * - `overflow-x: hidden` prevents accidental horizontal jitter during entrance animations.
    */
   html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
   }
 
   /*
@@ -80,6 +82,7 @@
     color: var(--foreground);
     font-family: 'Manrope', var(--font-jakarta), system-ui, sans-serif;
     min-height: 100vh;
+    overflow-x: hidden;
   }
 
   /*
@@ -224,13 +227,24 @@
 /*
  * ACCESSIBILITY GUARD (prefers-reduced-motion):
  * Respects system settings for users who experience vestibular motion disorders.
- * All animations are stripped away, instantly rendering at full opacity.
+ * All animations and transitions are stripped away, instantly rendering at full opacity.
  */
 @media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
   .animate-hero-image,
   .animate-hero-text,
+  .animate-arch-reveal,
   .editorial-hover-zoom,
-  .group:hover .editorial-hover-zoom {
+  .group:hover .editorial-hover-zoom,
+  .scroll-reveal-container {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
