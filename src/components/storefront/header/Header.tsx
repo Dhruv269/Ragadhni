@@ -381,7 +381,8 @@ export function Header({ onSearchOpen, onCartOpen }: HeaderProps) {
           {/* ================================================================== */}
           {activeMegaMenu && (
             <div
-              className="absolute top-[calc(100%+8px)] left-0 right-0 mx-auto w-full max-w-5xl rounded-2xl bg-[#F2EBDD]/98 backdrop-blur-md border border-editorial-gold/35 shadow-editorial-float p-6 z-50 animate-in fade-in slide-in-from-top-2 duration-200"
+              className="absolute top-[calc(100%+8px)] left-0 right-0 mx-auto w-full max-w-5xl rounded-2xl bg-[#F2EBDD] border border-editorial-gold/35 shadow-editorial-float p-6 z-50 animate-in fade-in slide-in-from-top-2 duration-200"
+              style={{ backgroundColor: "#F2EBDD" }}
               onMouseLeave={() => setActiveMegaMenu(null)}
             >
               {/* SHOP MEGA-MENU */}
