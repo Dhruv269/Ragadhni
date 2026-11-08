@@ -33,12 +33,15 @@ import { Badge } from "@/components/ui/Badge";
 import { SizeGuideModal } from "./SizeGuideModal";
 import { PincodeChecker } from "./PincodeChecker";
 import { Heart, ShoppingBag, Ruler, ShieldCheck, Sparkles, ChevronDown } from "lucide-react";
+import { useCart } from "@/context/CartContext";
 
 interface ProductDetailsClientProps {
   product: Product;
 }
 
 export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
+  const { addItem } = useCart();
+
   // Currently selected size (defaults to first variant)
   const [selectedVariant, setSelectedVariant] = useState<ProductVariant>(
     product.variants[0] || {
@@ -210,7 +213,7 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
         <Button
           size="lg"
           onClick={() => {
-            alert(`Added "${product.title}" (Size: ${selectedVariant.size}) to your Shopping Bag.`);
+            addItem(product, selectedVariant, 1);
           }}
           className="flex-1 py-4 uppercase tracking-widest text-xs font-semibold shadow-editorial"
         >
@@ -347,7 +350,7 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
         <Button
           size="sm"
           onClick={() => {
-            alert(`Added "${product.title}" (Size: ${selectedVariant.size}) to your Shopping Bag.`);
+            addItem(product, selectedVariant, 1);
           }}
           className="uppercase tracking-widest text-xs px-6 py-2.5 font-semibold"
         >

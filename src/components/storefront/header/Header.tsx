@@ -39,6 +39,7 @@ import {
 } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 import { MobileDrawer } from "./MobileDrawer";
+import { useCart } from "@/context/CartContext";
 
 export interface HeaderProps {
   onSearchOpen?: () => void;
@@ -55,15 +56,13 @@ export function Header({ onSearchOpen, onCartOpen }: HeaderProps) {
   const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
   const [accountOpen, setAccountOpen] = useState(false);
   const [wishlistOpen, setWishlistOpen] = useState(false);
-  const [cartOpen, setCartOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
   // References for outside click dismissal
   const headerContainerRef = useRef<HTMLDivElement>(null);
 
-  // Live item counts & subtotal
-  const cartCount = 2;
-  const cartSubtotal = 11440;
+  // Shared dynamic cart state
+  const { totalItems: cartCount, subtotal: cartSubtotal, openCart, closeCart, isOpen: isCartDrawerOpen } = useCart();
   const wishlistCount = 1;
 
   // ----------------------------------------------------------------------------
@@ -87,7 +86,6 @@ export function Header({ onSearchOpen, onCartOpen }: HeaderProps) {
         setSearchOpen(false);
         setAccountOpen(false);
         setWishlistOpen(false);
-        setCartOpen(false);
       }
     };
 
@@ -100,7 +98,6 @@ export function Header({ onSearchOpen, onCartOpen }: HeaderProps) {
         setSearchOpen(false);
         setAccountOpen(false);
         setWishlistOpen(false);
-        setCartOpen(false);
       }
     };
 
@@ -123,7 +120,6 @@ export function Header({ onSearchOpen, onCartOpen }: HeaderProps) {
       setSearchOpen((prev) => !prev);
       setAccountOpen(false);
       setWishlistOpen(false);
-      setCartOpen(false);
       setActiveMegaMenu(null);
     }
   };
@@ -132,7 +128,7 @@ export function Header({ onSearchOpen, onCartOpen }: HeaderProps) {
     if (onCartOpen) {
       onCartOpen();
     } else {
-      setCartOpen((prev) => !prev);
+      openCart();
       setAccountOpen(false);
       setWishlistOpen(false);
       setSearchOpen(false);
@@ -143,7 +139,7 @@ export function Header({ onSearchOpen, onCartOpen }: HeaderProps) {
   const handleToggleAccount = () => {
     setAccountOpen((prev) => !prev);
     setWishlistOpen(false);
-    setCartOpen(false);
+    closeCart();
     setSearchOpen(false);
     setActiveMegaMenu(null);
   };
@@ -151,7 +147,7 @@ export function Header({ onSearchOpen, onCartOpen }: HeaderProps) {
   const handleToggleWishlist = () => {
     setWishlistOpen((prev) => !prev);
     setAccountOpen(false);
-    setCartOpen(false);
+    closeCart();
     setSearchOpen(false);
     setActiveMegaMenu(null);
   };
@@ -211,7 +207,7 @@ export function Header({ onSearchOpen, onCartOpen }: HeaderProps) {
                     setActiveMegaMenu("Shop");
                     setAccountOpen(false);
                     setWishlistOpen(false);
-                    setCartOpen(false);
+                    closeCart();
                   }}
                 >
                   <Link
@@ -243,7 +239,7 @@ export function Header({ onSearchOpen, onCartOpen }: HeaderProps) {
                     setActiveMegaMenu("Collections");
                     setAccountOpen(false);
                     setWishlistOpen(false);
-                    setCartOpen(false);
+                    closeCart();
                   }}
                 >
                   <Link
@@ -347,26 +343,26 @@ export function Header({ onSearchOpen, onCartOpen }: HeaderProps) {
                 )}
               </button>
 
-              {/* Shopping Bag Button (Opens Popover Shell / Drawer, no 404) */}
+              {/* Shopping Bag Button (Opens Slide-out Cart Drawer) */}
               <button
                 onClick={handleToggleCart}
                 className={`relative p-2 text-editorial-emerald hover:text-editorial-terracotta focus-editorial rounded-full transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center group ${
-                  cartOpen ? "bg-editorial-emerald text-editorial-paper" : ""
+                  isCartDrawerOpen ? "bg-editorial-emerald text-editorial-paper" : ""
                 }`}
                 aria-label={`Shopping bag, ${cartCount} items, total ₹${cartSubtotal.toLocaleString("en-IN")}`}
-                aria-expanded={cartOpen}
+                aria-expanded={isCartDrawerOpen}
               >
                 <ShoppingBag
                   className={`w-4 h-4 sm:w-[18px] sm:h-[18px] stroke-[1.8] ${
-                    cartOpen ? "text-editorial-paper" : "text-editorial-emerald group-hover:text-editorial-terracotta"
+                    isCartDrawerOpen ? "text-editorial-paper" : "text-editorial-emerald group-hover:text-editorial-terracotta"
                   }`}
                 />
                 {cartCount > 0 && (
                   <span
                     className={`absolute top-1.5 right-1.5 text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center shadow-xs ${
-                      cartOpen
-                        ? "bg-editorial-gold text-editorial-dark"
-                        : "bg-editorial-terracotta text-editorial-paper"
+                      isCartDrawerOpen
+                        ? "bg-editorial-gold text-editorial-emerald-dark"
+                        : "bg-editorial-terracotta text-editorial-ivory"
                     }`}
                   >
                     {cartCount}
@@ -739,90 +735,6 @@ export function Header({ onSearchOpen, onCartOpen }: HeaderProps) {
                 >
                   View Full Wishlist
                 </Link>
-              </div>
-            </div>
-          )}
-
-          {/* ================================================================== */}
-          {/* 8. SHOPPING BAG PREVIEW POPOVER SHELL (Zero 404s, Accessible)       */}
-          {/* ================================================================== */}
-          {cartOpen && (
-            <div className="absolute top-[calc(100%+8px)] right-2 sm:right-4 w-96 max-w-[calc(100vw-24px)] rounded-2xl bg-[#FAF6EE]/98 backdrop-blur-md border border-editorial-gold/35 shadow-editorial-float p-5 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
-              <div className="flex items-center justify-between pb-3 border-b border-editorial-gold/20">
-                <div className="flex items-center space-x-2">
-                  <ShoppingBag className="w-4 h-4 text-editorial-emerald" />
-                  <h4 className="font-serif text-base tracking-wide text-editorial-charcoal">
-                    Shopping Bag ({cartCount})
-                  </h4>
-                </div>
-                <button
-                  onClick={() => setCartOpen(false)}
-                  className="p-1 text-editorial-slate hover:text-editorial-charcoal"
-                  aria-label="Close bag preview"
-                >
-                  <X className="w-4 h-4" />
-                </button>
-              </div>
-
-              {/* Free Shipping Qualified Pill */}
-              <div className="mt-3 px-3 py-2 rounded-lg bg-editorial-emerald/10 border border-editorial-emerald/20 flex items-center space-x-2 text-xs text-editorial-emerald font-medium">
-                <Check className="w-3.5 h-3.5 text-editorial-emerald shrink-0" />
-                <span>Complimentary Express Delivery unlocked across India</span>
-              </div>
-
-              {/* Cart Items List */}
-              <div className="py-3 space-y-2.5 max-h-60 overflow-y-auto">
-                <div className="flex items-center space-x-3 p-2 rounded-xl bg-editorial-ivory/50 border border-editorial-gold/20">
-                  <div className="w-12 h-14 rounded-md bg-editorial-emerald/10 border border-editorial-gold/30 flex items-center justify-center text-editorial-emerald font-serif text-xs">
-                    Suit
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h5 className="text-xs font-semibold text-editorial-charcoal truncate">
-                      Pure Chanderi Anarkali Suit
-                    </h5>
-                    <p className="text-[11px] text-editorial-slate">Size: M &bull; Qty: 1</p>
-                    <p className="text-xs font-semibold text-editorial-emerald mt-0.5">₹5,490</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center space-x-3 p-2 rounded-xl bg-editorial-ivory/50 border border-editorial-gold/20">
-                  <div className="w-12 h-14 rounded-md bg-editorial-terracotta/10 border border-editorial-gold/30 flex items-center justify-center text-editorial-terracotta font-serif text-xs">
-                    Saree
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h5 className="text-xs font-semibold text-editorial-charcoal truncate">
-                      Handloom Banarasi Saree
-                    </h5>
-                    <p className="text-[11px] text-editorial-slate">Unstitched Blouse &bull; Qty: 1</p>
-                    <p className="text-xs font-semibold text-editorial-emerald mt-0.5">₹5,950</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Subtotal & Checkout Actions */}
-              <div className="pt-3 border-t border-editorial-gold/20 space-y-2.5">
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-editorial-slate uppercase tracking-wider">Subtotal:</span>
-                  <span className="font-serif text-base font-semibold text-editorial-charcoal">
-                    ₹{cartSubtotal.toLocaleString("en-IN")}
-                  </span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Link
-                    href="/cart"
-                    onClick={() => setCartOpen(false)}
-                    className="flex-1 py-2.5 px-3 text-center rounded-lg bg-editorial-emerald text-editorial-paper text-xs font-medium hover:bg-editorial-terracotta transition-colors shadow-xs"
-                  >
-                    Proceed to Checkout
-                  </Link>
-                  <Link
-                    href="/cart"
-                    onClick={() => setCartOpen(false)}
-                    className="py-2.5 px-3 text-center rounded-lg border border-editorial-gold/40 text-editorial-charcoal text-xs font-medium hover:bg-editorial-ivory transition-colors"
-                  >
-                    View Bag
-                  </Link>
-                </div>
               </div>
             </div>
           )}

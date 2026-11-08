@@ -36,6 +36,7 @@ import { Product } from "@/types";
 import { formatPrice } from "@/lib/utils";
 import { Heart, ShoppingBag } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
+import { useCart } from "@/context/CartContext";
 
 /**
  * ProductCardProps:
@@ -47,6 +48,8 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product }: ProductCardProps) {
+  const { addItem } = useCart();
+
   // ----------------------------------------------------------------------------
   // COMPONENT STATE
   // ----------------------------------------------------------------------------
@@ -165,7 +168,12 @@ export function ProductCard({ product }: ProductCardProps) {
           {/* Quick Add Action Button */}
           <button
             onClick={() => {
-              alert(`Added ${product.title} (${selectedSize || product.variants[0]?.size}) to your bag.`);
+              const targetVariant =
+                product.variants.find((v) => v.size === selectedSize) ||
+                product.variants[0];
+              if (targetVariant) {
+                addItem(product, targetVariant, 1);
+              }
             }}
             className="w-full bg-editorial-gold hover:bg-editorial-gold-soft text-editorial-emerald-dark text-[11px] uppercase tracking-widest py-2 font-semibold flex items-center justify-center space-x-1.5 transition-colors shadow-sm"
           >

@@ -34,6 +34,8 @@ import { AnnouncementBar } from "@/components/storefront/header/AnnouncementBar"
 import { Header } from "@/components/storefront/header/Header";
 import { Footer } from "@/components/storefront/footer/Footer";
 import { EditorialIntro } from "@/components/storefront/intro/EditorialIntro";
+import { CartProvider } from "@/context/CartContext";
+import { CartDrawer } from "@/components/storefront/cart/CartDrawer";
 
 /*
  * ==============================================================================
@@ -143,20 +145,25 @@ export default function RootLayout({
        * is pushed to the bottom of the screen even on short pages.
        */}
       <body className="bg-editorial-paper text-editorial-charcoal font-sans flex flex-col min-h-screen selection:bg-editorial-emerald selection:text-editorial-ivory">
-        {/* Cinematic Editorial Loading Introduction (session-aware) */}
-        <EditorialIntro />
+        <CartProvider>
+          {/* Cinematic Editorial Loading Introduction (session-aware) */}
+          <EditorialIntro />
 
-        {/* Top promotional announcement bar */}
-        <AnnouncementBar />
+          {/* Top promotional announcement bar */}
+          <AnnouncementBar />
 
-        {/* Sticky brand navigation header */}
-        <Header />
+          {/* Sticky brand navigation header */}
+          <Header />
 
-        {/* Dynamic page content */}
-        <main className="flex-1">{children}</main>
+          {/* Dynamic page content */}
+          <main className="flex-1">{children}</main>
 
-        {/* Universal footer */}
-        <Footer />
+          {/* Universal footer */}
+          <Footer />
+
+          {/* Slide-out Shopping Bag Drawer */}
+          <CartDrawer />
+        </CartProvider>
       </body>
     </html>
   );

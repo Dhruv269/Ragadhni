@@ -356,7 +356,7 @@ export function MobileDrawer({
                 <span className="font-medium">Shopping Bag</span>
               </div>
               {cartCount > 0 && (
-                <span className="text-[10px] bg-editorial-emerald text-editorial-paper px-2 py-0.5 rounded-full font-bold">
+                <span className="text-[10px] bg-editorial-emerald text-editorial-ivory px-2 py-0.5 rounded-full font-bold">
                   {cartCount} items
                 </span>
               )}
