@@ -136,24 +136,24 @@ export function CategoryListingClient({
          */}
         <nav
           aria-label="Breadcrumb"
-          className="flex items-center space-x-2 text-[11px] uppercase tracking-wider text-heritage-earth mb-6"
+          className="flex items-center space-x-2 text-[11px] uppercase tracking-wider text-editorial-slate mb-6"
         >
-          <Link href="/" className="hover:text-heritage-terracotta transition-colors">
+          <Link href="/" className="hover:text-editorial-terracotta transition-colors">
             Home
           </Link>
           {breadcrumbParent && (
             <>
-              <ChevronRight className="w-3 h-3 text-heritage-sand" />
+              <ChevronRight className="w-3 h-3 text-editorial-gold" />
               <Link
                 href={breadcrumbParent.href}
-                className="hover:text-heritage-terracotta transition-colors"
+                className="hover:text-editorial-terracotta transition-colors"
               >
                 {breadcrumbParent.label}
               </Link>
             </>
           )}
-          <ChevronRight className="w-3 h-3 text-heritage-sand" />
-          <span className="text-heritage-charcoal font-medium">{pageTitle}</span>
+          <ChevronRight className="w-3 h-3 text-editorial-gold" />
+          <span className="text-editorial-charcoal font-medium">{pageTitle}</span>
         </nav>
 
         {/*
@@ -161,17 +161,17 @@ export function CategoryListingClient({
          * 2. CATEGORY EDITORIAL BANNER:
          * ========================================================================
          */}
-        <div className="mb-10 pb-6 border-b border-[#E3D8C6] space-y-2">
+        <div className="mb-10 pb-6 border-b border-editorial-gold/25 space-y-2">
           {categoryBadge && (
-            <span className="text-[10px] uppercase tracking-[0.25em] text-heritage-terracotta font-semibold">
+            <span className="text-[10px] uppercase tracking-[0.25em] text-editorial-terracotta font-semibold">
               {categoryBadge}
             </span>
           )}
-          <h1 className="font-serif text-3xl sm:text-4xl text-heritage-charcoal font-normal">
+          <h1 className="font-serif text-3xl sm:text-4xl text-editorial-charcoal font-normal">
             {pageTitle}
           </h1>
           {pageDescription && (
-            <p className="text-xs sm:text-sm text-heritage-earth max-w-2xl font-light leading-relaxed">
+            <p className="text-xs sm:text-sm text-editorial-slate-dark max-w-2xl font-light leading-relaxed">
               {pageDescription}
             </p>
           )}
@@ -195,7 +195,7 @@ export function CategoryListingClient({
           {/* Product Grid Area */}
           <main className="flex-1 w-full">
             {/* Desktop Count Banner */}
-            <div className="hidden lg:flex items-center justify-between pb-4 mb-6 border-b border-[#EFE7D8] text-xs text-heritage-earth">
+            <div className="hidden lg:flex items-center justify-between pb-4 mb-6 border-b border-editorial-gold/20 text-xs text-editorial-slate">
               <span>
                 Showing <strong>{filteredProducts.length}</strong> handcrafted {filteredProducts.length === 1 ? "design" : "designs"}
               </span>

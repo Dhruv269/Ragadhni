@@ -15,7 +15,7 @@
  *
  * HOW IT CONNECTS TO THE REST OF THE PROJECT:
  * - The `content` list tells Tailwind which files to scan for class names.
- * - The custom colors (under `theme.extend.colors.heritage`) can be used anywhere in TSX files
+ * - Th  e custom colors (under `theme.extend.colors.heritage`) can be used anywhere in TSX files
  *   (e.g., `bg-heritage-ivory`, `text-heritage-charcoal`, `border-heritage-gold`).
  * - The font families (`serif` and `sans`) connect directly to the Google Fonts loaded
  *   in `src/app/layout.tsx` via CSS variables (`--font-cormorant` and `--font-jakarta`).

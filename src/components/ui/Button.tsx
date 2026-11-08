@@ -36,29 +36,32 @@ import { cn } from "@/lib/utils";
  */
 const buttonVariants = cva(
   // Base classes applied to all buttons regardless of variant:
-  "inline-flex items-center justify-center font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-heritage-terracotta focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 select-none",
+  "inline-flex items-center justify-center font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-editorial-terracotta focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 select-none",
   {
     variants: {
       // Visual style options
       variant: {
-        // Primary: Signature Terracotta with Ivory text (Hero CTAs, Add to Bag, Checkout)
+        // Primary: Signature Burnt Terracotta with Ivory text (Hero CTAs, Add to Bag, Checkout)
         primary:
-          "bg-heritage-terracotta text-heritage-ivory hover:bg-heritage-rosewood shadow-sm hover:shadow",
-        // Secondary: Khadi Sand background with subtle border (filters, secondary actions)
+          "bg-editorial-terracotta text-editorial-ivory hover:bg-editorial-terracotta-warm shadow-editorial hover:shadow-editorial-hover",
+        // Secondary: Warm Ivory with Deep Emerald border and text (filters, secondary actions)
         secondary:
-          "bg-heritage-sand text-heritage-charcoal hover:bg-heritage-cream border border-[#DFD5C6]",
-        // Outline: Clean Charcoal border with transparent background
+          "bg-editorial-ivory text-editorial-emerald hover:bg-editorial-paper border border-editorial-emerald/30",
+        // Emerald: Regal Deep Emerald with Ivory text
+        emerald:
+          "bg-editorial-emerald text-editorial-ivory hover:bg-editorial-emerald-secondary border border-editorial-gold/30 shadow-editorial",
+        // Outline: Clean Emerald border with transparent background
         outline:
-          "border border-heritage-charcoal text-heritage-charcoal bg-transparent hover:bg-heritage-charcoal hover:text-heritage-ivory",
+          "border border-editorial-emerald text-editorial-emerald bg-transparent hover:bg-editorial-emerald hover:text-editorial-ivory",
         // Ghost: No background or border until hovered (icon buttons, close buttons)
         ghost:
-          "text-heritage-charcoal hover:bg-heritage-sand/50 bg-transparent",
-        // Gold: Antique Kansa Gold for festive and celebratory collections
+          "text-editorial-charcoal hover:bg-editorial-ivory/60 bg-transparent",
+        // Gold: Antique Gold with Deep Emerald text for festive collections
         gold:
-          "bg-heritage-gold text-heritage-charcoal hover:bg-heritage-gold-light shadow-sm",
-        // Editorial: Minimalist underlined fashion link (e.g. "Read the Ragadhni Craft Journey ->")
+          "bg-editorial-gold text-editorial-emerald-dark hover:bg-editorial-gold-soft border border-editorial-gold/40 shadow-xs",
+        // Editorial: Minimalist underlined fashion link
         editorial:
-          "border-b border-heritage-charcoal text-heritage-charcoal pb-0.5 hover:border-heritage-terracotta hover:text-heritage-terracotta transition-colors bg-transparent rounded-none px-0",
+          "border-b border-editorial-emerald text-editorial-emerald pb-0.5 hover:border-editorial-terracotta hover:text-editorial-terracotta transition-colors bg-transparent rounded-none px-0",
       },
 
       // Size options

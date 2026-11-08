@@ -116,27 +116,27 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
          */}
         <nav
           aria-label="Breadcrumb"
-          className="flex items-center space-x-2 text-[11px] uppercase tracking-wider text-heritage-earth mb-8"
+          className="flex items-center space-x-2 text-[11px] uppercase tracking-wider text-editorial-slate mb-8"
         >
-          <Link href="/" className="hover:text-heritage-burgundy transition-colors">
+          <Link href="/" className="hover:text-editorial-terracotta transition-colors">
             Home
           </Link>
-          <ChevronRight className="w-3 h-3 text-heritage-sand" />
+          <ChevronRight className="w-3 h-3 text-editorial-gold" />
           <Link
             href="/women"
-            className="hover:text-heritage-burgundy transition-colors"
+            className="hover:text-editorial-terracotta transition-colors"
           >
             Women
           </Link>
-          <ChevronRight className="w-3 h-3 text-heritage-sand" />
+          <ChevronRight className="w-3 h-3 text-editorial-gold" />
           <Link
             href={`/women/${product.category}`}
-            className="hover:text-heritage-burgundy transition-colors"
+            className="hover:text-editorial-terracotta transition-colors"
           >
             {product.categoryName}
           </Link>
-          <ChevronRight className="w-3 h-3 text-heritage-sand" />
-          <span className="text-heritage-charcoal font-medium line-clamp-1">
+          <ChevronRight className="w-3 h-3 text-editorial-gold" />
+          <span className="text-editorial-charcoal font-medium line-clamp-1">
             {product.title}
           </span>
         </nav>
@@ -171,19 +171,19 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
          * ========================================================================
          */}
         {relatedProducts.length > 0 && (
-          <div className="mt-24 pt-12 border-t border-[#E3D8C6]">
+          <div className="mt-24 pt-12 border-t border-editorial-gold/25">
             <div className="flex flex-col sm:flex-row items-baseline justify-between mb-8 gap-2">
               <div>
-                <span className="text-xs uppercase tracking-[0.25em] text-heritage-terracotta font-medium">
+                <span className="text-xs uppercase tracking-[0.25em] text-editorial-terracotta font-medium">
                   Complete the Wardrobe
                 </span>
-                <h2 className="font-serif text-2xl sm:text-3xl text-heritage-charcoal font-normal mt-1">
+                <h2 className="font-serif text-2xl sm:text-3xl text-editorial-charcoal font-normal mt-1">
                   You May Also Love
                 </h2>
               </div>
               <Link
                 href={`/women/${product.category}`}
-                className="text-xs uppercase tracking-widest text-heritage-charcoal hover:text-heritage-burgundy font-medium transition-colors"
+                className="text-xs uppercase tracking-widest text-editorial-emerald hover:text-editorial-terracotta font-medium transition-colors"
               >
                 View Full Collection &rarr;
               </Link>

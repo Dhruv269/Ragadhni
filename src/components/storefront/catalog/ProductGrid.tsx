@@ -44,11 +44,11 @@ export function ProductGrid({ products, onResetFilters }: ProductGridProps) {
    */
   if (products.length === 0) {
     return (
-      <div className="text-center py-20 px-4 bg-heritage-sand/20 border border-[#E8DFD0] space-y-4">
-        <h3 className="font-serif text-2xl text-heritage-charcoal font-normal">
+      <div className="text-center py-20 px-4 bg-editorial-ivory/50 border border-editorial-gold/25 space-y-4">
+        <h3 className="font-serif text-2xl text-editorial-charcoal font-normal">
           No Garments Match Your Selection
         </h3>
-        <p className="text-xs text-heritage-earth max-w-md mx-auto leading-relaxed">
+        <p className="text-xs text-editorial-slate max-w-md mx-auto leading-relaxed">
           We could not find any outfits matching all of your active filter criteria.
           Try clearing some filters or exploring another silhouette.
         </p>

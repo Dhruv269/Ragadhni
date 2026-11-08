@@ -103,16 +103,16 @@ export function FilterSidebar({
    * Reused in both the desktop sidebar and the mobile drawer.
    */
   const filterContent = (
-    <div className="space-y-8 text-xs text-heritage-charcoal">
+    <div className="space-y-8 text-xs text-editorial-charcoal">
       {/* 1. Header & Reset Button */}
-      <div className="flex items-center justify-between pb-4 border-b border-[#E8DFD0]">
-        <span className="font-serif text-sm font-semibold uppercase tracking-wider text-heritage-charcoal">
+      <div className="flex items-center justify-between pb-4 border-b border-editorial-gold/25">
+        <span className="font-serif text-sm font-semibold uppercase tracking-wider text-editorial-charcoal">
           Filters & Refinements
         </span>
         {hasActiveFilters && (
           <button
             onClick={resetFilters}
-            className="flex items-center space-x-1 text-heritage-terracotta hover:underline font-medium"
+            className="flex items-center space-x-1 text-editorial-terracotta hover:underline font-medium"
           >
             <RotateCcw className="w-3 h-3" />
             <span>Reset All</span>
@@ -122,7 +122,7 @@ export function FilterSidebar({
 
       {/* 2. Sort By Dropdown */}
       <div className="space-y-2">
-        <label htmlFor="sort-select" className="font-semibold uppercase tracking-wider text-[11px] text-heritage-earth">
+        <label htmlFor="sort-select" className="font-semibold uppercase tracking-wider text-[11px] text-editorial-slate">
           Sort Products By
         </label>
         <select
@@ -131,7 +131,7 @@ export function FilterSidebar({
           onChange={(e) =>
             onFilterChange({ ...filters, sortBy: e.target.value as FilterState["sortBy"] })
           }
-          className="w-full bg-heritage-ivory border border-[#D5C9B5] px-3 py-2 text-xs text-heritage-charcoal focus:outline-none focus:border-heritage-terracotta"
+          className="w-full bg-editorial-paper border border-editorial-gold/35 px-3 py-2 text-xs text-editorial-charcoal focus:outline-none focus:border-editorial-terracotta"
         >
           <option value="featured">Featured Curations</option>
           <option value="newest">Newest Arrivals First</option>
@@ -143,7 +143,7 @@ export function FilterSidebar({
 
       {/* 3. Apparel Size Chips */}
       <div className="space-y-3">
-        <h4 className="font-semibold uppercase tracking-wider text-[11px] text-heritage-earth">
+        <h4 className="font-semibold uppercase tracking-wider text-[11px] text-editorial-slate">
           Size
         </h4>
         <div className="grid grid-cols-4 gap-2">
@@ -156,8 +156,8 @@ export function FilterSidebar({
                 onClick={() => toggleSize(size)}
                 className={`py-2 px-1 text-center font-medium border transition-colors ${
                   isSelected
-                    ? "bg-heritage-terracotta text-heritage-ivory border-heritage-terracotta"
-                    : "bg-heritage-ivory text-heritage-charcoal border-[#D5C9B5] hover:border-heritage-terracotta"
+                    ? "bg-editorial-terracotta text-editorial-ivory border-editorial-terracotta"
+                    : "bg-editorial-paper text-editorial-charcoal border-editorial-gold/30 hover:border-editorial-terracotta"
                 }`}
               >
                 {size}
@@ -169,7 +169,7 @@ export function FilterSidebar({
 
       {/* 4. Fabric Types Checkboxes */}
       <div className="space-y-3">
-        <h4 className="font-semibold uppercase tracking-wider text-[11px] text-heritage-earth">
+        <h4 className="font-semibold uppercase tracking-wider text-[11px] text-editorial-slate">
           Authentic Fabric & Weave
         </h4>
         <div className="space-y-2 max-h-48 overflow-y-auto pr-1">
@@ -178,13 +178,13 @@ export function FilterSidebar({
             return (
               <label
                 key={fabric}
-                className="flex items-center space-x-2.5 cursor-pointer hover:text-heritage-terracotta transition-colors"
+                className="flex items-center space-x-2.5 cursor-pointer hover:text-editorial-terracotta transition-colors"
               >
                 <input
                   type="checkbox"
                   checked={isSelected}
                   onChange={() => toggleFabric(fabric)}
-                  className="rounded-none border-[#D5C9B5] text-heritage-terracotta focus:ring-heritage-terracotta w-3.5 h-3.5"
+                  className="rounded-none border-editorial-gold/40 text-editorial-terracotta focus:ring-editorial-terracotta w-3.5 h-3.5"
                 />
                 <span className="text-xs leading-tight">{fabric}</span>
               </label>
@@ -195,7 +195,7 @@ export function FilterSidebar({
 
       {/* 5. Price Range Radio Options */}
       <div className="space-y-3">
-        <h4 className="font-semibold uppercase tracking-wider text-[11px] text-heritage-earth">
+        <h4 className="font-semibold uppercase tracking-wider text-[11px] text-editorial-slate">
           Price Range (INR)
         </h4>
         <div className="space-y-2">
@@ -207,7 +207,7 @@ export function FilterSidebar({
           ].map((range) => (
             <label
               key={range.id}
-              className="flex items-center space-x-2.5 cursor-pointer hover:text-heritage-terracotta transition-colors"
+              className="flex items-center space-x-2.5 cursor-pointer hover:text-editorial-terracotta transition-colors"
             >
               <input
                 type="radio"
@@ -220,7 +220,7 @@ export function FilterSidebar({
                     priceRange: range.id as FilterState["priceRange"],
                   })
                 }
-                className="text-heritage-terracotta focus:ring-heritage-terracotta w-3.5 h-3.5"
+                className="text-editorial-terracotta focus:ring-editorial-terracotta w-3.5 h-3.5"
               />
               <span className="text-xs">{range.label}</span>
             </label>
@@ -237,22 +237,22 @@ export function FilterSidebar({
        * Shown only on screens below 1024px (`lg:hidden`).
        * Lets shoppers open the mobile filter drawer and see the current product count.
        */}
-      <div className="lg:hidden flex items-center justify-between py-3 px-4 bg-heritage-sand/40 border border-[#E8DFD0] mb-6">
+      <div className="lg:hidden flex items-center justify-between py-3 px-4 bg-editorial-ivory/60 border border-editorial-gold/25 mb-6">
         <button
           onClick={() => setMobileFilterOpen(true)}
-          className="flex items-center space-x-2 text-xs font-medium uppercase tracking-wider text-heritage-charcoal hover:text-heritage-terracotta"
+          className="flex items-center space-x-2 text-xs font-medium uppercase tracking-wider text-editorial-charcoal hover:text-editorial-terracotta"
         >
           <SlidersHorizontal className="w-4 h-4" />
           <span>Filter & Sort {hasActiveFilters && "(Active)"}</span>
         </button>
 
-        <span className="text-xs text-heritage-earth">
+        <span className="text-xs text-editorial-slate">
           Showing {totalProductCount} {totalProductCount === 1 ? "design" : "designs"}
         </span>
       </div>
 
       {/* DESKTOP SIDEBAR: Fixed in the left column on desktop screens (`hidden lg:block`) */}
-      <aside className="hidden lg:block w-64 shrink-0 bg-heritage-ivory border border-[#E8DFD0] p-6 h-fit sticky top-28">
+      <aside className="hidden lg:block w-64 shrink-0 bg-editorial-ivory/40 border border-editorial-gold/25 p-6 h-fit sticky top-28">
         {filterContent}
       </aside>
 
@@ -264,19 +264,19 @@ export function FilterSidebar({
         <div className="fixed inset-0 z-50 lg:hidden">
           {/* Dark backdrop */}
           <div
-            className="fixed inset-0 bg-heritage-charcoal/60 backdrop-blur-xs"
+            className="fixed inset-0 bg-editorial-charcoal/60 backdrop-blur-xs"
             onClick={() => setMobileFilterOpen(false)}
           />
 
           {/* Drawer Content */}
-          <div className="fixed inset-y-0 right-0 w-full max-w-xs bg-heritage-ivory p-6 shadow-2xl flex flex-col z-50 overflow-y-auto">
-            <div className="flex items-center justify-between pb-4 border-b border-[#E8DFD0] mb-6">
-              <span className="font-serif text-base uppercase tracking-wider font-semibold text-heritage-charcoal">
+          <div className="fixed inset-y-0 right-0 w-full max-w-xs bg-editorial-paper p-6 shadow-2xl flex flex-col z-50 overflow-y-auto border-l border-editorial-gold/30">
+            <div className="flex items-center justify-between pb-4 border-b border-editorial-gold/25 mb-6">
+              <span className="font-serif text-base uppercase tracking-wider font-semibold text-editorial-charcoal">
                 Filters
               </span>
               <button
                 onClick={() => setMobileFilterOpen(false)}
-                className="p-1 text-heritage-earth hover:text-heritage-charcoal"
+                className="p-1 text-editorial-slate hover:text-editorial-charcoal"
                 aria-label="Close filters"
               >
                 <X className="w-5 h-5" />
@@ -287,7 +287,7 @@ export function FilterSidebar({
 
             <button
               onClick={() => setMobileFilterOpen(false)}
-              className="mt-6 w-full bg-heritage-terracotta text-heritage-ivory py-3 text-xs uppercase tracking-widest font-medium hover:bg-heritage-rosewood transition-colors"
+              className="mt-6 w-full bg-editorial-terracotta text-editorial-ivory py-3 text-xs uppercase tracking-widest font-medium hover:bg-editorial-terracotta-warm transition-colors"
             >
               Apply Filters ({totalProductCount} Items)
             </button>

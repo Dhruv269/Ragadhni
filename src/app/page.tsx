@@ -151,11 +151,11 @@ export default function HomePage() {
        * ========================================================================
        * SECTION B: HERO SECTION — ROYAL ARCHITECTURAL FRAMING
        * ========================================================================
-       * High-impact editorial hero inspired by Indian royal palace gateways (jharokhas).
-       * Features deep burgundy surroundings (#35131F), a double gold arch portal
+       * High-impact editorial hero grounded in "The Contemporary Indian Fashion Editorial".
+       * Features Deep Emerald surroundings (#123D32), a double gold arch portal
        * framing the woman's portrait, grand typography, and negative space.
        */}
-      <section className="relative w-full bg-gradient-to-b from-luxe-burgundy via-[#2B0F19] to-luxe-maroon border-b border-luxe-gold/30 overflow-hidden pt-10 sm:pt-16 pb-16 sm:pb-24 text-luxe-warmwhite">
+      <section className="relative w-full bg-gradient-to-b from-editorial-emerald via-[#154639] to-editorial-emerald-dark border-b border-editorial-gold/30 overflow-hidden pt-10 sm:pt-16 pb-16 sm:pb-24 text-editorial-ivory">
         {/* Subtle Indian Palace Jaali Lattice Geometry Overlay */}
         <div className="absolute inset-0 jaali-bg opacity-[0.04] pointer-events-none" />
 
@@ -169,23 +169,23 @@ export default function HomePage() {
              */}
             <div className="lg:col-span-7 space-y-6 sm:space-y-8 text-center lg:text-left">
               {/* Seasonal Campaign Badge */}
-              <div className="animate-hero-text hero-delay-1 inline-flex items-center space-x-2.5 bg-luxe-maroon/80 border border-luxe-gold/50 px-4 py-1.5 shadow-sm backdrop-blur-xs">
-                <span className="w-1.5 h-1.5 rounded-full bg-luxe-gold" />
-                <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.25em] font-medium text-luxe-gold">
+              <div className="animate-hero-text hero-delay-1 inline-flex items-center space-x-2.5 bg-editorial-emerald-dark/90 border border-editorial-gold/50 px-4 py-1.5 shadow-sm backdrop-blur-xs">
+                <span className="w-1.5 h-1.5 rounded-full bg-editorial-gold" />
+                <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.25em] font-medium text-editorial-gold-soft">
                   Autumn / Festive 2026 &bull; The Royal Heirloom Edit
                 </span>
               </div>
 
               {/* Grand Editorial Headline in Cormorant Garamond */}
-              <h1 className="animate-hero-text hero-delay-2 font-serif text-4xl sm:text-6xl md:text-7xl lg:text-[76px] xl:text-[84px] tracking-tight text-luxe-warmwhite font-normal leading-[1.06]">
+              <h1 className="animate-hero-text hero-delay-2 font-serif text-4xl sm:text-6xl md:text-7xl lg:text-[76px] xl:text-[84px] tracking-tight text-editorial-ivory font-normal leading-[1.06]">
                 Where Heritage <br />
-                <span className="italic font-light text-luxe-gold">
+                <span className="italic font-light text-editorial-gold-soft">
                   Meets Her.
                 </span>
               </h1>
 
               {/* Supporting Brand Narrative */}
-              <p className="animate-hero-text hero-delay-3 text-sm sm:text-base lg:text-lg text-luxe-warmwhite/80 max-w-xl mx-auto lg:mx-0 leading-relaxed font-light">
+              <p className="animate-hero-text hero-delay-3 text-sm sm:text-base lg:text-lg text-editorial-ivory/80 max-w-xl mx-auto lg:mx-0 leading-relaxed font-light">
                 Discover Indian traditions reimagined for the way women dress today.
                 Pure Chanderi weaves, handspun organic mulmul, and generational
                 heirloom drapes tailored for effortless sovereign grace.
@@ -196,10 +196,10 @@ export default function HomePage() {
                 <Link href="/women" className="w-full sm:w-auto">
                   <Button
                     size="lg"
-                    className="w-full sm:w-auto bg-luxe-gold hover:bg-[#DFC99E] text-luxe-maroon border border-luxe-gold tracking-widest text-xs uppercase font-semibold px-9 py-4 shadow-lg transition-all duration-300 group"
+                    className="w-full sm:w-auto bg-editorial-gold hover:bg-editorial-gold-soft text-editorial-emerald-dark border border-editorial-gold tracking-widest text-xs uppercase font-semibold px-9 py-4 shadow-editorial transition-all duration-300 group"
                   >
                     <span>Explore Collection</span>
-                    <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1.5 text-luxe-maroon" />
+                    <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1.5 text-editorial-emerald-dark" />
                   </Button>
                 </Link>
 
@@ -207,7 +207,7 @@ export default function HomePage() {
                   <Button
                     variant="outline"
                     size="lg"
-                    className="w-full sm:w-auto border-luxe-gold/60 text-luxe-warmwhite hover:bg-luxe-warmwhite/10 hover:border-luxe-gold tracking-widest text-xs uppercase font-medium px-8 py-4 transition-all duration-300"
+                    className="w-full sm:w-auto border-editorial-gold/60 text-editorial-ivory hover:bg-editorial-ivory/10 hover:border-editorial-gold tracking-widest text-xs uppercase font-medium px-8 py-4 transition-all duration-300"
                   >
                     <span>Discover Ragadhni</span>
                   </Button>
@@ -215,24 +215,24 @@ export default function HomePage() {
               </div>
 
               {/* Micro Craftsmanship & Transparency Indicators */}
-              <div className="animate-hero-text hero-delay-4 pt-6 border-t border-luxe-gold/25 flex flex-wrap items-center justify-center lg:justify-start gap-4 sm:gap-6 text-xs text-luxe-warmwhite/80 font-light">
+              <div className="animate-hero-text hero-delay-4 pt-6 border-t border-editorial-gold/25 flex flex-wrap items-center justify-center lg:justify-start gap-4 sm:gap-6 text-xs text-editorial-ivory/80 font-light">
                 <div className="flex items-center space-x-2">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-luxe-gold" />
+                  <CheckCircle2 className="w-3.5 h-3.5 text-editorial-gold" />
                   <span>Handloom Weaves</span>
                 </div>
-                <span className="text-luxe-gold/40 hidden sm:inline">&bull;</span>
+                <span className="text-editorial-gold/40 hidden sm:inline">&bull;</span>
                 <div className="flex items-center space-x-2">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-luxe-gold" />
+                  <CheckCircle2 className="w-3.5 h-3.5 text-editorial-gold" />
                   <span>Pure Natural Fibres</span>
                 </div>
-                <span className="text-luxe-gold/40 hidden sm:inline">&bull;</span>
+                <span className="text-editorial-gold/40 hidden sm:inline">&bull;</span>
                 <div className="flex items-center space-x-2">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-luxe-gold" />
+                  <CheckCircle2 className="w-3.5 h-3.5 text-editorial-gold" />
                   <span>Direct Weaver Transparency</span>
                 </div>
-                <span className="text-luxe-gold/40 hidden sm:inline">&bull;</span>
+                <span className="text-editorial-gold/40 hidden sm:inline">&bull;</span>
                 <div className="flex items-center space-x-2">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-luxe-gold" />
+                  <CheckCircle2 className="w-3.5 h-3.5 text-editorial-gold" />
                   <span>Free Delivery &gt; ₹1,499</span>
                 </div>
               </div>
@@ -241,15 +241,14 @@ export default function HomePage() {
             {/*
              * RIGHT COLUMN: ROYAL ARCHITECTURAL EDITORIAL ARCH (5 Columns on Large Screens)
              * Pure, statuesque architectural framing with subtle antique gold hairlines.
-             * Eliminates distracting ornamental clipart in favor of clean high-fashion editorial presence.
              */}
             <div className="lg:col-span-5 relative flex justify-center animate-arch-reveal">
               {/* Outer Architectural Frame Container */}
               <div className="relative w-full max-w-[460px]">
                 {/* Architectural Gold Hairline Outer Rim */}
-                <div className="p-2 sm:p-2.5 border border-luxe-gold/35 rounded-t-[240px] sm:rounded-t-[300px] lg:rounded-t-[340px] bg-gradient-to-b from-luxe-maroon/80 to-luxe-burgundy/80 shadow-2xl backdrop-blur-xs relative">
+                <div className="p-2 sm:p-2.5 border border-editorial-gold/35 rounded-t-[240px] sm:rounded-t-[300px] lg:rounded-t-[340px] bg-gradient-to-b from-editorial-emerald-dark/90 to-editorial-emerald/90 shadow-editorial-float backdrop-blur-xs relative">
                   {/* Inner Arch Window Container */}
-                  <div className="relative aspect-[3/4] sm:aspect-[4/5] min-h-[460px] sm:min-h-[540px] lg:min-h-[580px] w-full overflow-hidden rounded-t-[230px] sm:rounded-t-[290px] lg:rounded-t-[330px] border border-luxe-gold/25 group">
+                  <div className="relative aspect-[3/4] sm:aspect-[4/5] min-h-[460px] sm:min-h-[540px] lg:min-h-[580px] w-full overflow-hidden rounded-t-[230px] sm:rounded-t-[290px] lg:rounded-t-[330px] border border-editorial-gold/25 group">
                     <Image
                       src="https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=1800&q=85"
                       alt="Ragadhni Women's Royal Heritage Drape — Pure Chanderi Saree in Traditional Architectural Setting"
@@ -260,26 +259,26 @@ export default function HomePage() {
                     />
 
                     {/* Gradient Shadows for Text Contrast */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-luxe-maroon via-luxe-maroon/20 to-transparent" />
-                    <div className="absolute inset-0 bg-gradient-to-b from-luxe-maroon/30 via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-editorial-emerald-dark via-editorial-emerald-dark/20 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-editorial-emerald-dark/30 via-transparent to-transparent" />
 
                     {/* Floating Provenance Plaque: Textile No. 01 */}
-                    <div className="absolute bottom-6 left-6 right-6 p-4 bg-luxe-maroon/90 border border-luxe-gold/30 backdrop-blur-md space-y-1 shadow-xl">
-                      <div className="flex items-center justify-between text-[10px] text-luxe-gold uppercase tracking-[0.2em] font-medium">
+                    <div className="absolute bottom-6 left-6 right-6 p-4 bg-editorial-emerald-dark/95 border border-editorial-gold/30 backdrop-blur-md space-y-1 shadow-xl">
+                      <div className="flex items-center justify-between text-[10px] text-editorial-gold-soft uppercase tracking-[0.2em] font-medium">
                         <span>Textile No. 01</span>
                         <span>Madhya Pradesh</span>
                       </div>
-                      <h3 className="font-serif text-lg text-luxe-warmwhite font-normal leading-tight">
+                      <h3 className="font-serif text-lg text-editorial-ivory font-normal leading-tight">
                         Handwoven Chanderi Zari Drape
                       </h3>
-                      <p className="text-[11px] text-luxe-warmwhite/75 font-light">
+                      <p className="text-[11px] text-editorial-ivory/75 font-light">
                         Pure mulberry silk warp with fine combed cotton &amp; antique gold zari buttis.
                       </p>
                     </div>
 
                     {/* Top Architectural Stamp */}
                     <div className="absolute top-6 left-1/2 -translate-x-1/2 z-10">
-                      <span className="inline-block bg-luxe-maroon/90 backdrop-blur-xs border border-luxe-gold/40 text-luxe-gold text-[9px] uppercase tracking-[0.25em] font-medium px-3.5 py-1 shadow-sm">
+                      <span className="inline-block bg-editorial-emerald-dark/90 backdrop-blur-xs border border-editorial-gold/40 text-editorial-gold-soft text-[9px] uppercase tracking-[0.25em] font-medium px-3.5 py-1 shadow-sm">
                         Royal Architectural Arch
                       </span>
                     </div>
@@ -298,24 +297,24 @@ export default function HomePage() {
        * Communicates the brand philosophy: Traditional Indian aesthetics meeting
        * the contemporary woman's daily lifestyle, backed by direct weaver partnerships.
        */}
-      <section className="py-6 sm:py-10">
+      <section className="py-6 sm:py-10 bg-editorial-paper">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             {/* Left: Editorial Narrative */}
             <div className="lg:col-span-7 space-y-6">
               <ScrollReveal variant="fade-up">
                 <div className="space-y-4">
-                  <div className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.25em] text-luxe-terracotta font-medium">
-                    <Sparkles className="w-3.5 h-3.5 text-luxe-gold" />
+                  <div className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.25em] text-editorial-terracotta font-medium">
+                    <Sparkles className="w-3.5 h-3.5 text-editorial-gold" />
                     <span>Textile Philosophy &amp; Lineage</span>
                   </div>
 
-                  <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-luxe-charcoal font-normal leading-[1.12]">
+                  <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-editorial-charcoal font-normal leading-[1.12]">
                     Rooted in Sacred Weaves, <br className="hidden sm:inline" />
                     Reimagined for Her Modern Rhythm.
                   </h2>
 
-                  <p className="text-sm sm:text-base text-luxe-grey leading-relaxed font-light">
+                  <p className="text-sm sm:text-base text-editorial-slate-dark leading-relaxed font-light">
                     At <strong>Ragadhni</strong>, we believe ethnic Indian fashion should never be
                     confined to rare wedding seasons and ceremonial chests. By collaborating directly
                     with multigenerational weaving cooperatives across Chanderi, Bagru, Lucknow,
@@ -323,7 +322,7 @@ export default function HomePage() {
                     handlooms at fair, transparent prices.
                   </p>
 
-                  <p className="text-sm sm:text-base text-luxe-grey leading-relaxed font-light">
+                  <p className="text-sm sm:text-base text-editorial-slate-dark leading-relaxed font-light">
                     Every drape honours ancient artisanal lineages while celebrating the sovereign
                     freedom, effortless grace, and individuality of the contemporary woman.
                   </p>
@@ -332,30 +331,30 @@ export default function HomePage() {
 
               {/* 2 Feature Pillars */}
               <ScrollReveal variant="fade-up" delay={120}>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4 border-t border-luxe-gold/30">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4 border-t border-editorial-gold/30">
                   <div className="flex items-start space-x-3.5">
-                    <div className="p-2 bg-luxe-ivory/60 rounded-full text-luxe-terracotta shrink-0 mt-0.5">
+                    <div className="p-2 bg-editorial-ivory rounded-full text-editorial-terracotta border border-editorial-gold/30 shrink-0 mt-0.5">
                       <Feather className="w-4 h-4" />
                     </div>
                     <div>
-                      <h4 className="font-serif text-base font-semibold text-luxe-charcoal">
+                      <h4 className="font-serif text-base font-semibold text-editorial-charcoal">
                         Pure Natural Fibres
                       </h4>
-                      <p className="text-xs text-luxe-grey mt-1 leading-relaxed">
+                      <p className="text-xs text-editorial-slate mt-1 leading-relaxed">
                         Organic cotton mulmul, raw textured Tussar, and natural vegetable block dyes.
                       </p>
                     </div>
                   </div>
 
                   <div className="flex items-start space-x-3.5">
-                    <div className="p-2 bg-luxe-ivory/60 rounded-full text-luxe-terracotta shrink-0 mt-0.5">
+                    <div className="p-2 bg-editorial-ivory rounded-full text-editorial-terracotta border border-editorial-gold/30 shrink-0 mt-0.5">
                       <ShieldCheck className="w-4 h-4" />
                     </div>
                     <div>
-                      <h4 className="font-serif text-base font-semibold text-luxe-charcoal">
+                      <h4 className="font-serif text-base font-semibold text-editorial-charcoal">
                         Direct Weaver Transparency
                       </h4>
-                      <p className="text-xs text-luxe-grey mt-1 leading-relaxed">
+                      <p className="text-xs text-editorial-slate mt-1 leading-relaxed">
                         Zero synthetic compromises, honest pricing, and ethical artisan compensation.
                       </p>
                     </div>
@@ -377,7 +376,7 @@ export default function HomePage() {
             {/* Right: Asymmetric Photo Composition */}
             <div className="lg:col-span-5 relative">
               <ScrollReveal variant="image-reveal">
-                <div className="relative aspect-[4/5] overflow-hidden border border-luxe-gold/40 shadow-xl bg-luxe-ivory/40">
+                <div className="relative aspect-[4/5] overflow-hidden border border-editorial-gold/40 shadow-editorial bg-editorial-ivory/50">
                   <Image
                     src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=900&q=80"
                     alt="Artisan weaving traditional Indian handloom fabric"
@@ -390,14 +389,14 @@ export default function HomePage() {
 
               {/* Overlapping Floating Inset Card */}
               <ScrollReveal variant="fade-up" delay={160} className="absolute -bottom-6 -left-6 sm:-left-8 z-10">
-                <div className="bg-luxe-burgundy text-luxe-warmwhite p-4 sm:p-5 border border-luxe-gold/50 shadow-2xl max-w-xs space-y-1">
-                  <span className="text-[10px] uppercase tracking-[0.2em] text-luxe-gold font-medium">
+                <div className="bg-editorial-emerald text-editorial-ivory p-4 sm:p-5 border border-editorial-gold/40 shadow-editorial-float max-w-xs space-y-1">
+                  <span className="text-[10px] uppercase tracking-[0.2em] text-editorial-gold-soft font-medium">
                     Artisan Guild
                   </span>
                   <p className="font-serif text-base font-normal leading-snug">
                     Handcrafted in Chanderi &bull; 28 Days of Loom Craft
                   </p>
-                  <p className="text-[11px] text-luxe-warmwhite/70 font-light">
+                  <p className="text-[11px] text-editorial-ivory/80 font-light">
                     Spun with pure mulberry silk warp and genuine gold zari buttis.
                   </p>
                 </div>
@@ -414,18 +413,18 @@ export default function HomePage() {
        * 6 distinctive image-led category cards covering women's ethnic apparel
        * and handcrafted accessories with refined typography and smooth hover zoom.
        */}
-      <section>
+      <section className="py-12 sm:py-16 bg-editorial-paper">
         <Container>
           {/* Section Header */}
           <ScrollReveal variant="fade-up">
             <div className="text-center max-w-2xl mx-auto space-y-2.5 mb-12">
-              <span className="text-xs uppercase tracking-[0.25em] text-luxe-terracotta font-medium">
+              <span className="text-xs uppercase tracking-[0.25em] text-editorial-terracotta font-medium">
                 Curated Silhouettes
               </span>
-              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-luxe-charcoal font-normal">
+              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-editorial-charcoal font-normal">
                 Shop by Category
               </h2>
-              <p className="text-xs sm:text-sm text-luxe-grey font-light">
+              <p className="text-xs sm:text-sm text-editorial-slate font-light">
                 Explore our six core women&apos;s collections, from regal six-yard drapes to everyday handblock dresses.
               </p>
             </div>
@@ -443,7 +442,7 @@ export default function HomePage() {
               >
                 <Link
                   href={cat.link}
-                  className="group relative aspect-[3/4] overflow-hidden bg-luxe-ivory/50 border border-luxe-gold/30 shadow-xs block h-full"
+                  className="group relative aspect-[3/4] overflow-hidden bg-editorial-ivory/50 border border-editorial-gold/30 shadow-xs block h-full"
                 >
                   <Image
                     src={cat.image}
@@ -453,24 +452,24 @@ export default function HomePage() {
                     className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-108"
                   />
                   {/* Vignette Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-luxe-maroon/90 via-luxe-maroon/30 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-editorial-emerald-dark/95 via-editorial-emerald-dark/40 to-transparent" />
 
                   {/* Top Badge */}
                   <div className="absolute top-3 left-3">
-                    <span className="text-[9px] uppercase tracking-widest text-luxe-warmwhite bg-luxe-maroon/70 backdrop-blur-xs px-2 py-0.5 border border-luxe-gold/30">
+                    <span className="text-[9px] uppercase tracking-widest text-editorial-ivory bg-editorial-emerald-dark/80 backdrop-blur-xs px-2 py-0.5 border border-editorial-gold/30">
                       {cat.tag}
                     </span>
                   </div>
 
                   {/* Bottom Content */}
-                  <div className="absolute bottom-4 left-4 right-4 text-luxe-warmwhite space-y-0.5">
-                    <h3 className="font-serif text-base sm:text-lg tracking-wide group-hover:text-luxe-gold transition-colors font-normal leading-tight">
+                  <div className="absolute bottom-4 left-4 right-4 text-editorial-ivory space-y-0.5">
+                    <h3 className="font-serif text-base sm:text-lg tracking-wide group-hover:text-editorial-gold-soft transition-colors font-normal leading-tight">
                       {cat.title}
                     </h3>
-                    <p className="text-[10px] text-luxe-warmwhite/75 line-clamp-1 font-light">
+                    <p className="text-[10px] text-editorial-ivory/75 line-clamp-1 font-light">
                       {cat.subtitle}
                     </p>
-                    <span className="inline-flex items-center text-[10px] text-luxe-gold uppercase tracking-widest font-medium pt-1.5 group-hover:translate-x-1 transition-transform">
+                    <span className="inline-flex items-center text-[10px] text-editorial-gold-soft uppercase tracking-widest font-medium pt-1.5 group-hover:translate-x-1 transition-transform">
                       <span>Explore</span>
                       <ArrowRight className="w-3 h-3 ml-1" />
                     </span>
@@ -493,21 +492,21 @@ export default function HomePage() {
        * 4. Contemporary Ethnic
        * 5. Wedding Guest Edit
        */}
-      <section className="bg-gradient-to-b from-luxe-ivory/30 via-luxe-warmwhite to-luxe-ivory/20 py-16 lg:py-24 border-y border-luxe-gold/25">
+      <section className="bg-editorial-ivory/50 py-16 lg:py-24 border-y border-editorial-gold/25">
         <Container>
           <ScrollReveal variant="fade-up">
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 pb-4 border-b border-luxe-gold/30 gap-4">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 pb-4 border-b border-editorial-gold/30 gap-4">
               <div>
-                <span className="text-xs uppercase tracking-[0.25em] text-luxe-terracotta font-medium">
+                <span className="text-xs uppercase tracking-[0.25em] text-editorial-terracotta font-medium">
                   Occasion Curations
                 </span>
-                <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-luxe-charcoal font-normal mt-1">
+                <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-editorial-charcoal font-normal mt-1">
                   Featured Collections
                 </h2>
               </div>
               <Link
                 href="/collections/ethnic-wear"
-                className="text-xs uppercase tracking-widest text-luxe-charcoal hover:text-luxe-burgundy font-medium transition-colors"
+                className="text-xs uppercase tracking-widest text-editorial-emerald hover:text-editorial-terracotta font-medium transition-colors"
               >
                 View All Occasions &rarr;
               </Link>
@@ -520,7 +519,7 @@ export default function HomePage() {
             <ScrollReveal variant="fade-up" className="lg:col-span-5 h-full">
               <Link
                 href="/collections/festive-wear"
-                className="group relative aspect-[4/5] sm:aspect-[3/4] lg:aspect-auto lg:h-full overflow-hidden border border-luxe-gold/40 shadow-md bg-luxe-maroon block"
+                className="group relative aspect-[4/5] sm:aspect-[3/4] lg:aspect-auto lg:h-full overflow-hidden border border-editorial-gold/40 shadow-editorial bg-editorial-emerald-dark block"
               >
                 <Image
                   src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1200&q=85"
@@ -529,24 +528,24 @@ export default function HomePage() {
                   sizes="(max-width: 1024px) 100vw, 42vw"
                   className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-luxe-maroon/95 via-luxe-maroon/40 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-editorial-emerald-dark/98 via-editorial-emerald-dark/40 to-transparent" />
 
                 <div className="absolute top-5 left-5">
                   <Badge variant="gold">Celebration Grandeur</Badge>
                 </div>
 
-                <div className="absolute bottom-8 left-8 right-8 text-luxe-warmwhite space-y-2">
-                  <p className="text-[11px] uppercase tracking-[0.25em] text-luxe-gold font-medium">
+                <div className="absolute bottom-8 left-8 right-8 text-editorial-ivory space-y-2">
+                  <p className="text-[11px] uppercase tracking-[0.25em] text-editorial-gold-soft font-medium">
                     Occasion Feature
                   </p>
-                  <h3 className="font-serif text-2xl sm:text-3xl text-luxe-warmwhite font-normal leading-tight group-hover:text-luxe-gold transition-colors">
+                  <h3 className="font-serif text-2xl sm:text-3xl text-editorial-ivory font-normal leading-tight group-hover:text-editorial-gold-soft transition-colors">
                     The Festive Edit
                   </h3>
-                  <p className="text-xs sm:text-sm text-luxe-warmwhite/80 max-w-sm font-light">
+                  <p className="text-xs sm:text-sm text-editorial-ivory/80 max-w-sm font-light">
                     Shimmering pure Chanderi silk anarkalis, woven Banarasi lehenga sets, and royal dupattas.
                   </p>
                   <div className="pt-2">
-                    <span className="inline-flex items-center text-xs uppercase tracking-widest text-luxe-gold font-medium border-b border-luxe-gold/60 pb-1 group-hover:translate-x-1 transition-transform">
+                    <span className="inline-flex items-center text-xs uppercase tracking-widest text-editorial-gold-soft font-medium border-b border-editorial-gold/60 pb-1 group-hover:translate-x-1 transition-transform">
                       <span>Shop Festive Edit</span>
                       <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
                     </span>
@@ -561,7 +560,7 @@ export default function HomePage() {
               <ScrollReveal variant="fade-up" staggerIndex={0} staggerStep={90} className="h-full">
                 <Link
                   href="/collections/casual-wear"
-                  className="group relative aspect-[4/5] overflow-hidden border border-luxe-gold/30 bg-luxe-ivory block shadow-xs h-full"
+                  className="group relative aspect-[4/5] overflow-hidden border border-editorial-gold/30 bg-editorial-emerald-dark block shadow-xs h-full"
                 >
                   <Image
                     src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=900&q=80"
@@ -570,20 +569,20 @@ export default function HomePage() {
                     sizes="(max-width: 640px) 100vw, 25vw"
                     className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-luxe-maroon/90 via-luxe-maroon/30 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-editorial-emerald-dark/90 via-editorial-emerald-dark/30 to-transparent" />
                   <div className="absolute top-4 left-4">
-                    <span className="text-[10px] uppercase tracking-widest text-luxe-warmwhite bg-luxe-maroon/60 px-2 py-0.5 border border-luxe-gold/30">
+                    <span className="text-[10px] uppercase tracking-widest text-editorial-ivory bg-editorial-emerald-dark/80 px-2 py-0.5 border border-editorial-gold/30">
                       Daily Grace
                     </span>
                   </div>
-                  <div className="absolute bottom-5 left-5 right-5 text-luxe-warmwhite space-y-1">
-                    <h4 className="font-serif text-xl group-hover:text-luxe-gold transition-colors font-normal">
+                  <div className="absolute bottom-5 left-5 right-5 text-editorial-ivory space-y-1">
+                    <h4 className="font-serif text-xl group-hover:text-editorial-gold-soft transition-colors font-normal">
                       Everyday Elegance
                     </h4>
-                    <p className="text-xs text-luxe-warmwhite/75 line-clamp-1 font-light">
+                    <p className="text-xs text-editorial-ivory/75 line-clamp-1 font-light">
                       Breathable organic mulmul &amp; Bagru handblocks.
                     </p>
-                    <span className="inline-flex items-center text-xs text-luxe-gold font-medium pt-1">
+                    <span className="inline-flex items-center text-xs text-editorial-gold-soft font-medium pt-1">
                       <span>Explore</span>
                       <ArrowRight className="w-3 h-3 ml-1" />
                     </span>
@@ -595,7 +594,7 @@ export default function HomePage() {
               <ScrollReveal variant="fade-up" staggerIndex={1} staggerStep={90} className="h-full">
                 <Link
                   href="/collections/ethnic-wear"
-                  className="group relative aspect-[4/5] overflow-hidden border border-luxe-gold/30 bg-luxe-ivory block shadow-xs h-full"
+                  className="group relative aspect-[4/5] overflow-hidden border border-editorial-gold/30 bg-editorial-emerald-dark block shadow-xs h-full"
                 >
                   <Image
                     src="https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=900&q=80"
@@ -604,20 +603,20 @@ export default function HomePage() {
                     sizes="(max-width: 640px) 100vw, 25vw"
                     className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-luxe-maroon/90 via-luxe-maroon/30 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-editorial-emerald-dark/90 via-editorial-emerald-dark/30 to-transparent" />
                   <div className="absolute top-4 left-4">
-                    <span className="text-[10px] uppercase tracking-widest text-luxe-warmwhite bg-luxe-maroon/60 px-2 py-0.5 border border-luxe-gold/30">
+                    <span className="text-[10px] uppercase tracking-widest text-editorial-ivory bg-editorial-emerald-dark/80 px-2 py-0.5 border border-editorial-gold/30">
                       Heirloom Weaves
                     </span>
                   </div>
-                  <div className="absolute bottom-5 left-5 right-5 text-luxe-warmwhite space-y-1">
-                    <h4 className="font-serif text-xl group-hover:text-luxe-gold transition-colors font-normal">
+                  <div className="absolute bottom-5 left-5 right-5 text-editorial-ivory space-y-1">
+                    <h4 className="font-serif text-xl group-hover:text-editorial-gold-soft transition-colors font-normal">
                       Traditional Classics
                     </h4>
-                    <p className="text-xs text-luxe-warmwhite/75 line-clamp-1 font-light">
+                    <p className="text-xs text-editorial-ivory/75 line-clamp-1 font-light">
                       Time-honoured handloom sarees &amp; zari borders.
                     </p>
-                    <span className="inline-flex items-center text-xs text-luxe-gold font-medium pt-1">
+                    <span className="inline-flex items-center text-xs text-editorial-gold-soft font-medium pt-1">
                       <span>Explore</span>
                       <ArrowRight className="w-3 h-3 ml-1" />
                     </span>
@@ -629,7 +628,7 @@ export default function HomePage() {
               <ScrollReveal variant="fade-up" staggerIndex={2} staggerStep={90} className="h-full">
                 <Link
                   href="/collections/new-arrivals"
-                  className="group relative aspect-[4/5] overflow-hidden border border-luxe-gold/30 bg-luxe-ivory block shadow-xs h-full"
+                  className="group relative aspect-[4/5] overflow-hidden border border-editorial-gold/30 bg-editorial-emerald-dark block shadow-xs h-full"
                 >
                   <Image
                     src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=900&q=80"
@@ -638,20 +637,20 @@ export default function HomePage() {
                     sizes="(max-width: 640px) 100vw, 25vw"
                     className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-luxe-maroon/90 via-luxe-maroon/30 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-editorial-emerald-dark/90 via-editorial-emerald-dark/30 to-transparent" />
                   <div className="absolute top-4 left-4">
-                    <span className="text-[10px] uppercase tracking-widest text-luxe-warmwhite bg-luxe-maroon/60 px-2 py-0.5 border border-luxe-gold/30">
+                    <span className="text-[10px] uppercase tracking-widest text-editorial-ivory bg-editorial-emerald-dark/80 px-2 py-0.5 border border-editorial-gold/30">
                       Modern Cut
                     </span>
                   </div>
-                  <div className="absolute bottom-5 left-5 right-5 text-luxe-warmwhite space-y-1">
-                    <h4 className="font-serif text-xl group-hover:text-luxe-gold transition-colors font-normal">
+                  <div className="absolute bottom-5 left-5 right-5 text-editorial-ivory space-y-1">
+                    <h4 className="font-serif text-xl group-hover:text-editorial-gold-soft transition-colors font-normal">
                       Contemporary Ethnic
                     </h4>
-                    <p className="text-xs text-luxe-warmwhite/75 line-clamp-1 font-light">
+                    <p className="text-xs text-editorial-ivory/75 line-clamp-1 font-light">
                       Fluid tiered silhouettes &amp; fusion separates.
                     </p>
-                    <span className="inline-flex items-center text-xs text-luxe-gold font-medium pt-1">
+                    <span className="inline-flex items-center text-xs text-editorial-gold-soft font-medium pt-1">
                       <span>Explore</span>
                       <ArrowRight className="w-3 h-3 ml-1" />
                     </span>
@@ -663,7 +662,7 @@ export default function HomePage() {
               <ScrollReveal variant="fade-up" staggerIndex={3} staggerStep={90} className="h-full">
                 <Link
                   href="/collections/bestsellers"
-                  className="group relative aspect-[4/5] overflow-hidden border border-luxe-gold/30 bg-luxe-ivory block shadow-xs h-full"
+                  className="group relative aspect-[4/5] overflow-hidden border border-editorial-gold/30 bg-editorial-emerald-dark block shadow-xs h-full"
                 >
                   <Image
                     src="https://images.unsplash.com/photo-1609357605129-26f69add5d6e?auto=format&fit=crop&w=900&q=80"
@@ -672,20 +671,20 @@ export default function HomePage() {
                     sizes="(max-width: 640px) 100vw, 25vw"
                     className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-luxe-maroon/90 via-luxe-maroon/30 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-editorial-emerald-dark/90 via-editorial-emerald-dark/30 to-transparent" />
                   <div className="absolute top-4 left-4">
-                    <span className="text-[10px] uppercase tracking-widest text-luxe-warmwhite bg-luxe-maroon/60 px-2 py-0.5 border border-luxe-gold/30">
+                    <span className="text-[10px] uppercase tracking-widest text-editorial-ivory bg-editorial-emerald-dark/80 px-2 py-0.5 border border-editorial-gold/30">
                       Royal Occasion
                     </span>
                   </div>
-                  <div className="absolute bottom-5 left-5 right-5 text-luxe-warmwhite space-y-1">
-                    <h4 className="font-serif text-xl group-hover:text-luxe-gold transition-colors font-normal">
+                  <div className="absolute bottom-5 left-5 right-5 text-editorial-ivory space-y-1">
+                    <h4 className="font-serif text-xl group-hover:text-editorial-gold-soft transition-colors font-normal">
                       Wedding Guest Edit
                     </h4>
-                    <p className="text-xs text-luxe-warmwhite/75 line-clamp-1 font-light">
+                    <p className="text-xs text-editorial-ivory/75 line-clamp-1 font-light">
                       Regal jewel tones &amp; banarasi brocades.
                     </p>
-                    <span className="inline-flex items-center text-xs text-luxe-gold font-medium pt-1">
+                    <span className="inline-flex items-center text-xs text-editorial-gold-soft font-medium pt-1">
                       <span>Explore</span>
                       <ArrowRight className="w-3 h-3 ml-1" />
                     </span>
@@ -717,18 +716,18 @@ export default function HomePage() {
        * Storytelling section celebrating 4 generational handloom traditions:
        * Chanderi Silk, Bagru Woodblock, Lucknowi Chikankari, and Bengal Tussar.
        */}
-      <section className="bg-luxe-warmwhite border-y border-luxe-gold/30 py-16 lg:py-24">
+      <section className="bg-editorial-paper border-y border-editorial-gold/30 py-16 lg:py-24">
         <Container>
           {/* Section Header */}
           <ScrollReveal variant="fade-up">
             <div className="text-center max-w-3xl mx-auto space-y-3 mb-14">
-              <span className="text-xs uppercase tracking-[0.25em] text-luxe-terracotta font-medium">
+              <span className="text-xs uppercase tracking-[0.25em] text-editorial-terracotta font-medium">
                 Lineages of Handloom Craft
               </span>
-              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-luxe-charcoal font-normal">
+              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-editorial-charcoal font-normal">
                 The Artisan&apos;s Guild
               </h2>
-              <p className="text-xs sm:text-sm text-luxe-grey font-light leading-relaxed">
+              <p className="text-xs sm:text-sm text-editorial-slate font-light leading-relaxed">
                 Every Ragadhni garment is spun, woven, or printed by master craftspeople using
                 centuries-old heritage techniques. We celebrate the hands that keep India&apos;s textile poetry alive.
               </p>
@@ -745,8 +744,8 @@ export default function HomePage() {
                 staggerStep={100}
                 className="h-full"
               >
-                <div className="bg-luxe-ivory/30 border border-luxe-gold/30 overflow-hidden flex flex-col group hover:border-luxe-gold transition-colors duration-300 h-full">
-                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-luxe-ivory">
+                <div className="bg-editorial-ivory/50 border border-editorial-gold/30 overflow-hidden flex flex-col group hover:border-editorial-gold transition-colors duration-300 h-full">
+                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-editorial-ivory">
                     <Image
                       src={craft.image}
                       alt={craft.title}
@@ -754,23 +753,23 @@ export default function HomePage() {
                       sizes="(max-width: 768px) 100vw, 25vw"
                       className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-luxe-maroon/60 to-transparent" />
-                    <span className="absolute bottom-2.5 left-3 text-[10px] uppercase tracking-widest text-luxe-gold font-medium bg-luxe-maroon/80 px-2 py-0.5 border border-luxe-gold/30">
+                    <div className="absolute inset-0 bg-gradient-to-t from-editorial-emerald-dark/70 to-transparent" />
+                    <span className="absolute bottom-2.5 left-3 text-[10px] uppercase tracking-widest text-editorial-gold-soft font-medium bg-editorial-emerald-dark/90 px-2 py-0.5 border border-editorial-gold/30">
                       {craft.region}
                     </span>
                   </div>
                   <div className="p-5 flex-1 flex flex-col justify-between space-y-2.5">
                     <div>
-                      <h3 className="font-serif text-lg text-luxe-charcoal font-normal group-hover:text-luxe-burgundy transition-colors">
+                      <h3 className="font-serif text-lg text-editorial-charcoal font-normal group-hover:text-editorial-emerald transition-colors">
                         {craft.title}
                       </h3>
-                      <p className="text-xs text-luxe-grey mt-2 leading-relaxed font-light">
+                      <p className="text-xs text-editorial-slate mt-2 leading-relaxed font-light">
                         {craft.description}
                       </p>
                     </div>
-                    <div className="pt-2 border-t border-luxe-gold/20 flex items-center justify-between text-[11px] text-luxe-terracotta font-medium">
+                    <div className="pt-2 border-t border-editorial-gold/20 flex items-center justify-between text-[11px] text-editorial-terracotta font-medium">
                       <span>100% Ethical Craft</span>
-                      <Compass className="w-3.5 h-3.5 text-luxe-gold" />
+                      <Compass className="w-3.5 h-3.5 text-editorial-gold" />
                     </div>
                   </div>
                 </div>
@@ -784,10 +783,10 @@ export default function HomePage() {
        * ========================================================================
        * SECTION H: EDITORIAL FASHION CAMPAIGN
        * ========================================================================
-       * Full-width magazine spread for "The Sovereign Woman Edit" in rich wine
+       * Full-width magazine spread for "The Sovereign Woman Edit" in rich Deep Emerald
        * and gold, resembling a luxury Indian fashion publication campaign.
        */}
-      <section className="bg-gradient-to-r from-luxe-maroon via-luxe-burgundy to-luxe-wine text-luxe-warmwhite py-16 lg:py-24 relative overflow-hidden border-y border-luxe-gold/40">
+      <section className="bg-gradient-to-r from-editorial-emerald-dark via-editorial-emerald to-editorial-emerald-secondary text-editorial-ivory py-16 lg:py-24 relative overflow-hidden border-y border-editorial-gold/40">
         <div className="absolute inset-0 jaali-bg opacity-[0.03] pointer-events-none" />
 
         <Container className="relative z-10">
@@ -798,14 +797,14 @@ export default function HomePage() {
                 <div className="space-y-6">
                   <Badge variant="gold">Campaign Autumn / Winter 2026</Badge>
 
-                  <h2 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-luxe-warmwhite leading-[1.08]">
+                  <h2 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-editorial-ivory leading-[1.08]">
                     The Sovereign <br />
-                    <span className="italic font-light text-luxe-gold">
+                    <span className="italic font-light text-editorial-gold-soft">
                       Woman Edit.
                     </span>
                   </h2>
 
-                  <p className="text-sm sm:text-base text-luxe-warmwhite/80 max-w-lg mx-auto lg:mx-0 leading-relaxed font-light">
+                  <p className="text-sm sm:text-base text-editorial-ivory/80 max-w-lg mx-auto lg:mx-0 leading-relaxed font-light">
                     &ldquo;Clothing steeped in memory, spun with patience, and draped with effortless
                     sovereignty. For the modern Indian woman who wears her heritage with fearless poise.&rdquo;
                   </p>
@@ -814,7 +813,7 @@ export default function HomePage() {
                     <Link href="/collections/festive-wear">
                       <Button
                         size="lg"
-                        className="bg-luxe-gold text-luxe-maroon hover:bg-[#DFC99E] font-medium tracking-widest text-xs uppercase px-8 py-4 shadow-lg"
+                        className="bg-editorial-gold text-editorial-emerald-dark hover:bg-editorial-gold-soft font-semibold tracking-widest text-xs uppercase px-8 py-4 shadow-editorial"
                       >
                         <span>Shop The Campaign</span>
                         <ArrowRight className="w-4 h-4 ml-2" />
@@ -824,7 +823,7 @@ export default function HomePage() {
                       <Button
                         variant="outline"
                         size="lg"
-                        className="border-luxe-gold/60 text-luxe-warmwhite hover:bg-luxe-warmwhite/10 font-medium tracking-widest text-xs uppercase px-8 py-4"
+                        className="border-editorial-gold/60 text-editorial-ivory hover:bg-editorial-ivory/10 font-medium tracking-widest text-xs uppercase px-8 py-4"
                       >
                         <span>View All Silhouettes</span>
                       </Button>
@@ -837,8 +836,8 @@ export default function HomePage() {
             {/* Right: Full Campaign Photograph */}
             <div className="lg:col-span-5 relative">
               <ScrollReveal variant="image-reveal" delay={120}>
-                <div className="relative aspect-[3/4] sm:aspect-[4/5] overflow-hidden border-2 border-luxe-gold/50 shadow-2xl p-2 bg-luxe-maroon/40 rounded-sm">
-                  <div className="relative w-full h-full overflow-hidden border border-luxe-gold/30">
+                <div className="relative aspect-[3/4] sm:aspect-[4/5] overflow-hidden border-2 border-editorial-gold/50 shadow-editorial-float p-2 bg-editorial-emerald-dark/60 rounded-sm">
+                  <div className="relative w-full h-full overflow-hidden border border-editorial-gold/30">
                     <Image
                       src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1200&q=85"
                       alt="The Sovereign Woman Editorial Campaign Model Shot"
@@ -846,8 +845,8 @@ export default function HomePage() {
                       sizes="(max-width: 1024px) 100vw, 40vw"
                       className="object-cover object-top"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-luxe-maroon/80 via-transparent to-transparent" />
-                    <div className="absolute bottom-5 left-5 right-5 text-center text-xs text-luxe-gold tracking-widest uppercase font-medium">
+                    <div className="absolute inset-0 bg-gradient-to-t from-editorial-emerald-dark/80 via-transparent to-transparent" />
+                    <div className="absolute bottom-5 left-5 right-5 text-center text-xs text-editorial-gold-soft tracking-widest uppercase font-medium">
                       Limited Edition Festive Capsule
                     </div>
                   </div>
@@ -864,19 +863,19 @@ export default function HomePage() {
        * ========================================================================
        * 4 verified customer benefits ensuring peace of mind for Indian shoppers.
        */}
-      <section className="py-14 sm:py-16 border-t border-luxe-gold/25 bg-luxe-ivory/30">
+      <section className="py-14 sm:py-16 border-t border-editorial-gold/25 bg-editorial-paper">
         <Container>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             <ScrollReveal variant="fade-up" staggerIndex={0} staggerStep={90}>
               <div className="flex items-start space-x-4">
-                <div className="p-3 bg-luxe-ivory rounded-full text-luxe-terracotta shrink-0 border border-luxe-gold/30">
-                  <Sparkles className="w-5 h-5 text-luxe-gold" />
+                <div className="p-3 bg-editorial-ivory rounded-full text-editorial-terracotta shrink-0 border border-editorial-gold/30">
+                  <Sparkles className="w-5 h-5 text-editorial-gold" />
                 </div>
                 <div>
-                  <h4 className="font-serif text-sm font-semibold tracking-wide text-luxe-charcoal">
+                  <h4 className="font-serif text-sm font-semibold tracking-wide text-editorial-charcoal">
                     Authentic Handloom Weaves
                   </h4>
-                  <p className="text-xs text-luxe-grey mt-1 leading-relaxed font-light">
+                  <p className="text-xs text-editorial-slate mt-1 leading-relaxed font-light">
                     100% pure natural fibres verified for authentic hand-weave provenance and fair artisan compensation.
                   </p>
                 </div>
@@ -885,14 +884,14 @@ export default function HomePage() {
 
             <ScrollReveal variant="fade-up" staggerIndex={1} staggerStep={90}>
               <div className="flex items-start space-x-4">
-                <div className="p-3 bg-luxe-ivory rounded-full text-luxe-terracotta shrink-0 border border-luxe-gold/30">
-                  <Truck className="w-5 h-5 text-luxe-gold" />
+                <div className="p-3 bg-editorial-ivory rounded-full text-editorial-terracotta shrink-0 border border-editorial-gold/30">
+                  <Truck className="w-5 h-5 text-editorial-gold" />
                 </div>
                 <div>
-                  <h4 className="font-serif text-sm font-semibold tracking-wide text-luxe-charcoal">
+                  <h4 className="font-serif text-sm font-semibold tracking-wide text-editorial-charcoal">
                     Complimentary Express Delivery
                   </h4>
-                  <p className="text-xs text-luxe-grey mt-1 leading-relaxed font-light">
+                  <p className="text-xs text-editorial-slate mt-1 leading-relaxed font-light">
                     Free express shipping on all domestic orders above ₹1,499 across 25,000+ Indian pincodes.
                   </p>
                 </div>
@@ -901,14 +900,14 @@ export default function HomePage() {
 
             <ScrollReveal variant="fade-up" staggerIndex={2} staggerStep={90}>
               <div className="flex items-start space-x-4">
-                <div className="p-3 bg-luxe-ivory rounded-full text-luxe-terracotta shrink-0 border border-luxe-gold/30">
-                  <RotateCcw className="w-5 h-5 text-luxe-gold" />
+                <div className="p-3 bg-editorial-ivory rounded-full text-editorial-terracotta shrink-0 border border-editorial-gold/30">
+                  <RotateCcw className="w-5 h-5 text-editorial-gold" />
                 </div>
                 <div>
-                  <h4 className="font-serif text-sm font-semibold tracking-wide text-luxe-charcoal">
+                  <h4 className="font-serif text-sm font-semibold tracking-wide text-editorial-charcoal">
                     7-Day Doorstep Exchange
                   </h4>
-                  <p className="text-xs text-luxe-grey mt-1 leading-relaxed font-light">
+                  <p className="text-xs text-editorial-slate mt-1 leading-relaxed font-light">
                     Hassle-free size and product exchanges with seamless doorstep reverse courier pickup.
                   </p>
                 </div>
@@ -917,14 +916,14 @@ export default function HomePage() {
 
             <ScrollReveal variant="fade-up" staggerIndex={3} staggerStep={90}>
               <div className="flex items-start space-x-4">
-                <div className="p-3 bg-luxe-ivory rounded-full text-luxe-terracotta shrink-0 border border-luxe-gold/30">
-                  <ShieldCheck className="w-5 h-5 text-luxe-gold" />
+                <div className="p-3 bg-editorial-ivory rounded-full text-editorial-terracotta shrink-0 border border-editorial-gold/30">
+                  <ShieldCheck className="w-5 h-5 text-editorial-gold" />
                 </div>
                 <div>
-                  <h4 className="font-serif text-sm font-semibold tracking-wide text-luxe-charcoal">
+                  <h4 className="font-serif text-sm font-semibold tracking-wide text-editorial-charcoal">
                     100% Secure Checkout &amp; COD
                   </h4>
-                  <p className="text-xs text-luxe-grey mt-1 leading-relaxed font-light">
+                  <p className="text-xs text-editorial-slate mt-1 leading-relaxed font-light">
                     Encrypted UPI (GPay, PhonePe, Paytm), RuPay, Netbanking, Cards, and Cash on Delivery.
                   </p>
                 </div>

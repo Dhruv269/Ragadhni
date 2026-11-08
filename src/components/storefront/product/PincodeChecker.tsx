@@ -61,10 +61,10 @@ export function PincodeChecker() {
   });
 
   return (
-    <div className="border border-[#E3D8C6] bg-heritage-sand/30 p-4 space-y-3">
+    <div className="border border-editorial-gold/30 bg-editorial-ivory/40 p-4 space-y-3">
       {/* Title */}
-      <div className="flex items-center space-x-2 text-xs font-semibold uppercase tracking-wider text-heritage-charcoal">
-        <MapPin className="w-4 h-4 text-heritage-terracotta" />
+      <div className="flex items-center space-x-2 text-xs font-semibold uppercase tracking-wider text-editorial-charcoal">
+        <MapPin className="w-4 h-4 text-editorial-terracotta" />
         <span>Check Delivery & Cash on Delivery (COD)</span>
       </div>
 
@@ -79,11 +79,11 @@ export function PincodeChecker() {
             if (status !== "idle") setStatus("idle");
           }}
           placeholder="Enter 6-digit PIN code (e.g. 110001)"
-          className="w-full bg-heritage-ivory border border-[#D5C9B5] px-3 py-2 text-xs text-heritage-charcoal placeholder:text-heritage-earth/60 focus:outline-none focus:border-heritage-terracotta"
+          className="w-full bg-editorial-paper border border-editorial-gold/40 px-3 py-2 text-xs text-editorial-charcoal placeholder:text-editorial-slate/60 focus:outline-none focus:border-editorial-emerald"
         />
         <button
           type="submit"
-          className="bg-heritage-charcoal text-heritage-ivory px-4 py-2 text-xs uppercase tracking-wider font-medium hover:bg-heritage-terracotta transition-colors shrink-0"
+          className="bg-editorial-emerald text-editorial-ivory px-4 py-2 text-xs uppercase tracking-wider font-medium hover:bg-editorial-terracotta transition-colors shrink-0"
         >
           Check
         </button>
@@ -91,7 +91,7 @@ export function PincodeChecker() {
 
       {/* Invalid PIN code message */}
       {status === "invalid" && (
-        <div className="flex items-center space-x-2 text-xs text-heritage-maroon pt-1">
+        <div className="flex items-center space-x-2 text-xs text-editorial-terracotta pt-1">
           <AlertCircle className="w-4 h-4 shrink-0" />
           <span>Please enter a valid 6-digit Indian PIN code.</span>
         </div>
@@ -99,15 +99,15 @@ export function PincodeChecker() {
 
       {/* Serviceable Delivery Confirmation */}
       {status === "success" && (
-        <div className="space-y-2 pt-1 text-xs text-heritage-charcoal border-t border-[#DFD3C0] mt-2">
-          <div className="flex items-center space-x-2 text-heritage-emerald font-medium">
-            <CheckCircle2 className="w-4 h-4 text-heritage-emerald shrink-0" />
+        <div className="space-y-2 pt-1 text-xs text-editorial-charcoal border-t border-editorial-gold/25 mt-2">
+          <div className="flex items-center space-x-2 text-editorial-emerald font-medium">
+            <CheckCircle2 className="w-4 h-4 text-editorial-emerald shrink-0" />
             <span>Serviceable at PIN Code {pincode}</span>
           </div>
 
-          <div className="space-y-1 pl-6 text-heritage-earth">
+          <div className="space-y-1 pl-6 text-editorial-slate-dark">
             <div className="flex items-center space-x-2">
-              <Truck className="w-3.5 h-3.5 text-heritage-terracotta shrink-0" />
+              <Truck className="w-3.5 h-3.5 text-editorial-terracotta shrink-0" />
               <span>
                 Estimated Delivery by <strong>{formattedDate}</strong>
               </span>

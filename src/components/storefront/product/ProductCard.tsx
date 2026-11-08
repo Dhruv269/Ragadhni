@@ -87,7 +87,7 @@ export function ProductCard({ product }: ProductCardProps) {
        * Standard fashion editorial aspect ratio.
        * ========================================================================
        */}
-      <div className="relative aspect-[4/5] w-full overflow-hidden bg-[#F2ECE3] border border-[#E8DEC\-B] border-opacity-40">
+      <div className="relative aspect-[4/5] w-full overflow-hidden bg-editorial-ivory/50 border border-editorial-gold/25">
         {/* Link wrapping the photo so clicking anywhere opens the product page */}
         <Link href={`/product/${product.slug}`} className="block w-full h-full">
           <Image
@@ -105,17 +105,17 @@ export function ProductCard({ product }: ProductCardProps) {
          */}
         <div className="absolute top-2.5 left-2.5 flex flex-col gap-1 z-10">
           {product.fabric && (
-            <span className="inline-block bg-white/90 backdrop-blur-xs text-[9px] uppercase tracking-wider text-luxe-charcoal font-medium px-2 py-0.5 shadow-xs border border-black/5">
+            <span className="inline-block bg-editorial-paper/90 backdrop-blur-xs text-[9px] uppercase tracking-wider text-editorial-charcoal font-medium px-2 py-0.5 shadow-xs border border-editorial-gold/20">
               {product.fabric}
             </span>
           )}
           {product.isBestseller && (
-            <span className="inline-block bg-luxe-gold/95 text-luxe-maroon text-[9px] uppercase tracking-wider font-semibold px-2 py-0.5 shadow-xs">
+            <span className="inline-block bg-editorial-gold/20 text-editorial-gold-deep border border-editorial-gold/40 text-[9px] uppercase tracking-wider font-semibold px-2 py-0.5 shadow-xs">
               Bestseller
             </span>
           )}
           {product.isNewArrival && !product.isBestseller && (
-            <span className="inline-block bg-luxe-terracotta/95 text-white text-[9px] uppercase tracking-wider font-semibold px-2 py-0.5 shadow-xs">
+            <span className="inline-block bg-editorial-terracotta text-editorial-ivory border border-editorial-terracotta-warm/30 text-[9px] uppercase tracking-wider font-semibold px-2 py-0.5 shadow-xs">
               New Arrival
             </span>
           )}
@@ -129,14 +129,14 @@ export function ProductCard({ product }: ProductCardProps) {
             e.preventDefault();
             setIsWishlisted(!isWishlisted);
           }}
-          className="absolute top-2.5 right-2.5 w-8 h-8 bg-white/90 backdrop-blur-xs rounded-full text-luxe-charcoal hover:text-luxe-burgundy hover:bg-white transition-all shadow-xs flex items-center justify-center z-10"
+          className="absolute top-2.5 right-2.5 w-8 h-8 bg-editorial-paper/90 backdrop-blur-xs rounded-full text-editorial-charcoal hover:text-editorial-terracotta hover:bg-white transition-all shadow-xs flex items-center justify-center z-10"
           aria-label={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
         >
           <Heart
             className={`w-4 h-4 transition-colors ${
               isWishlisted
-                ? "fill-luxe-burgundy text-luxe-burgundy"
-                : "text-luxe-charcoal stroke-[1.75]"
+                ? "fill-editorial-terracotta text-editorial-terracotta"
+                : "text-editorial-charcoal stroke-[1.75]"
             }`}
           />
         </button>
@@ -144,7 +144,7 @@ export function ProductCard({ product }: ProductCardProps) {
         {/*
          * QUICK ADD OVERLAY (Slides up smoothly on desktop hover):
          */}
-        <div className="hidden lg:flex absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-luxe-maroon/90 via-luxe-maroon/60 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-300 flex-col items-center justify-end z-20">
+        <div className="hidden lg:flex absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-editorial-emerald-dark/95 via-editorial-emerald/80 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-300 flex-col items-center justify-end z-20">
           {/* Size Selection Chips */}
           <div className="flex items-center space-x-1.5 mb-2">
             {product.variants.map((v) => (
@@ -153,8 +153,8 @@ export function ProductCard({ product }: ProductCardProps) {
                 onClick={() => setSelectedSize(v.size)}
                 className={`text-[10px] px-2 py-1 font-medium transition-colors ${
                   selectedSize === v.size
-                    ? "bg-luxe-gold text-luxe-maroon font-semibold"
-                    : "bg-white/90 text-luxe-charcoal hover:bg-white"
+                    ? "bg-editorial-gold text-editorial-emerald-dark font-semibold"
+                    : "bg-editorial-paper/90 text-editorial-charcoal hover:bg-white"
                 }`}
               >
                 {v.size}
@@ -167,7 +167,7 @@ export function ProductCard({ product }: ProductCardProps) {
             onClick={() => {
               alert(`Added ${product.title} (${selectedSize || product.variants[0]?.size}) to your bag.`);
             }}
-            className="w-full bg-luxe-gold hover:bg-[#D5B984] text-luxe-maroon text-[11px] uppercase tracking-widest py-2 font-semibold flex items-center justify-center space-x-1.5 transition-colors shadow-sm"
+            className="w-full bg-editorial-gold hover:bg-editorial-gold-soft text-editorial-emerald-dark text-[11px] uppercase tracking-widest py-2 font-semibold flex items-center justify-center space-x-1.5 transition-colors shadow-sm"
           >
             <ShoppingBag className="w-3.5 h-3.5" />
             <span>Quick Add</span>
@@ -182,12 +182,12 @@ export function ProductCard({ product }: ProductCardProps) {
        */}
       <div className="pt-3 pb-1 flex flex-col flex-1">
         {/* Category breadcrumb */}
-        <span className="text-[10px] uppercase tracking-[0.2em] text-luxe-grey font-medium">
+        <span className="text-[10px] uppercase tracking-[0.2em] text-editorial-slate font-medium">
           {product.categoryName}
         </span>
 
         {/* Product Title */}
-        <h3 className="font-serif text-[15px] sm:text-base tracking-wide text-luxe-charcoal font-normal line-clamp-1 mt-0.5 group-hover:text-luxe-burgundy transition-colors">
+        <h3 className="font-serif text-[15px] sm:text-base tracking-wide text-editorial-charcoal font-normal line-clamp-1 mt-0.5 group-hover:text-editorial-terracotta transition-colors">
           <Link href={`/product/${product.slug}`}>{product.title}</Link>
         </h3>
 
@@ -198,11 +198,11 @@ export function ProductCard({ product }: ProductCardProps) {
               <span
                 key={colorVariant.id}
                 className="w-2.5 h-2.5 rounded-full border border-black/10 shrink-0 shadow-2xs"
-                style={{ backgroundColor: colorVariant.colorHex || "#C3A16B" }}
+                style={{ backgroundColor: colorVariant.colorHex || "#B69A62" }}
                 title={colorVariant.color}
               />
             ))}
-            <span className="text-[10px] text-luxe-grey font-light truncate">
+            <span className="text-[10px] text-editorial-slate font-light truncate">
               {uniqueColors[0]?.color}
             </span>
           </div>
@@ -211,17 +211,17 @@ export function ProductCard({ product }: ProductCardProps) {
         {/* Pricing Display */}
         <div className="mt-1.5 flex items-baseline space-x-2">
           {/* Selling Price */}
-          <span className="font-sans text-sm font-semibold text-luxe-charcoal">
+          <span className="font-sans text-sm font-semibold text-editorial-emerald">
             {formatPrice(product.basePrice)}
           </span>
 
           {/* Crossed-out original price & discount */}
           {product.compareAtPrice && product.compareAtPrice > product.basePrice && (
             <>
-              <span className="font-sans text-xs text-luxe-grey/70 line-through font-normal">
+              <span className="font-sans text-xs text-editorial-slate/70 line-through font-normal">
                 {formatPrice(product.compareAtPrice)}
               </span>
-              <span className="text-[10px] font-semibold text-luxe-burgundy uppercase tracking-wider">
+              <span className="text-[10px] font-semibold text-editorial-terracotta uppercase tracking-wider">
                 ({discountPercent}% OFF)
               </span>
             </>

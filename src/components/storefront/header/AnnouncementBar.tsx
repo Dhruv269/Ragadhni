@@ -60,11 +60,11 @@ export function AnnouncementBar() {
 
   return (
     /*
-     * Modern Royal Heritage Announcement Bar:
-     * Styled in Deep Burgundy (#35131F) with a Muted Gold (#C3A16B) bottom hairline border.
+     * Contemporary Indian Fashion Editorial Announcement Bar:
+     * Styled in Deep Emerald with Antique Gold hairline border and Warm Ivory text.
      * Communicates key incentives (Free Shipping, COD) with high contrast and brand authority.
      */
-    <div className="bg-luxe-burgundy text-luxe-warmwhite text-[11px] sm:text-xs tracking-[0.2em] py-2 px-4 select-none relative z-50 border-b border-luxe-gold/25">
+    <div className="bg-[#0B2620] text-[#F2EBDD] text-[10.5px] sm:text-[11.5px] tracking-[0.22em] py-2 px-4 select-none relative z-50 border-b border-[#B69A62]/25 font-sans">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/*
          * Previous Announcement Button:
@@ -74,7 +74,7 @@ export function AnnouncementBar() {
           onClick={() =>
             setCurrentIndex((prev) => (prev - 1 + announcements.length) % announcements.length)
           }
-          className="text-luxe-gold/70 hover:text-luxe-warmwhite transition-colors p-1"
+          className="text-[#D9C8A5]/70 hover:text-[#FAF6EE] transition-colors p-1"
           aria-label="Previous announcement"
         >
           <ChevronLeft className="w-3.5 h-3.5" />
@@ -83,9 +83,9 @@ export function AnnouncementBar() {
         {/* The Currently Active Announcement Text with Antique Gold bullet ornaments */}
         <div className="overflow-hidden text-center flex-1 px-4">
           <p className="transition-opacity duration-300 font-normal flex items-center justify-center space-x-2 text-[11px] sm:text-xs">
-            <span className="text-luxe-gold text-[10px] hidden sm:inline">&bull;</span>
-            <span className="tracking-[0.2em] uppercase font-medium">{announcements[currentIndex]}</span>
-            <span className="text-luxe-gold text-[10px] hidden sm:inline">&bull;</span>
+            <span className="text-[#B69A62] text-[10px] hidden sm:inline">&bull;</span>
+            <span className="tracking-[0.22em] uppercase font-medium text-[#FAF6EE]">{announcements[currentIndex]}</span>
+            <span className="text-[#B69A62] text-[10px] hidden sm:inline">&bull;</span>
           </p>
         </div>
 
@@ -94,7 +94,7 @@ export function AnnouncementBar() {
           onClick={() =>
             setCurrentIndex((prev) => (prev + 1) % announcements.length)
           }
-          className="text-luxe-gold/70 hover:text-luxe-warmwhite transition-colors p-1"
+          className="text-[#D9C8A5]/70 hover:text-[#FAF6EE] transition-colors p-1"
           aria-label="Next announcement"
         >
           <ChevronRight className="w-3.5 h-3.5" />

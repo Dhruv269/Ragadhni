@@ -142,7 +142,7 @@ export default function RootLayout({
        * `main className="flex-1"`: Expands to fill available space, ensuring the Footer
        * is pushed to the bottom of the screen even on short pages.
        */}
-      <body className="bg-luxe-warmwhite text-luxe-charcoal font-sans flex flex-col min-h-screen selection:bg-luxe-gold/30 selection:text-luxe-maroon">
+      <body className="bg-editorial-paper text-editorial-charcoal font-sans flex flex-col min-h-screen selection:bg-editorial-emerald selection:text-editorial-ivory">
         {/* Cinematic Editorial Loading Introduction (session-aware) */}
         <EditorialIntro />
 

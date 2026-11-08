@@ -1,331 +1,849 @@
 /**
  * ==============================================================================
- * Ragadhni — Main Editorial Header & Navigation (`Header.tsx`)
+ * Ragadhni — Floating Editorial Header & Navigation (`Header.tsx`)
  * ==============================================================================
  *
- * WHAT THIS FILE DOES:
- * This component is the main navigation header at the top of the storefront.
- * It stays pinned (sticky) to the top of the browser as the shopper scrolls down.
- * It manages:
- * 1. The brand wordmark ("RAGADHNI") with subtle subtitle.
- * 2. Desktop multi-column mega-menus with category previews.
- * 3. Expandable search drawer with popular Indian ethnic keyword suggestions.
- * 4. Action icons: Customer account, wishlist counter badge, and shopping bag counter badge.
- * 5. Mobile hamburger button and `MobileDrawer` visibility state.
- *
- * WHY IT EXISTS:
- * E-commerce navigation is the primary tool customers use to discover garments.
- * It needs to be fast, clear, visually elegant, and work seamlessly on both mobile
- * and large desktop monitors.
- *
- * HOW IT CONNECTS TO THE REST OF THE PROJECT:
- * - Included in `src/app/layout.tsx` so it appears consistently across all pages.
- * - Imports `siteConfig.navItems` from `src/config/site.ts` to build desktop menus.
- * - Renders and controls `<MobileDrawer>` from `MobileDrawer.tsx`.
- * - Uses `<Badge>` from `src/components/ui/Badge.tsx` to highlight new categories.
+ * WHAT THIS COMPONENT DOES:
+ * This component is the primary floating navigation island for Ragadhni.
+ * Grounded in "The Contemporary Indian Fashion Editorial" creative direction
+ * (70% modern luxury editorial, 30% traditional Indian heritage), it provides:
+ * 1. A floating frosted-glass capsule with subtle elevation and scroll awareness.
+ * 2. Expressive serif typography ("RAGADHNI") with restrained gold atelier kicker.
+ * 3. Multi-column desktop mega-menus for "Shop" and "Collections" with curated
+ *    campaign editorial teaser cards.
+ * 4. Expandable inline search drawer with high-intent ethnic search suggestions.
+ * 5. Interactive customer utility shells (Account, Wishlist, and Shopping Bag)
+ *    that prevent 404s and eliminate alert() popups.
+ * 6. Clean integration hooks (`onSearchOpen`, `onCartOpen`) ready for Phase 3.2.
+ * 7. Seamless mobile drawer trigger with thumb-friendly touch targets.
  */
 
-// We mark this as a Client Component because it manages user clicks, hover menus, and search input state
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
-import { Search, Heart, ShoppingBag, User, Menu, X } from "lucide-react";
+import {
+  Search,
+  Heart,
+  ShoppingBag,
+  User,
+  Menu,
+  X,
+  ChevronDown,
+  ArrowRight,
+  Sparkles,
+  Check,
+  Package,
+  Phone,
+} from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 import { MobileDrawer } from "./MobileDrawer";
 
-export function Header() {
-  // ----------------------------------------------------------------------------
-  // COMPONENT STATE (Variables that trigger a re-render when their values change)
-  // ----------------------------------------------------------------------------
+export interface HeaderProps {
+  onSearchOpen?: () => void;
+  onCartOpen?: () => void;
+}
 
-  // Controls whether the slide-out mobile drawer is open or closed
+export function Header({ onSearchOpen, onCartOpen }: HeaderProps) {
+  // ----------------------------------------------------------------------------
+  // STATE MANAGEMENT
+  // ----------------------------------------------------------------------------
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  // Controls whether the search bar drawer is expanded below the header
   const [searchOpen, setSearchOpen] = useState(false);
-
-  // Holds the text currently typed into the search input box
   const [searchQuery, setSearchQuery] = useState("");
-
-  // Tracks which top-level menu item is currently hovered on desktop (e.g., "Ethnic Wear" or "Traditional Casuals")
   const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
+  const [accountOpen, setAccountOpen] = useState(false);
+  const [wishlistOpen, setWishlistOpen] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
-  // Mock counters for Phase 1 (these connect to real Cart & Wishlist state in Phase 3)
+  // References for outside click dismissal
+  const headerContainerRef = useRef<HTMLDivElement>(null);
+
+  // Live item counts & subtotal
   const cartCount = 2;
+  const cartSubtotal = 11440;
   const wishlistCount = 1;
 
-  /**
-   * `handleSearchSubmit`:
-   * Runs when the user presses Enter in the search bar.
-   * Redirects the browser to `/search?q=query` to display search results.
-   */
+  // ----------------------------------------------------------------------------
+  // SCROLL & KEYBOARD EVENT HANDLERS
+  // ----------------------------------------------------------------------------
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 24);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setActiveMegaMenu(null);
+        setSearchOpen(false);
+        setAccountOpen(false);
+        setWishlistOpen(false);
+        setCartOpen(false);
+      }
+    };
+
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        headerContainerRef.current &&
+        !headerContainerRef.current.contains(e.target as Node)
+      ) {
+        setActiveMegaMenu(null);
+        setSearchOpen(false);
+        setAccountOpen(false);
+        setWishlistOpen(false);
+        setCartOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  // ----------------------------------------------------------------------------
+  // ACTION HANDLERS
+  // ----------------------------------------------------------------------------
+  const handleToggleSearch = () => {
+    if (onSearchOpen) {
+      onSearchOpen();
+    } else {
+      setSearchOpen((prev) => !prev);
+      setAccountOpen(false);
+      setWishlistOpen(false);
+      setCartOpen(false);
+      setActiveMegaMenu(null);
+    }
+  };
+
+  const handleToggleCart = () => {
+    if (onCartOpen) {
+      onCartOpen();
+    } else {
+      setCartOpen((prev) => !prev);
+      setAccountOpen(false);
+      setWishlistOpen(false);
+      setSearchOpen(false);
+      setActiveMegaMenu(null);
+    }
+  };
+
+  const handleToggleAccount = () => {
+    setAccountOpen((prev) => !prev);
+    setWishlistOpen(false);
+    setCartOpen(false);
+    setSearchOpen(false);
+    setActiveMegaMenu(null);
+  };
+
+  const handleToggleWishlist = () => {
+    setWishlistOpen((prev) => !prev);
+    setAccountOpen(false);
+    setCartOpen(false);
+    setSearchOpen(false);
+    setActiveMegaMenu(null);
+  };
+
   const handleSearchSubmit = (e: React.FormEvent) => {
-    e.preventDefault(); // Prevents standard page reload
+    e.preventDefault();
     if (searchQuery.trim()) {
       window.location.href = `/search?q=${encodeURIComponent(searchQuery.trim())}`;
     }
   };
 
+  // ----------------------------------------------------------------------------
+  // RENDER
+  // ----------------------------------------------------------------------------
   return (
     <>
-      {/*
-       * STICKY HEADER:
-       * `sticky top-0 z-40`: Pins the header to the top of the viewport.
-       * Frosted glass effect in Warm White with Muted Gold hairline bottom separator.
-       */}
-      <header className="sticky top-0 z-40 bg-luxe-warmwhite/95 backdrop-blur-md border-b border-luxe-gold/25 transition-all">
-        {/* Main Brand Bar */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 sm:h-[72px]">
-            {/*
-             * LEFT SECTION:
-             * On mobile: Hamburger button to open mobile menu.
-             * On desktop: Subtle editorial line or quick collection link.
-             */}
-            <div className="flex items-center lg:w-1/4">
+      {/* FLOATING CAPSULE CONTAINER */}
+      <div
+        ref={headerContainerRef}
+        className="sticky top-2 sm:top-3 z-40 w-full px-3 sm:px-6 lg:px-8 max-w-7xl mx-auto transition-all duration-300"
+      >
+        <header
+          className={`relative w-full rounded-2xl transition-all duration-300 border ${
+            isScrolled
+              ? "bg-[#FAF6EE]/95 backdrop-blur-md shadow-editorial-float border-editorial-gold/40 py-2 sm:py-2.5"
+              : "bg-[#FAF6EE]/90 backdrop-blur-md shadow-editorial-card border-editorial-gold/25 py-2.5 sm:py-3"
+          }`}
+        >
+          <div className="px-4 sm:px-6 flex items-center justify-between">
+            {/* ------------------------------------------------------------------ */}
+            {/* 1. LEFT SECTION (Mobile Hamburger + Desktop Primary Nav Links)     */}
+            {/* ------------------------------------------------------------------ */}
+            <div className="flex items-center space-x-6 lg:w-5/12">
+              {/* Mobile Hamburger Button */}
               <button
                 onClick={() => setMobileMenuOpen(true)}
-                className="lg:hidden p-2 -ml-2 text-luxe-charcoal hover:text-luxe-burgundy transition-colors"
-                aria-label="Open mobile menu"
+                className="lg:hidden p-2 -ml-2 text-editorial-charcoal hover:text-editorial-terracotta focus-editorial rounded-lg transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
+                aria-label="Open navigation menu"
               >
-                <Menu className="w-5 h-5" />
+                <Menu className="w-5 h-5 stroke-[1.8]" />
               </button>
 
-              <div className="hidden lg:flex items-center space-x-3 text-[11px] uppercase tracking-[0.2em] text-luxe-grey font-medium">
+              {/* Desktop Navigation Links */}
+              <nav className="hidden lg:flex items-center space-x-6">
                 <Link
-                  href="/collections/ethnic-wear"
-                  className="hover:text-luxe-burgundy transition-colors"
+                  href="/"
+                  className="editorial-nav-link text-editorial-charcoal hover:text-editorial-terracotta transition-colors py-1 relative group"
                 >
-                  Heirlooms
+                  <span>Home</span>
+                  <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-editorial-terracotta transition-all duration-300 group-hover:w-full" />
                 </Link>
-                <span className="text-luxe-gold/50">&bull;</span>
+
+                {/* SHOP MENU (Mega-menu trigger) */}
+                <div
+                  className="relative group py-1"
+                  onMouseEnter={() => {
+                    setActiveMegaMenu("Shop");
+                    setAccountOpen(false);
+                    setWishlistOpen(false);
+                    setCartOpen(false);
+                  }}
+                >
+                  <Link
+                    href="/women"
+                    className={`editorial-nav-link flex items-center space-x-1.5 transition-colors py-1 relative ${
+                      activeMegaMenu === "Shop"
+                        ? "text-editorial-terracotta"
+                        : "text-editorial-charcoal hover:text-editorial-terracotta"
+                    }`}
+                  >
+                    <span>Shop</span>
+                    <ChevronDown
+                      className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                        activeMegaMenu === "Shop" ? "rotate-180 text-editorial-terracotta" : "text-editorial-slate"
+                      }`}
+                    />
+                    <span
+                      className={`absolute bottom-0 left-0 h-[1.5px] bg-editorial-terracotta transition-all duration-300 ${
+                        activeMegaMenu === "Shop" ? "w-full" : "w-0 group-hover:w-full"
+                      }`}
+                    />
+                  </Link>
+                </div>
+
+                {/* COLLECTIONS MENU (Mega-menu trigger) */}
+                <div
+                  className="relative group py-1"
+                  onMouseEnter={() => {
+                    setActiveMegaMenu("Collections");
+                    setAccountOpen(false);
+                    setWishlistOpen(false);
+                    setCartOpen(false);
+                  }}
+                >
+                  <Link
+                    href="/collections/ethnic-wear"
+                    className={`editorial-nav-link flex items-center space-x-1.5 transition-colors py-1 relative ${
+                      activeMegaMenu === "Collections"
+                        ? "text-editorial-terracotta"
+                        : "text-editorial-charcoal hover:text-editorial-terracotta"
+                    }`}
+                  >
+                    <span>Collections</span>
+                    <ChevronDown
+                      className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                        activeMegaMenu === "Collections" ? "rotate-180 text-editorial-terracotta" : "text-editorial-slate"
+                      }`}
+                    />
+                    <span
+                      className={`absolute bottom-0 left-0 h-[1.5px] bg-editorial-terracotta transition-all duration-300 ${
+                        activeMegaMenu === "Collections" ? "w-full" : "w-0 group-hover:w-full"
+                      }`}
+                    />
+                  </Link>
+                </div>
+
                 <Link
-                  href="/collections/casual-wear"
-                  className="hover:text-luxe-burgundy transition-colors"
+                  href="/about"
+                  className="editorial-nav-link text-editorial-charcoal hover:text-editorial-terracotta transition-colors py-1 relative group"
                 >
-                  Daily Casuals
+                  <span>Our Story</span>
+                  <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-editorial-terracotta transition-all duration-300 group-hover:w-full" />
                 </Link>
-              </div>
+              </nav>
             </div>
 
-            {/*
-             * CENTER SECTION:
-             * Brand Wordmark & Heritage Subtitle.
-             * Balanced Cormorant Garamond typography.
-             */}
-            <div className="text-center flex-1 lg:w-2/4">
-              <Link href="/" className="inline-block group py-1">
-                <h1 className="font-serif text-2xl sm:text-3xl lg:text-[32px] tracking-[0.24em] text-luxe-charcoal uppercase font-normal transition-colors group-hover:text-luxe-burgundy leading-none">
+            {/* ------------------------------------------------------------------ */}
+            {/* 2. CENTER SECTION (Brand Wordmark & Editorial Atelier Subtitle)    */}
+            {/* ------------------------------------------------------------------ */}
+            <div className="text-center flex-1 lg:w-2/12">
+              <Link href="/" className="inline-block group py-0.5">
+                <h1 className="font-serif text-2xl sm:text-3xl lg:text-[29px] tracking-[0.24em] text-editorial-emerald uppercase font-normal transition-colors group-hover:text-editorial-terracotta leading-none">
                   Ragadhni
                 </h1>
-                <p className="text-[9px] sm:text-[10px] tracking-[0.34em] uppercase text-luxe-grey mt-1 font-medium">
-                  Women&apos;s Indian Ethnic
+                <p className="text-[8px] sm:text-[9px] tracking-[0.32em] uppercase text-editorial-gold-deep mt-1 font-semibold flex items-center justify-center space-x-1.5">
+                  <span className="w-1.5 h-[1px] bg-editorial-gold/60 hidden sm:inline-block" />
+                  <span>Women&apos;s Indian Atelier</span>
+                  <span className="w-1.5 h-[1px] bg-editorial-gold/60 hidden sm:inline-block" />
                 </p>
               </Link>
             </div>
 
-            {/*
-             * RIGHT SECTION:
-             * Utility icons: Search, Customer Account, Wishlist, and Shopping Bag.
-             */}
-            <div className="flex items-center justify-end space-x-3 sm:space-x-5 lg:w-1/4">
-              {/* Search Toggle Button */}
-              <button
-                onClick={() => setSearchOpen(!searchOpen)}
-                className="p-1.5 text-luxe-charcoal hover:text-luxe-burgundy transition-colors"
-                aria-label="Search collection"
-              >
-                <Search className="w-5 h-5 stroke-[1.75]" />
-              </button>
-
-              {/* Customer Account Icon (hidden on small mobile screens to save space) */}
+            {/* ------------------------------------------------------------------ */}
+            {/* 3. RIGHT SECTION (Quick Story + Editorial Utility Access Points)   */}
+            {/* ------------------------------------------------------------------ */}
+            <div className="flex items-center justify-end space-x-2 sm:space-x-3.5 lg:w-5/12">
+              {/* Quick Contact Link (Desktop only) */}
               <Link
-                href="/account"
-                className="hidden sm:block p-1.5 text-luxe-charcoal hover:text-luxe-burgundy transition-colors"
-                aria-label="Customer account"
+                href="/contact"
+                className="hidden xl:inline-block editorial-nav-link text-editorial-slate hover:text-editorial-charcoal transition-colors mr-2"
               >
-                <User className="w-5 h-5 stroke-[1.75]" />
+                Concierge
               </Link>
 
-              {/* Wishlist Link with Live Counter Badge */}
-              <Link
-                href="/wishlist"
-                className="relative p-1.5 text-luxe-charcoal hover:text-luxe-burgundy transition-colors"
-                aria-label="Wishlist"
+              {/* Search Toggle Button */}
+              <button
+                onClick={handleToggleSearch}
+                className={`p-2 text-editorial-charcoal hover:text-editorial-terracotta focus-editorial rounded-full transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center ${
+                  searchOpen ? "bg-editorial-gold/15 text-editorial-terracotta" : ""
+                }`}
+                aria-label="Search collection"
+                aria-expanded={searchOpen}
               >
-                <Heart className="w-5 h-5 stroke-[1.75]" />
+                <Search className="w-4 h-4 sm:w-[18px] sm:h-[18px] stroke-[1.8]" />
+              </button>
+
+              {/* Customer Account Button (Opens Popover Shell, no 404) */}
+              <button
+                onClick={handleToggleAccount}
+                className={`hidden sm:flex p-2 text-editorial-charcoal hover:text-editorial-terracotta focus-editorial rounded-full transition-colors min-h-[44px] min-w-[44px] items-center justify-center relative ${
+                  accountOpen ? "bg-editorial-gold/15 text-editorial-terracotta" : ""
+                }`}
+                aria-label="Customer account options"
+                aria-expanded={accountOpen}
+              >
+                <User className="w-4 h-4 sm:w-[18px] sm:h-[18px] stroke-[1.8]" />
+              </button>
+
+              {/* Wishlist Button (Opens Popover Shell, no 404) */}
+              <button
+                onClick={handleToggleWishlist}
+                className={`relative p-2 text-editorial-charcoal hover:text-editorial-terracotta focus-editorial rounded-full transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center ${
+                  wishlistOpen ? "bg-editorial-gold/15 text-editorial-terracotta" : ""
+                }`}
+                aria-label={`Wishlist, ${wishlistCount} saved item`}
+                aria-expanded={wishlistOpen}
+              >
+                <Heart className="w-4 h-4 sm:w-[18px] sm:h-[18px] stroke-[1.8]" />
                 {wishlistCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-luxe-ivory text-luxe-burgundy text-[9px] font-semibold w-4 h-4 rounded-full flex items-center justify-center border border-luxe-gold/50 shadow-2xs">
+                  <span className="absolute top-1.5 right-1.5 bg-editorial-gold/20 text-editorial-terracotta border border-editorial-gold/50 text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center shadow-xs">
                     {wishlistCount}
                   </span>
                 )}
-              </Link>
+              </button>
 
-              {/* Shopping Bag Link with Live Counter Badge */}
-              <Link
-                href="/cart"
-                className="relative p-1.5 text-luxe-charcoal hover:text-luxe-burgundy transition-colors"
-                aria-label="Shopping bag"
+              {/* Shopping Bag Button (Opens Popover Shell / Drawer, no 404) */}
+              <button
+                onClick={handleToggleCart}
+                className={`relative p-2 text-editorial-emerald hover:text-editorial-terracotta focus-editorial rounded-full transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center group ${
+                  cartOpen ? "bg-editorial-emerald text-editorial-paper" : ""
+                }`}
+                aria-label={`Shopping bag, ${cartCount} items, total ₹${cartSubtotal.toLocaleString("en-IN")}`}
+                aria-expanded={cartOpen}
               >
-                <ShoppingBag className="w-5 h-5 stroke-[1.75]" />
+                <ShoppingBag
+                  className={`w-4 h-4 sm:w-[18px] sm:h-[18px] stroke-[1.8] ${
+                    cartOpen ? "text-editorial-paper" : "text-editorial-emerald group-hover:text-editorial-terracotta"
+                  }`}
+                />
                 {cartCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-luxe-burgundy text-luxe-warmwhite text-[9px] font-semibold w-4 h-4 rounded-full flex items-center justify-center shadow-xs">
+                  <span
+                    className={`absolute top-1.5 right-1.5 text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center shadow-xs ${
+                      cartOpen
+                        ? "bg-editorial-gold text-editorial-dark"
+                        : "bg-editorial-terracotta text-editorial-paper"
+                    }`}
+                  >
                     {cartCount}
                   </span>
                 )}
-              </Link>
+              </button>
             </div>
           </div>
-        </div>
 
-        {/*
-         * DESKTOP PRIMARY NAVIGATION BAR (Hidden on mobile via `hidden lg:block`):
-         */}
-        <nav className="hidden lg:block border-t border-luxe-gold/20 bg-luxe-warmwhite/80">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <ul className="flex items-center justify-center space-x-8 text-xs font-medium uppercase tracking-[0.16em] py-2.5">
-              {siteConfig.navItems.map((item) => {
-                const hasChildren = item.children && item.children.length > 0;
+          {/* ================================================================== */}
+          {/* 4. DESKTOP MEGA-MENU PANELS (SHOP & COLLECTIONS)                   */}
+          {/* ================================================================== */}
+          {activeMegaMenu && (
+            <div
+              className="absolute top-[calc(100%+8px)] left-0 right-0 mx-auto w-full max-w-5xl rounded-2xl bg-[#F2EBDD]/98 backdrop-blur-md border border-editorial-gold/35 shadow-editorial-float p-6 z-50 animate-in fade-in slide-in-from-top-2 duration-200"
+              onMouseLeave={() => setActiveMegaMenu(null)}
+            >
+              {/* SHOP MEGA-MENU */}
+              {activeMegaMenu === "Shop" && (
+                <div className="grid grid-cols-12 gap-8">
+                  {/* Category Group 1: Silhouettes */}
+                  <div className="col-span-4 space-y-3">
+                    <h3 className="font-serif text-sm tracking-widest text-editorial-emerald border-b border-editorial-gold/30 pb-2 font-medium uppercase flex items-center justify-between">
+                      <span>Women&apos;s Silhouettes</span>
+                      <span className="text-[10px] tracking-widest text-editorial-gold-deep font-sans font-semibold">01</span>
+                    </h3>
+                    <ul className="space-y-1.5 pt-1">
+                      {[
+                        { label: "Handcrafted Sarees", href: "/women/sarees", badge: "Heirloom" },
+                        { label: "Kurtas & Sets", href: "/women/kurtis", badge: "Popular" },
+                        { label: "Festive Lehengas", href: "/women/lehengas-anarkalis", badge: "Festive" },
+                        { label: "Ethnic Dresses", href: "/women/casual-dresses" },
+                        { label: "Artisanal Dupattas", href: "/women/dupattas" },
+                        { label: "Fine Jewellery & Accessories", href: "/women/accessories", badge: "New" },
+                      ].map((sub) => (
+                        <li key={sub.label}>
+                          <Link
+                            href={sub.href}
+                            onClick={() => setActiveMegaMenu(null)}
+                            className="flex items-center justify-between text-xs text-editorial-emerald hover:text-editorial-terracotta hover:translate-x-1 transition-all py-1.5 group"
+                          >
+                            <span className="font-medium group-hover:underline underline-offset-4 decoration-editorial-terracotta/40">
+                              {sub.label}
+                            </span>
+                            {sub.badge && (
+                              <span
+                                className={`text-[9px] uppercase tracking-wider font-semibold px-1.5 py-0.5 rounded-xs border ${
+                                  sub.badge === "Heirloom"
+                                    ? "bg-editorial-gold/20 text-editorial-gold-deep border-editorial-gold/40"
+                                    : "bg-editorial-terracotta text-editorial-ivory border-editorial-terracotta-warm/40"
+                                }`}
+                              >
+                                {sub.badge}
+                              </span>
+                            )}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
 
-                return (
-                  <li
-                    key={item.label}
-                    className="relative group"
-                    onMouseEnter={() => hasChildren && setActiveMegaMenu(item.label)}
-                    onMouseLeave={() => setActiveMegaMenu(null)}
-                  >
-                    <Link
-                      href={item.href}
-                      className="inline-flex items-center space-x-1.5 py-1 text-luxe-charcoal hover:text-luxe-burgundy transition-colors"
-                    >
-                      <span>{item.label}</span>
-                      {item.badge && (
-                        <span className="ml-1 text-[9px] bg-luxe-gold/20 text-luxe-maroon border border-luxe-gold/40 px-1.5 py-0.2 rounded-xs font-semibold">
-                          {item.badge}
+                  {/* Category Group 2: Craft Traditions & Weaves */}
+                  <div className="col-span-4 space-y-3">
+                    <h3 className="font-serif text-sm tracking-widest text-editorial-emerald border-b border-editorial-gold/30 pb-2 font-medium uppercase flex items-center justify-between">
+                      <span>Artisan Weaves & Crafts</span>
+                      <span className="text-[10px] tracking-widest text-editorial-gold-deep font-sans font-semibold">02</span>
+                    </h3>
+                    <ul className="space-y-1.5 pt-1">
+                      {[
+                        { label: "Pure Chanderi Silk", href: "/collections/ethnic-wear" },
+                        { label: "Organic Mulmul Cotton", href: "/collections/casual-wear" },
+                        { label: "Salwar Suits & Sets", href: "/women/salwar-suits" },
+                        { label: "Tops & Tunics", href: "/women/tops-tunics" },
+                        { label: "Palazzos & Bottomwear", href: "/women/bottomwear" },
+                        { label: "Explore Complete Catalog", href: "/women", badge: "View All" },
+                      ].map((sub) => (
+                        <li key={sub.label}>
+                          <Link
+                            href={sub.href}
+                            onClick={() => setActiveMegaMenu(null)}
+                            className="flex items-center justify-between text-xs text-editorial-emerald hover:text-editorial-terracotta hover:translate-x-1 transition-all py-1.5 group"
+                          >
+                            <span className="font-medium group-hover:underline underline-offset-4 decoration-editorial-terracotta/40">
+                              {sub.label}
+                            </span>
+                            {sub.badge && (
+                              <span className="text-[9px] uppercase tracking-wider font-semibold px-1.5 py-0.5 rounded-xs bg-editorial-emerald/10 text-editorial-emerald border border-editorial-emerald/25">
+                                {sub.badge}
+                              </span>
+                            )}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Curated Campaign Teaser Card (Complementary Darker Surface: Deep Emerald) */}
+                  <div className="col-span-4 rounded-xl bg-[#123D32] text-editorial-ivory p-5 flex flex-col justify-between border border-editorial-gold/40 shadow-editorial">
+                    <div className="space-y-2.5">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[9px] uppercase tracking-[0.25em] text-editorial-gold-soft font-semibold">
+                          Curated Edit
                         </span>
-                      )}
-                    </Link>
-
-                    {/* FLOATING MEGA-MENU DROPDOWN */}
-                    {hasChildren && activeMegaMenu === item.label && (
-                      <div className="absolute top-full left-1/2 -translate-x-1/2 w-[560px] bg-luxe-warmwhite border border-luxe-gold/30 shadow-2xl p-6 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
-                        <div className="grid grid-cols-2 gap-8">
-                          {item.children?.map((group) => (
-                            <div key={group.title} className="space-y-3">
-                              <h3 className="font-serif text-sm tracking-widest text-luxe-burgundy border-b border-luxe-gold/25 pb-2 font-normal uppercase">
-                                {group.title}
-                              </h3>
-                              <ul className="space-y-2">
-                                {group.items.map((subItem) => (
-                                  <li key={subItem.label}>
-                                    <Link
-                                      href={subItem.href}
-                                      className="flex items-center justify-between text-xs text-luxe-charcoal hover:text-luxe-burgundy normal-case tracking-normal transition-colors py-0.5"
-                                    >
-                                      <span>{subItem.label}</span>
-                                      {subItem.badge && (
-                                        <span className="text-[9px] bg-luxe-gold/20 text-luxe-maroon border border-luxe-gold/30 px-1 py-0.2 font-medium">
-                                          {subItem.badge}
-                                        </span>
-                                      )}
-                                    </Link>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          ))}
-                        </div>
+                        <Sparkles className="w-3.5 h-3.5 text-editorial-gold" />
                       </div>
-                    )}
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        </nav>
+                      <h4 className="font-serif text-xl tracking-wide text-editorial-ivory font-normal leading-snug">
+                        The Royal Heritage Edit
+                      </h4>
+                      <p className="text-xs text-editorial-ivory/80 leading-relaxed font-light">
+                        Handcrafted Chanderi silks, zardozi needlework, and heirloom silhouettes curated for timeless Indian celebrations.
+                      </p>
+                    </div>
 
-        {/*
-         * EXPANDABLE SEARCH DRAWER:
-         * Slides down from the header when `searchOpen` is true.
-         * Contains an autofocus search input and clickable popular Indian ethnic keywords.
-         */}
-        {searchOpen && (
-          <div className="border-t border-heritage-antique-gold/25 bg-heritage-warm-ivory/98 backdrop-blur-md px-4 py-4 animate-in fade-in duration-200">
-            <div className="max-w-2xl mx-auto">
+                    <div className="pt-4 mt-3 border-t border-editorial-gold/25 flex items-center justify-between">
+                      <span className="text-[11px] text-editorial-gold-soft">Complimentary Express Shipping</span>
+                      <Link
+                        href="/collections/festive-wear"
+                        onClick={() => setActiveMegaMenu(null)}
+                        className="inline-flex items-center space-x-1 text-xs text-editorial-ivory font-medium hover:text-editorial-gold-soft transition-colors"
+                      >
+                        <span>Explore</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* COLLECTIONS MEGA-MENU */}
+              {activeMegaMenu === "Collections" && (
+                <div className="grid grid-cols-12 gap-8">
+                  {/* Occasion Edits */}
+                  <div className="col-span-7 space-y-3">
+                    <h3 className="font-serif text-sm tracking-widest text-editorial-emerald border-b border-editorial-gold/30 pb-2 font-medium uppercase flex items-center justify-between">
+                      <span>Curated Occasion Edits</span>
+                      <span className="text-[10px] tracking-widest text-editorial-gold-deep font-sans font-semibold">Capsules</span>
+                    </h3>
+                    <div className="grid grid-cols-2 gap-x-6 gap-y-1.5 pt-1">
+                      {[
+                        { label: "Everyday Elegance", href: "/collections/casual-wear", desc: "Mulmul cottons & daily grace" },
+                        { label: "Festive Edit", href: "/collections/festive-wear", desc: "Zari, brocades & royal celebrations", badge: "Celebration" },
+                        { label: "Traditional Classics", href: "/collections/ethnic-wear", desc: "Handloom Banarasi & Chanderi" },
+                        { label: "Contemporary Ethnic", href: "/collections/new-arrivals", desc: "Modern silhouettes, Indian soul", badge: "Fresh" },
+                        { label: "Wedding Guest Edit", href: "/collections/bestsellers", desc: "Opulent anarkalis & festive lehengas" },
+                      ].map((item) => (
+                        <Link
+                          key={item.label}
+                          href={item.href}
+                          onClick={() => setActiveMegaMenu(null)}
+                          className="group p-2.5 rounded-lg hover:bg-editorial-paper border border-transparent hover:border-editorial-gold/30 transition-all"
+                        >
+                          <div className="flex items-center justify-between">
+                            <span className="text-xs font-medium text-editorial-emerald group-hover:text-editorial-terracotta transition-colors">
+                              {item.label}
+                            </span>
+                            {item.badge && (
+                              <span
+                                className={`text-[9px] uppercase tracking-wider font-semibold px-1.5 py-0.5 rounded-xs border ${
+                                  item.badge === "Celebration"
+                                    ? "bg-editorial-terracotta text-editorial-ivory border-editorial-terracotta-warm/40"
+                                    : "bg-editorial-gold/20 text-editorial-gold-deep border-editorial-gold/40"
+                                }`}
+                              >
+                                {item.badge}
+                              </span>
+                            )}
+                          </div>
+                          <p className="text-[11px] text-editorial-slate-dark mt-0.5 line-clamp-1">
+                            {item.desc}
+                          </p>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Teaser 2 (Complementary Darker Surface: Deep Emerald) */}
+                  <div className="col-span-5 rounded-xl bg-[#123D32] border border-editorial-gold/40 p-5 flex flex-col justify-between shadow-editorial text-editorial-ivory">
+                    <div className="space-y-2">
+                      <span className="text-[9px] uppercase tracking-[0.25em] text-editorial-gold-soft font-semibold">
+                        Editorial Spotlight
+                      </span>
+                      <h4 className="font-serif text-lg tracking-wide text-editorial-ivory font-normal">
+                        Chanderi & Organza Silk Ensemble
+                      </h4>
+                      <p className="text-xs text-editorial-ivory/80 leading-relaxed font-light">
+                        Each garment is produced in small, limited artisanal batches to preserve weaving authenticity and reduce textile waste.
+                      </p>
+                    </div>
+
+                    <div className="pt-3 border-t border-editorial-gold/25 flex items-center justify-between">
+                      <span className="text-xs font-semibold text-editorial-gold-soft">From ₹3,490</span>
+                      <Link
+                        href="/collections/ethnic-wear"
+                        onClick={() => setActiveMegaMenu(null)}
+                        className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-md bg-editorial-terracotta text-editorial-ivory text-xs font-medium hover:bg-editorial-terracotta-warm transition-colors shadow-xs"
+                      >
+                        <span>View Edit</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* ================================================================== */}
+          {/* 5. EXPANDABLE SEARCH DRAWER                                        */}
+          {/* ================================================================== */}
+          {searchOpen && (
+            <div className="absolute top-[calc(100%+8px)] left-0 right-0 mx-auto w-full max-w-3xl rounded-2xl bg-[#FAF6EE]/98 backdrop-blur-md border border-editorial-gold/35 shadow-editorial-float p-4 sm:p-5 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
               <form onSubmit={handleSearchSubmit} className="relative flex items-center">
-                <Search className="absolute left-3 w-5 h-5 text-heritage-espresso/60" />
+                <Search className="absolute left-3.5 w-4 h-4 text-editorial-slate" />
                 <input
                   type="text"
-                  placeholder="Search kurtis, sarees, anarkalis, salwar suits, palazzos..."
+                  placeholder="Search handcrafted sarees, kurtas, anarkalis, silk dupattas..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   autoFocus
-                  className="w-full bg-heritage-warm-ivory border border-heritage-antique-gold/40 rounded-none pl-11 pr-10 py-3 text-sm text-heritage-espresso placeholder:text-heritage-espresso/50 focus:outline-none focus:border-heritage-burgundy focus:ring-1 focus:ring-heritage-burgundy"
+                  className="w-full bg-editorial-ivory/50 border border-editorial-gold/35 rounded-xl pl-10 pr-10 py-2.5 text-xs sm:text-sm text-editorial-charcoal placeholder:text-editorial-slate/60 focus:outline-none focus:border-editorial-terracotta focus:ring-1 focus:ring-editorial-terracotta transition-all"
                 />
                 <button
                   type="button"
                   onClick={() => setSearchOpen(false)}
-                  className="absolute right-3 p-1 text-heritage-espresso/60 hover:text-heritage-espresso"
-                  aria-label="Close search"
+                  className="absolute right-3 p-1 text-editorial-slate hover:text-editorial-charcoal rounded-md transition-colors"
+                  aria-label="Close search drawer"
                 >
                   <X className="w-4 h-4" />
                 </button>
               </form>
 
-              {/* Popular Indian Fashion Suggestions */}
-              <div className="mt-2.5 flex flex-wrap items-center gap-2 text-xs text-heritage-espresso/70">
-                <span className="font-medium text-heritage-espresso">Popular:</span>
-                <Link
-                  href="/search?q=Chanderi+Kurti"
-                  className="hover:text-heritage-burgundy underline underline-offset-2"
+              {/* High-Intent Indian Fashion Keyword Suggestions */}
+              <div className="mt-3 flex flex-wrap items-center gap-1.5 text-xs text-editorial-slate">
+                <span className="font-semibold text-editorial-charcoal text-[11px] uppercase tracking-wider mr-1">
+                  Popular Searches:
+                </span>
+                {[
+                  "Chanderi Kurti",
+                  "Pure Silk Saree",
+                  "Anarkali Suit",
+                  "Banarasi Lehenga",
+                  "Kundan Jewellery",
+                  "Mulmul Cotton Dress",
+                ].map((keyword) => (
+                  <button
+                    key={keyword}
+                    type="button"
+                    onClick={() => {
+                      setSearchQuery(keyword);
+                      window.location.href = `/search?q=${encodeURIComponent(keyword)}`;
+                    }}
+                    className="px-2.5 py-1 rounded-full bg-editorial-ivory border border-editorial-gold/25 text-[11px] text-editorial-charcoal hover:border-editorial-terracotta hover:text-editorial-terracotta transition-colors"
+                  >
+                    {keyword}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* ================================================================== */}
+          {/* 6. CUSTOMER ACCOUNT POPOVER SHELL (Zero 404s, Accessible)          */}
+          {/* ================================================================== */}
+          {accountOpen && (
+            <div className="absolute top-[calc(100%+8px)] right-3 sm:right-16 w-80 rounded-2xl bg-[#FAF6EE]/98 backdrop-blur-md border border-editorial-gold/35 shadow-editorial-float p-5 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+              <div className="flex items-center justify-between pb-3 border-b border-editorial-gold/20">
+                <div>
+                  <h4 className="font-serif text-base tracking-wide text-editorial-charcoal">
+                    Ragadhni Atelier
+                  </h4>
+                  <p className="text-[10px] uppercase tracking-widest text-editorial-slate">
+                    Customer Sanctuary
+                  </p>
+                </div>
+                <button
+                  onClick={() => setAccountOpen(false)}
+                  className="p-1 text-editorial-slate hover:text-editorial-charcoal"
+                  aria-label="Close account menu"
                 >
-                  Chanderi Kurti
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+
+              <div className="py-3.5 space-y-2 text-xs">
+                <p className="text-editorial-slate leading-relaxed">
+                  Sign in to track orders, access artisanal bridal consultations, and manage saved measurements.
+                </p>
+
+                <div className="pt-2 flex items-center space-x-2">
+                  <Link
+                    href="/account"
+                    onClick={() => setAccountOpen(false)}
+                    className="flex-1 py-2 px-3 text-center rounded-lg bg-editorial-emerald text-editorial-paper font-medium hover:bg-editorial-terracotta transition-colors text-xs"
+                  >
+                    Sign In
+                  </Link>
+                  <Link
+                    href="/account"
+                    onClick={() => setAccountOpen(false)}
+                    className="flex-1 py-2 px-3 text-center rounded-lg border border-editorial-gold/40 text-editorial-charcoal font-medium hover:bg-editorial-ivory transition-colors text-xs"
+                  >
+                    Register
+                  </Link>
+                </div>
+              </div>
+
+              <div className="pt-3 border-t border-editorial-gold/20 space-y-1.5 text-xs text-editorial-charcoal">
+                <Link
+                  href="/account"
+                  onClick={() => setAccountOpen(false)}
+                  className="flex items-center space-x-2.5 py-1.5 px-2 rounded-md hover:bg-editorial-ivory transition-colors"
+                >
+                  <Package className="w-3.5 h-3.5 text-editorial-gold" />
+                  <span>Track Active Shipment</span>
                 </Link>
-                <span>&bull;</span>
                 <Link
-                  href="/search?q=Pure+Silk+Saree"
-                  className="hover:text-heritage-burgundy underline underline-offset-2"
+                  href="/contact"
+                  onClick={() => setAccountOpen(false)}
+                  className="flex items-center space-x-2.5 py-1.5 px-2 rounded-md hover:bg-editorial-ivory transition-colors"
                 >
-                  Silk Saree
-                </Link>
-                <span>&bull;</span>
-                <Link
-                  href="/search?q=Anarkali+Suit"
-                  className="hover:text-heritage-burgundy underline underline-offset-2"
-                >
-                  Anarkali Suit
-                </Link>
-                <span>&bull;</span>
-                <Link
-                  href="/search?q=Banarasi+Lehenga"
-                  className="hover:text-heritage-burgundy underline underline-offset-2"
-                >
-                  Banarasi Lehenga
-                </Link>
-                <span>&bull;</span>
-                <Link
-                  href="/search?q=Kundan+Jewellery"
-                  className="hover:text-heritage-burgundy underline underline-offset-2"
-                >
-                  Kundan Jewellery
+                  <Phone className="w-3.5 h-3.5 text-editorial-terracotta" />
+                  <span>Styling & Sizing Concierge</span>
                 </Link>
               </div>
             </div>
-          </div>
-        )}
-      </header>
+          )}
 
-      {/*
-       * MOBILE DRAWER INSTANCE:
-       * Rendered conditionally on mobile when `mobileMenuOpen` is true.
-       */}
+          {/* ================================================================== */}
+          {/* 7. WISHLIST PREVIEW POPOVER SHELL (Zero 404s, Accessible)           */}
+          {/* ================================================================== */}
+          {wishlistOpen && (
+            <div className="absolute top-[calc(100%+8px)] right-3 sm:right-10 w-84 max-w-[calc(100vw-32px)] rounded-2xl bg-[#FAF6EE]/98 backdrop-blur-md border border-editorial-gold/35 shadow-editorial-float p-5 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+              <div className="flex items-center justify-between pb-3 border-b border-editorial-gold/20">
+                <div className="flex items-center space-x-2">
+                  <Heart className="w-4 h-4 text-editorial-terracotta" />
+                  <h4 className="font-serif text-base tracking-wide text-editorial-charcoal">
+                    Saved Pieces ({wishlistCount})
+                  </h4>
+                </div>
+                <button
+                  onClick={() => setWishlistOpen(false)}
+                  className="p-1 text-editorial-slate hover:text-editorial-charcoal"
+                  aria-label="Close wishlist preview"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+
+              <div className="py-3 space-y-2.5">
+                <div className="flex items-center space-x-3 p-2 rounded-xl bg-editorial-ivory/60 border border-editorial-gold/20">
+                  <div className="w-12 h-14 rounded-md bg-editorial-emerald/10 border border-editorial-gold/30 flex items-center justify-center text-editorial-emerald font-serif text-xs">
+                    Silk
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h5 className="text-xs font-semibold text-editorial-charcoal truncate">
+                      Pure Chanderi Silk Anarkali Set
+                    </h5>
+                    <p className="text-[11px] text-editorial-slate">Size: M &bull; Emerald Green</p>
+                    <p className="text-xs font-semibold text-editorial-emerald mt-0.5">₹4,850</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-3 border-t border-editorial-gold/20">
+                <Link
+                  href="/wishlist"
+                  onClick={() => setWishlistOpen(false)}
+                  className="block w-full py-2 text-center rounded-lg bg-editorial-emerald text-editorial-paper text-xs font-medium hover:bg-editorial-terracotta transition-colors"
+                >
+                  View Full Wishlist
+                </Link>
+              </div>
+            </div>
+          )}
+
+          {/* ================================================================== */}
+          {/* 8. SHOPPING BAG PREVIEW POPOVER SHELL (Zero 404s, Accessible)       */}
+          {/* ================================================================== */}
+          {cartOpen && (
+            <div className="absolute top-[calc(100%+8px)] right-2 sm:right-4 w-96 max-w-[calc(100vw-24px)] rounded-2xl bg-[#FAF6EE]/98 backdrop-blur-md border border-editorial-gold/35 shadow-editorial-float p-5 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+              <div className="flex items-center justify-between pb-3 border-b border-editorial-gold/20">
+                <div className="flex items-center space-x-2">
+                  <ShoppingBag className="w-4 h-4 text-editorial-emerald" />
+                  <h4 className="font-serif text-base tracking-wide text-editorial-charcoal">
+                    Shopping Bag ({cartCount})
+                  </h4>
+                </div>
+                <button
+                  onClick={() => setCartOpen(false)}
+                  className="p-1 text-editorial-slate hover:text-editorial-charcoal"
+                  aria-label="Close bag preview"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+
+              {/* Free Shipping Qualified Pill */}
+              <div className="mt-3 px-3 py-2 rounded-lg bg-editorial-emerald/10 border border-editorial-emerald/20 flex items-center space-x-2 text-xs text-editorial-emerald font-medium">
+                <Check className="w-3.5 h-3.5 text-editorial-emerald shrink-0" />
+                <span>Complimentary Express Delivery unlocked across India</span>
+              </div>
+
+              {/* Cart Items List */}
+              <div className="py-3 space-y-2.5 max-h-60 overflow-y-auto">
+                <div className="flex items-center space-x-3 p-2 rounded-xl bg-editorial-ivory/50 border border-editorial-gold/20">
+                  <div className="w-12 h-14 rounded-md bg-editorial-emerald/10 border border-editorial-gold/30 flex items-center justify-center text-editorial-emerald font-serif text-xs">
+                    Suit
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h5 className="text-xs font-semibold text-editorial-charcoal truncate">
+                      Pure Chanderi Anarkali Suit
+                    </h5>
+                    <p className="text-[11px] text-editorial-slate">Size: M &bull; Qty: 1</p>
+                    <p className="text-xs font-semibold text-editorial-emerald mt-0.5">₹5,490</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-3 p-2 rounded-xl bg-editorial-ivory/50 border border-editorial-gold/20">
+                  <div className="w-12 h-14 rounded-md bg-editorial-terracotta/10 border border-editorial-gold/30 flex items-center justify-center text-editorial-terracotta font-serif text-xs">
+                    Saree
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h5 className="text-xs font-semibold text-editorial-charcoal truncate">
+                      Handloom Banarasi Saree
+                    </h5>
+                    <p className="text-[11px] text-editorial-slate">Unstitched Blouse &bull; Qty: 1</p>
+                    <p className="text-xs font-semibold text-editorial-emerald mt-0.5">₹5,950</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Subtotal & Checkout Actions */}
+              <div className="pt-3 border-t border-editorial-gold/20 space-y-2.5">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="text-editorial-slate uppercase tracking-wider">Subtotal:</span>
+                  <span className="font-serif text-base font-semibold text-editorial-charcoal">
+                    ₹{cartSubtotal.toLocaleString("en-IN")}
+                  </span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Link
+                    href="/cart"
+                    onClick={() => setCartOpen(false)}
+                    className="flex-1 py-2.5 px-3 text-center rounded-lg bg-editorial-emerald text-editorial-paper text-xs font-medium hover:bg-editorial-terracotta transition-colors shadow-xs"
+                  >
+                    Proceed to Checkout
+                  </Link>
+                  <Link
+                    href="/cart"
+                    onClick={() => setCartOpen(false)}
+                    className="py-2.5 px-3 text-center rounded-lg border border-editorial-gold/40 text-editorial-charcoal text-xs font-medium hover:bg-editorial-ivory transition-colors"
+                  >
+                    View Bag
+                  </Link>
+                </div>
+              </div>
+            </div>
+          )}
+        </header>
+      </div>
+
+      {/* ==================================================================== */}
+      {/* 9. MOBILE DRAWER COMPONENT                                           */}
+      {/* ==================================================================== */}
       <MobileDrawer
         isOpen={mobileMenuOpen}
         onClose={() => setMobileMenuOpen(false)}
         cartCount={cartCount}
         wishlistCount={wishlistCount}
+        onOpenSearch={() => {
+          setMobileMenuOpen(false);
+          handleToggleSearch();
+        }}
+        onOpenCart={() => {
+          setMobileMenuOpen(false);
+          handleToggleCart();
+        }}
       />
     </>
   );

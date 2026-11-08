@@ -34,17 +34,17 @@ const badgeVariants = cva(
     variants: {
       variant: {
         // Terracotta: High-contrast badge for "New Arrival" or primary alerts
-        terracotta: "bg-heritage-terracotta text-heritage-ivory",
+        terracotta: "bg-editorial-terracotta text-editorial-ivory border border-editorial-terracotta-warm/30",
         // Gold: Celebratory antique gold for "Bestseller" and festive edits
-        gold: "bg-heritage-gold/20 text-[#8C6D2B] border border-heritage-gold/40",
+        gold: "bg-editorial-gold/20 text-editorial-gold-deep border border-editorial-gold/40",
         // Emerald: Deep regal green for verified purchase reviews and in-stock badges
-        emerald: "bg-heritage-emerald text-heritage-ivory",
-        // Neutral: Khadi Sand background for general category tags
-        neutral: "bg-heritage-sand text-heritage-charcoal border border-[#DDD3C2]",
-        // Outline: Translucent backdrop with delicate charcoal border (perfect for image overlays)
-        outline: "border border-heritage-charcoal/40 text-heritage-charcoal bg-heritage-ivory/80",
-        // Discount: Deep Jamun Maroon for promotional sale percentage tags
-        discount: "bg-heritage-maroon text-heritage-ivory font-semibold",
+        emerald: "bg-editorial-emerald text-editorial-ivory border border-editorial-gold/25",
+        // Neutral: Warm Ivory background for general category tags
+        neutral: "bg-editorial-ivory text-editorial-charcoal border border-editorial-gold/30",
+        // Outline: Translucent backdrop with delicate emerald border
+        outline: "border border-editorial-emerald/40 text-editorial-emerald bg-editorial-ivory/80",
+        // Discount: Signature Terracotta for promotional percentage tags
+        discount: "bg-editorial-terracotta text-editorial-ivory font-semibold border border-editorial-terracotta-warm/40",
       },
     },
 

@@ -79,21 +79,21 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
        */}
       <div className="space-y-2">
         <div className="flex items-center space-x-2">
-          <span className="text-[11px] uppercase tracking-widest text-heritage-earth font-medium">
+          <span className="text-[11px] uppercase tracking-widest text-editorial-slate font-medium">
             {product.categoryName}
           </span>
           {product.isBestseller && <Badge variant="gold">Bestseller</Badge>}
           {product.isNewArrival && <Badge variant="terracotta">New Arrival</Badge>}
         </div>
 
-        <h1 className="font-serif text-2xl sm:text-3xl lg:text-4xl text-heritage-charcoal font-normal leading-tight">
+        <h1 className="font-serif text-2xl sm:text-3xl lg:text-4xl text-editorial-charcoal font-normal leading-tight">
           {product.title}
         </h1>
 
         {/* Rating preview */}
         {product.rating && (
-          <div className="flex items-center space-x-2 pt-1 text-xs text-heritage-earth">
-            <span className="text-heritage-gold font-semibold">★ {product.rating}</span>
+          <div className="flex items-center space-x-2 pt-1 text-xs text-editorial-slate">
+            <span className="text-editorial-gold font-semibold">★ {product.rating}</span>
             <span>&bull;</span>
             <span>{product.reviewCount || 28} Verified Customer Reviews</span>
           </div>
@@ -101,21 +101,21 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
 
         {/* Pricing in INR */}
         <div className="pt-2 flex items-baseline space-x-3">
-          <span className="font-sans text-2xl font-semibold text-heritage-charcoal">
+          <span className="font-sans text-2xl font-semibold text-editorial-emerald">
             {formatPrice(product.basePrice)}
           </span>
           {product.compareAtPrice && product.compareAtPrice > product.basePrice && (
             <>
-              <span className="font-sans text-base text-heritage-earth/60 line-through">
+              <span className="font-sans text-base text-editorial-slate/60 line-through">
                 {formatPrice(product.compareAtPrice)}
               </span>
-              <span className="text-xs font-semibold text-heritage-maroon uppercase tracking-wider">
+              <span className="text-xs font-semibold text-editorial-terracotta uppercase tracking-wider">
                 ({discountPercent}% OFF)
               </span>
             </>
           )}
         </div>
-        <p className="text-[11px] text-heritage-earth/80">Inclusive of all taxes &bull; Free express delivery</p>
+        <p className="text-[11px] text-editorial-slate/80">Inclusive of all taxes &bull; Free express delivery</p>
       </div>
 
       {/*
@@ -123,10 +123,10 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
        * 2. COLOR SWATCH PREVIEW:
        * ========================================================================
        */}
-      <div className="space-y-2 pt-2 border-t border-[#E8DFD0]">
+      <div className="space-y-2 pt-2 border-t border-editorial-gold/25">
         <div className="flex items-center justify-between text-xs">
-          <span className="font-semibold text-heritage-charcoal uppercase tracking-wider text-[11px]">
-            Color: <span className="font-normal text-heritage-earth">{selectedVariant.color}</span>
+          <span className="font-semibold text-editorial-charcoal uppercase tracking-wider text-[11px]">
+            Color: <span className="font-normal text-editorial-slate">{selectedVariant.color}</span>
           </span>
         </div>
         <div className="flex items-center space-x-2">
@@ -137,13 +137,13 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
               onClick={() => setSelectedVariant(v)}
               className={`w-7 h-7 rounded-full border-2 transition-all p-0.5 ${
                 selectedVariant.id === v.id
-                  ? "border-heritage-terracotta scale-110"
+                  ? "border-editorial-terracotta scale-110"
                   : "border-transparent opacity-80 hover:opacity-100"
               }`}
             >
               <span
-                className="block w-full h-full rounded-full border border-heritage-charcoal/20"
-                style={{ backgroundColor: v.colorHex || "#9E3D2B" }}
+                className="block w-full h-full rounded-full border border-editorial-charcoal/20"
+                style={{ backgroundColor: v.colorHex || "#B69A62" }}
               />
             </button>
           ))}
@@ -157,14 +157,14 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
        */}
       <div className="space-y-2.5 pt-2">
         <div className="flex items-center justify-between text-xs">
-          <span className="font-semibold text-heritage-charcoal uppercase tracking-wider text-[11px]">
+          <span className="font-semibold text-editorial-charcoal uppercase tracking-wider text-[11px]">
             Select Size
           </span>
           {/* Button opening the Size Guide Modal */}
           <button
             type="button"
             onClick={() => setSizeGuideOpen(true)}
-            className="flex items-center space-x-1.5 text-heritage-terracotta hover:underline font-medium text-[11px] uppercase tracking-wider"
+            className="flex items-center space-x-1.5 text-editorial-terracotta hover:underline font-medium text-[11px] uppercase tracking-wider"
           >
             <Ruler className="w-3.5 h-3.5" />
             <span>Size Guide & Measurements</span>
@@ -182,8 +182,8 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
                 onClick={() => setSelectedVariant(v)}
                 className={`py-3 px-2 text-center text-xs font-medium border transition-colors ${
                   isSelected
-                    ? "bg-heritage-terracotta text-heritage-ivory border-heritage-terracotta shadow-xs"
-                    : "bg-heritage-ivory text-heritage-charcoal border-[#D5C9B5] hover:border-heritage-terracotta"
+                    ? "bg-editorial-terracotta text-editorial-ivory border-editorial-terracotta shadow-xs"
+                    : "bg-editorial-paper text-editorial-charcoal border-editorial-gold/30 hover:border-editorial-terracotta"
                 }`}
               >
                 {v.size}
@@ -194,7 +194,7 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
 
         {/* Low Stock Urgency Alert */}
         {isLowStock && (
-          <p className="text-xs text-heritage-maroon font-medium pt-1">
+          <p className="text-xs text-editorial-terracotta font-medium pt-1">
             Hurry! Only {selectedVariant.stockQuantity} pieces left in size {selectedVariant.size}.
           </p>
         )}
@@ -212,7 +212,7 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
           onClick={() => {
             alert(`Added "${product.title}" (Size: ${selectedVariant.size}) to your Shopping Bag.`);
           }}
-          className="flex-1 py-4 uppercase tracking-widest text-xs font-semibold shadow-md"
+          className="flex-1 py-4 uppercase tracking-widest text-xs font-semibold shadow-editorial"
         >
           <ShoppingBag className="w-4 h-4 mr-2" />
           <span>Add to Bag</span>
@@ -222,14 +222,14 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
         <button
           type="button"
           onClick={() => setIsWishlisted(!isWishlisted)}
-          className="p-3 border border-heritage-charcoal/40 hover:border-heritage-terracotta bg-heritage-ivory flex items-center justify-center transition-colors"
+          className="p-3 border border-editorial-gold/40 hover:border-editorial-terracotta bg-editorial-ivory flex items-center justify-center transition-colors"
           aria-label={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
         >
           <Heart
             className={`w-5 h-5 transition-colors ${
               isWishlisted
-                ? "fill-heritage-terracotta text-heritage-terracotta"
-                : "text-heritage-charcoal"
+                ? "fill-editorial-terracotta text-editorial-terracotta"
+                : "text-editorial-charcoal"
             }`}
           />
         </button>
@@ -249,16 +249,16 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
        * 6. PRODUCT SPECIFICATIONS ACCORDIONS:
        * ========================================================================
        */}
-      <div className="pt-4 divide-y divide-[#E8DFD0] border-t border-[#E8DFD0]">
+      <div className="pt-4 divide-y divide-editorial-gold/25 border-t border-editorial-gold/25">
         {/* Accordion 1: Fabric & Craftsmanship */}
         <div className="py-3">
           <button
             type="button"
             onClick={() => toggleAccordion("fabric")}
-            className="w-full flex items-center justify-between text-left text-xs font-semibold uppercase tracking-wider text-heritage-charcoal hover:text-heritage-terracotta"
+            className="w-full flex items-center justify-between text-left text-xs font-semibold uppercase tracking-wider text-editorial-charcoal hover:text-editorial-terracotta"
           >
             <div className="flex items-center space-x-2">
-              <Sparkles className="w-4 h-4 text-heritage-terracotta" />
+              <Sparkles className="w-4 h-4 text-editorial-terracotta" />
               <span>Fabric & Craftsmanship Details</span>
             </div>
             <ChevronDown
@@ -268,7 +268,7 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
             />
           </button>
           {openAccordion === "fabric" && (
-            <div className="pt-3 pb-1 text-xs text-heritage-earth space-y-2 leading-relaxed">
+            <div className="pt-3 pb-1 text-xs text-editorial-slate-dark space-y-2 leading-relaxed">
               <p><strong>Primary Fabric:</strong> {product.fabric}</p>
               {product.weave && <p><strong>Weave Technique:</strong> {product.weave}</p>}
               {product.work && <p><strong>Embroidery & Work:</strong> {product.work}</p>}
@@ -283,10 +283,10 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
           <button
             type="button"
             onClick={() => toggleAccordion("care")}
-            className="w-full flex items-center justify-between text-left text-xs font-semibold uppercase tracking-wider text-heritage-charcoal hover:text-heritage-terracotta"
+            className="w-full flex items-center justify-between text-left text-xs font-semibold uppercase tracking-wider text-editorial-charcoal hover:text-editorial-terracotta"
           >
             <div className="flex items-center space-x-2">
-              <ShieldCheck className="w-4 h-4 text-heritage-terracotta" />
+              <ShieldCheck className="w-4 h-4 text-editorial-terracotta" />
               <span>Wash & Fabric Care</span>
             </div>
             <ChevronDown
@@ -296,7 +296,7 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
             />
           </button>
           {openAccordion === "care" && (
-            <div className="pt-3 pb-1 text-xs text-heritage-earth space-y-1.5 leading-relaxed">
+            <div className="pt-3 pb-1 text-xs text-editorial-slate-dark space-y-1.5 leading-relaxed">
               <p>&bull; <strong>Recommended Care:</strong> {product.washCare}</p>
               <p>&bull; Iron on medium silk/cotton setting with a pressing cloth.</p>
               <p>&bull; Store in a breathable muslin cover away from direct harsh sunlight.</p>
@@ -309,7 +309,7 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
           <button
             type="button"
             onClick={() => toggleAccordion("shipping")}
-            className="w-full flex items-center justify-between text-left text-xs font-semibold uppercase tracking-wider text-heritage-charcoal hover:text-heritage-terracotta"
+            className="w-full flex items-center justify-between text-left text-xs font-semibold uppercase tracking-wider text-editorial-charcoal hover:text-editorial-terracotta"
           >
             <span>Shipping & 7-Day Doorstep Exchange</span>
             <ChevronDown
@@ -319,7 +319,7 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
             />
           </button>
           {openAccordion === "shipping" && (
-            <div className="pt-3 pb-1 text-xs text-heritage-earth space-y-1.5 leading-relaxed">
+            <div className="pt-3 pb-1 text-xs text-editorial-slate-dark space-y-1.5 leading-relaxed">
               <p>&bull; <strong>Dispatch:</strong> Orders are dispatched from our Jaipur warehouse within 24 to 48 hours.</p>
               <p>&bull; <strong>Free Delivery:</strong> All orders above ₹1,499 qualify for complimentary express delivery.</p>
               <p>&bull; <strong>7-Day Exchange:</strong> Hassle-free size exchange with doorstep reverse pickup across India.</p>
@@ -335,12 +335,12 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
        * Ensures the "Add to Bag" button is always 1 tap away.
        * ========================================================================
        */}
-      <div className="lg:hidden fixed inset-x-0 bottom-0 bg-heritage-ivory/95 backdrop-blur-md border-t border-[#E0D5C3] p-3 z-40 flex items-center justify-between shadow-2xl">
+      <div className="lg:hidden fixed inset-x-0 bottom-0 bg-editorial-paper/95 backdrop-blur-md border-t border-editorial-gold/30 p-3 z-40 flex items-center justify-between shadow-2xl">
         <div>
-          <span className="block text-xs font-semibold text-heritage-charcoal">
+          <span className="block text-sm font-serif font-bold text-editorial-emerald">
             {formatPrice(product.basePrice)}
           </span>
-          <span className="block text-[10px] text-heritage-earth">
+          <span className="block text-[10px] text-editorial-slate tracking-wide">
             Size: {selectedVariant.size}
           </span>
         </div>

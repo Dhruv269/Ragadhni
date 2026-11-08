@@ -70,7 +70,7 @@ export function ImageGallery({ images, title, fabricBadge }: ImageGalleryProps) 
               onClick={() => setSelectedIndex(idx)}
               className={`relative aspect-[3/4] w-16 sm:w-20 overflow-hidden border-2 transition-all ${
                 selectedIndex === idx
-                  ? "border-heritage-terracotta shadow-xs"
+                  ? "border-editorial-terracotta shadow-xs"
                   : "border-transparent opacity-70 hover:opacity-100"
               }`}
             >
@@ -92,7 +92,7 @@ export function ImageGallery({ images, title, fabricBadge }: ImageGalleryProps) 
        * 4:5 fashion aspect ratio with smooth hover zoom.
        * ========================================================================
        */}
-      <div className="relative aspect-[4/5] w-full bg-heritage-sand/30 overflow-hidden border border-[#E3D8C6]">
+      <div className="relative aspect-[4/5] w-full bg-editorial-ivory/40 overflow-hidden border border-editorial-gold/25">
         <Image
           src={currentImage.url}
           alt={currentImage.altText || title}
@@ -105,7 +105,7 @@ export function ImageGallery({ images, title, fabricBadge }: ImageGalleryProps) 
         {/* Fabric badge overlay on top-left of main photo */}
         {fabricBadge && (
           <div className="absolute top-4 left-4 z-10">
-            <span className="bg-heritage-ivory/95 backdrop-blur-xs border border-heritage-charcoal/30 text-heritage-charcoal text-[11px] uppercase tracking-widest font-medium px-3 py-1 shadow-xs">
+            <span className="bg-editorial-ivory/95 backdrop-blur-xs border border-editorial-gold/30 text-editorial-charcoal text-[11px] uppercase tracking-widest font-medium px-3 py-1 shadow-xs">
               {fabricBadge}
             </span>
           </div>

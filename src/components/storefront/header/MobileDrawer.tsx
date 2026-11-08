@@ -4,46 +4,44 @@
  * ==============================================================================
  *
  * WHAT THIS FILE DOES:
- * This component renders the slide-out navigation menu for smartphones and tablets.
- * It contains:
- * 1. Brand logo and close button ("X").
- * 2. Expandable accordion menus for Indian ethnic & traditional casual categories.
- * 3. Direct links to customer account, wishlist, and shopping bag.
- * 4. Direct phone and WhatsApp customer support contact info.
- *
- * WHY IT EXISTS:
- * Over 80% of Indian fashion e-commerce shopping happens on mobile devices.
- * A desktop navigation bar cannot fit on a small screen. This drawer provides
- * an ergonomic, thumb-friendly navigation experience tailored for mobile users.
- *
- * HOW IT CONNECTS TO THE REST OF THE PROJECT:
- * - Controlled by `Header.tsx`: When the user taps the hamburger menu icon in the header,
- *   `Header.tsx` sets `mobileMenuOpen = true`, which makes this drawer visible.
- * - Reads categories and support info from `siteConfig` in `src/config/site.ts`.
- * - Uses `Badge` from `src/components/ui/Badge.tsx` to highlight "New" and "Trending" labels.
+ * This component renders the slide-out navigation drawer for smartphones and tablets.
+ * Grounded in "The Contemporary Indian Fashion Editorial" aesthetic:
+ * 1. Deep Obsidian-Emerald backdrop blur overlay.
+ * 2. Warm Paper drawer panel with Antique Gold hairline borders.
+ * 3. Prominent serif wordmark ("RAGADHNI") with atelier subtitle.
+ * 4. Quick in-drawer search trigger for immediate discovery.
+ * 5. Expandable accordion menus for Indian ethnic silhouettes and artisanal edits.
+ * 6. Quick action links (Account, Wishlist, Bag) with live badges and 48px touch targets.
+ * 7. Atelier concierge card with direct phone, WhatsApp, and service hours.
+ * 8. Full accessibility: Esc key dismiss, body scroll lock, and ARIA labels.
  */
 
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
-import { X, ChevronDown, ChevronRight, Heart, ShoppingBag, User, Phone } from "lucide-react";
+import {
+  X,
+  ChevronDown,
+  ChevronRight,
+  Heart,
+  ShoppingBag,
+  User,
+  Phone,
+  Search,
+  Sparkles,
+  MessageCircle,
+} from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 
-/**
- * MobileDrawerProps:
- * Defines the properties passed down from the parent `Header` component.
- */
-interface MobileDrawerProps {
-  // Whether the drawer is currently open and visible
+export interface MobileDrawerProps {
   isOpen: boolean;
-  // Callback function to close the drawer (called when tapping "X" or the backdrop)
   onClose: () => void;
-  // Current count of items in the shopping bag
   cartCount: number;
-  // Current count of items in the wishlist
   wishlistCount: number;
+  onOpenSearch?: () => void;
+  onOpenCart?: () => void;
 }
 
 export function MobileDrawer({
@@ -51,211 +49,354 @@ export function MobileDrawer({
   onClose,
   cartCount,
   wishlistCount,
+  onOpenSearch,
+  onOpenCart,
 }: MobileDrawerProps) {
-  // Tracks which accordion section is currently open (defaults to "Shop" so first-time shoppers see categories)
+  // Tracks active accordion section (defaults to "Shop" so first-time shoppers see categories immediately)
   const [expandedSection, setExpandedSection] = useState<string | null>("Shop");
 
-  /*
-   * EARLY EXIT (PERFORMANCE OPTIMIZATION):
-   * If `isOpen` is false, return `null`. This prevents rendering hundreds of invisible
-   * DOM nodes when the user isn't using the mobile menu.
-   */
+  // Lock body scroll when mobile drawer is open to prevent background scrolling
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
+  // Handle escape key to dismiss
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isOpen) {
+        onClose();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
-  /**
-   * Toggles an accordion section open or closed:
-   * If the section is already open, clicking it sets it to `null` (collapsing it).
-   * Otherwise, it opens that section.
-   */
   const toggleSection = (label: string) => {
     setExpandedSection(expandedSection === label ? null : label);
   };
 
   return (
-    // Fixed overlay covering the entire screen, hidden on large desktop screens (`lg:hidden`)
     <div className="fixed inset-0 z-50 lg:hidden">
-      {/*
-       * 1. BACKDROP:
-       * A dark, semi-transparent blurred layer over the website.
-       * Tapping anywhere outside the menu calls `onClose()` to dismiss the drawer.
-       */}
+      {/* ---------------------------------------------------------------------- */}
+      {/* 1. BACKDROP OVERLAY                                                    */}
+      {/* ---------------------------------------------------------------------- */}
       <div
-        className="fixed inset-0 bg-luxe-maroon/60 backdrop-blur-sm transition-opacity"
+        className="fixed inset-0 bg-[#0B2620]/65 backdrop-blur-sm transition-opacity duration-300"
         onClick={onClose}
+        aria-hidden="true"
       />
 
-      {/*
-       * 2. SLIDE-OUT PANEL:
-       * Refined warm white drawer anchored to the left side with gold hairline accents.
-       */}
-      <div className="fixed inset-y-0 left-0 w-full max-w-xs bg-luxe-warmwhite shadow-2xl flex flex-col z-50 overflow-y-auto border-r border-luxe-gold/30">
-        {/* Drawer Header: Brand name & Close "X" Button */}
-        <div className="flex items-center justify-between p-5 border-b border-luxe-gold/25">
+      {/* ---------------------------------------------------------------------- */}
+      {/* 2. SLIDE-OUT PANEL                                                     */}
+      {/* ---------------------------------------------------------------------- */}
+      <div
+        className="fixed inset-y-0 left-0 w-full max-w-xs sm:max-w-sm bg-[#FAF6EE] shadow-editorial-float flex flex-col z-50 overflow-y-auto border-r border-editorial-gold/30 animate-in slide-in-from-left duration-300"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Navigation drawer"
+      >
+        {/* Drawer Header */}
+        <div className="flex items-center justify-between px-5 py-4 border-b border-editorial-gold/25 bg-[#FAF6EE] sticky top-0 z-10">
           <div>
-            <span className="font-serif text-2xl tracking-[0.24em] font-normal text-luxe-charcoal uppercase">
-              Ragadhni
-            </span>
-            <span className="block text-[10px] tracking-widest uppercase text-luxe-grey mt-0.5">
-              Women&apos;s Indian Ethnic
-            </span>
+            <Link href="/" onClick={onClose} className="block">
+              <span className="font-serif text-2xl tracking-[0.24em] font-normal text-editorial-emerald uppercase block leading-none">
+                Ragadhni
+              </span>
+              <span className="text-[9px] tracking-[0.32em] uppercase text-editorial-gold-deep mt-1 font-semibold block">
+                Women&apos;s Indian Atelier
+              </span>
+            </Link>
           </div>
           <button
             onClick={onClose}
-            className="p-2.5 text-luxe-charcoal hover:bg-luxe-ivory rounded-full transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
-            aria-label="Close menu"
+            className="p-2 text-editorial-charcoal hover:text-editorial-terracotta hover:bg-editorial-ivory/60 rounded-full transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center focus-editorial"
+            aria-label="Close navigation drawer"
           >
-            <X className="w-5 h-5" />
+            <X className="w-5 h-5 stroke-[1.8]" />
           </button>
         </div>
 
-        {/*
-         * 3. MAIN NAVIGATION LIST:
-         * Maps over `siteConfig.navItems`. Items with subcategories render as accordions,
-         * while top-level links render as direct links with min 44px touch targets.
-         */}
-        <div className="flex-1 py-4 divide-y divide-luxe-gold/20">
-          <div className="px-3 pb-3 space-y-1">
-            {siteConfig.navItems.map((item) => {
-              const hasChildren = item.children && item.children.length > 0;
-              const isExpanded = expandedSection === item.label;
-
-              // If this item has subcategories -> Render Accordion
-              if (hasChildren) {
-                return (
-                  <div key={item.label} className="rounded-md overflow-hidden">
-                    <button
-                      onClick={() => toggleSection(item.label)}
-                      className="w-full flex items-center justify-between px-3.5 py-3.5 min-h-[48px] text-sm font-medium tracking-wide text-luxe-charcoal hover:bg-luxe-ivory/60 transition-colors"
-                    >
-                      <span className="flex items-center space-x-2">
-                        <span>{item.label}</span>
-                        {item.badge && (
-                          <Badge variant="terracotta">{item.badge}</Badge>
-                        )}
-                      </span>
-                      {/* Chevron rotates 180 degrees when expanded */}
-                      <ChevronDown
-                        className={`w-4 h-4 text-luxe-grey transition-transform duration-200 ${
-                          isExpanded ? "rotate-180" : ""
-                        }`}
-                      />
-                    </button>
-
-                    {/* Subcategories revealed when accordion is open */}
-                    {isExpanded && (
-                      <div className="bg-luxe-ivory/40 px-4 py-2 space-y-3">
-                        {item.children?.map((subGroup) => (
-                          <div key={subGroup.title} className="space-y-1.5">
-                            <h4 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-luxe-terracotta">
-                              {subGroup.title}
-                            </h4>
-                            <ul className="space-y-1 pl-2">
-                              {subGroup.items.map((subItem) => (
-                                <li key={subItem.label}>
-                                  <Link
-                                    href={subItem.href}
-                                    onClick={onClose}
-                                    className="flex items-center justify-between py-2 px-2 min-h-[44px] text-xs text-luxe-charcoal hover:text-luxe-burgundy transition-colors"
-                                  >
-                                    <span>{subItem.label}</span>
-                                    {subItem.badge && (
-                                      <Badge variant="gold">{subItem.badge}</Badge>
-                                    )}
-                                  </Link>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                );
+        {/* Quick In-Drawer Search Input Trigger */}
+        <div className="px-5 pt-4 pb-2">
+          <button
+            type="button"
+            onClick={() => {
+              if (onOpenSearch) {
+                onOpenSearch();
+              } else {
+                onClose();
               }
+            }}
+            className="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-editorial-ivory/70 border border-editorial-gold/30 text-xs text-editorial-slate hover:border-editorial-terracotta hover:text-editorial-charcoal transition-all"
+          >
+            <span className="flex items-center space-x-2">
+              <Search className="w-4 h-4 text-editorial-slate" />
+              <span>Search sarees, kurtas, dupattas...</span>
+            </span>
+            <span className="text-[10px] text-editorial-terracotta font-semibold uppercase tracking-wider">
+              Find
+            </span>
+          </button>
+        </div>
 
-              // Standard direct navigation link
-              return (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  onClick={onClose}
-                  className="flex items-center justify-between px-3.5 py-3 min-h-[48px] text-sm font-medium tracking-wide text-luxe-charcoal hover:bg-luxe-ivory/60 rounded-md transition-colors"
-                >
-                  <span className="flex items-center space-x-2">
-                    <span>{item.label}</span>
-                    {item.badge && (
-                      <Badge variant="terracotta">{item.badge}</Badge>
-                    )}
-                  </span>
-                  <ChevronRight className="w-4 h-4 text-luxe-grey/60" />
-                </Link>
-              );
-            })}
+        {/* ---------------------------------------------------------------------- */}
+        {/* 3. MAIN NAVIGATION ACCORDIONS & LINKS                                  */}
+        {/* ---------------------------------------------------------------------- */}
+        <div className="flex-1 py-3 px-4 divide-y divide-editorial-gold/20 space-y-3">
+          <div className="space-y-1">
+            {/* Direct Home Link */}
+            <Link
+              href="/"
+              onClick={onClose}
+              className="flex items-center justify-between px-3.5 py-3 min-h-[48px] text-xs uppercase tracking-widest font-semibold text-editorial-charcoal hover:bg-editorial-ivory/60 rounded-xl transition-colors"
+            >
+              <span>Home</span>
+              <ChevronRight className="w-4 h-4 text-editorial-slate" />
+            </Link>
+
+            {/* SHOP ACCORDION */}
+            <div className="rounded-xl overflow-hidden border border-editorial-gold/20 bg-editorial-ivory/30">
+              <button
+                onClick={() => toggleSection("Shop")}
+                className="w-full flex items-center justify-between px-3.5 py-3.5 min-h-[48px] text-xs uppercase tracking-widest font-semibold text-editorial-emerald hover:bg-editorial-ivory/60 transition-colors"
+                aria-expanded={expandedSection === "Shop"}
+              >
+                <span className="flex items-center space-x-2">
+                  <span>Shop</span>
+                  <Badge variant="terracotta">All Wear</Badge>
+                </span>
+                <ChevronDown
+                  className={`w-4 h-4 text-editorial-slate transition-transform duration-200 ${
+                    expandedSection === "Shop" ? "rotate-180 text-editorial-terracotta" : ""
+                  }`}
+                />
+              </button>
+
+              {expandedSection === "Shop" && (
+                <div className="bg-[#FAF6EE] px-4 py-3 space-y-4 border-t border-editorial-gold/20">
+                  {/* Subgroup 1: Silhouettes */}
+                  <div className="space-y-1.5">
+                    <h4 className="text-[10px] font-bold uppercase tracking-[0.22em] text-editorial-terracotta flex items-center justify-between">
+                      <span>Women&apos;s Silhouettes</span>
+                      <span className="text-editorial-gold">01</span>
+                    </h4>
+                    <ul className="space-y-1 pl-1">
+                      {[
+                        { label: "Handcrafted Sarees", href: "/women/sarees", badge: "Heirloom" },
+                        { label: "Kurtas & Sets", href: "/women/kurtis", badge: "Popular" },
+                        { label: "Festive Lehengas", href: "/women/lehengas-anarkalis", badge: "Festive" },
+                        { label: "Ethnic Dresses", href: "/women/casual-dresses" },
+                        { label: "Artisanal Dupattas", href: "/women/dupattas" },
+                        { label: "Jewellery & Accessories", href: "/women/accessories", badge: "New" },
+                      ].map((item) => (
+                        <li key={item.label}>
+                          <Link
+                            href={item.href}
+                            onClick={onClose}
+                            className="flex items-center justify-between py-2 px-2.5 min-h-[44px] text-xs text-editorial-charcoal hover:text-editorial-terracotta hover:bg-editorial-ivory/50 rounded-lg transition-colors"
+                          >
+                            <span>{item.label}</span>
+                            {item.badge && (
+                              <Badge variant={item.badge === "Heirloom" ? "gold" : "terracotta"}>
+                                {item.badge}
+                              </Badge>
+                            )}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Subgroup 2: Weaves & Edits */}
+                  <div className="space-y-1.5 pt-2 border-t border-editorial-gold/15">
+                    <h4 className="text-[10px] font-bold uppercase tracking-[0.22em] text-editorial-terracotta flex items-center justify-between">
+                      <span>Artisan Crafts & Edits</span>
+                      <span className="text-editorial-gold">02</span>
+                    </h4>
+                    <ul className="space-y-1 pl-1">
+                      {[
+                        { label: "Pure Chanderi Silk", href: "/collections/ethnic-wear" },
+                        { label: "Organic Mulmul Cotton", href: "/collections/casual-wear" },
+                        { label: "Salwar Suits & Sets", href: "/women/salwar-suits" },
+                        { label: "Tops & Tunics", href: "/women/tops-tunics" },
+                        { label: "Palazzos & Bottomwear", href: "/women/bottomwear" },
+                        { label: "View Complete Collection", href: "/women", badge: "All" },
+                      ].map((item) => (
+                        <li key={item.label}>
+                          <Link
+                            href={item.href}
+                            onClick={onClose}
+                            className="flex items-center justify-between py-2 px-2.5 min-h-[44px] text-xs text-editorial-charcoal hover:text-editorial-terracotta hover:bg-editorial-ivory/50 rounded-lg transition-colors"
+                          >
+                            <span>{item.label}</span>
+                            {item.badge && <Badge variant="neutral">{item.badge}</Badge>}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* COLLECTIONS ACCORDION */}
+            <div className="rounded-xl overflow-hidden border border-editorial-gold/20 bg-editorial-ivory/30">
+              <button
+                onClick={() => toggleSection("Collections")}
+                className="w-full flex items-center justify-between px-3.5 py-3.5 min-h-[48px] text-xs uppercase tracking-widest font-semibold text-editorial-emerald hover:bg-editorial-ivory/60 transition-colors"
+                aria-expanded={expandedSection === "Collections"}
+              >
+                <span className="flex items-center space-x-2">
+                  <span>Collections</span>
+                  <Badge variant="gold">Edits</Badge>
+                </span>
+                <ChevronDown
+                  className={`w-4 h-4 text-editorial-slate transition-transform duration-200 ${
+                    expandedSection === "Collections" ? "rotate-180 text-editorial-terracotta" : ""
+                  }`}
+                />
+              </button>
+
+              {expandedSection === "Collections" && (
+                <div className="bg-[#FAF6EE] px-4 py-3 space-y-1.5 border-t border-editorial-gold/20">
+                  {[
+                    { label: "Everyday Elegance", href: "/collections/casual-wear" },
+                    { label: "Festive Edit", href: "/collections/festive-wear", badge: "Celebration" },
+                    { label: "Traditional Classics", href: "/collections/ethnic-wear" },
+                    { label: "Contemporary Ethnic", href: "/collections/new-arrivals", badge: "Fresh" },
+                    { label: "Wedding Guest Edit", href: "/collections/bestsellers" },
+                  ].map((sub) => (
+                    <Link
+                      key={sub.label}
+                      href={sub.href}
+                      onClick={onClose}
+                      className="flex items-center justify-between py-2.5 px-2.5 min-h-[44px] text-xs text-editorial-charcoal hover:text-editorial-terracotta hover:bg-editorial-ivory/50 rounded-lg transition-colors"
+                    >
+                      <span>{sub.label}</span>
+                      {sub.badge && <Badge variant="terracotta">{sub.badge}</Badge>}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Direct Story Link */}
+            <Link
+              href="/about"
+              onClick={onClose}
+              className="flex items-center justify-between px-3.5 py-3 min-h-[48px] text-xs uppercase tracking-widest font-semibold text-editorial-charcoal hover:bg-editorial-ivory/60 rounded-xl transition-colors"
+            >
+              <span>Our Story</span>
+              <ChevronRight className="w-4 h-4 text-editorial-slate" />
+            </Link>
+
+            {/* Direct Contact Link */}
+            <Link
+              href="/contact"
+              onClick={onClose}
+              className="flex items-center justify-between px-3.5 py-3 min-h-[48px] text-xs uppercase tracking-widest font-semibold text-editorial-charcoal hover:bg-editorial-ivory/60 rounded-xl transition-colors"
+            >
+              <span>Contact & Concierge</span>
+              <ChevronRight className="w-4 h-4 text-editorial-slate" />
+            </Link>
           </div>
 
-          {/*
-           * 4. QUICK ACCOUNT & SHOPPING LINKS:
-           * Direct access to Account, Wishlist, and Shopping Bag with live counters and min 44px touch targets.
-           */}
-          <div className="p-4 space-y-1.5 text-sm text-luxe-charcoal">
+          {/* ------------------------------------------------------------------ */}
+          {/* 4. QUICK ACCOUNT & SHOPPING LINKS                                  */}
+          {/* ------------------------------------------------------------------ */}
+          <div className="pt-3 space-y-1 text-xs text-editorial-charcoal">
             <Link
               href="/account"
               onClick={onClose}
-              className="flex items-center space-x-3 py-2.5 px-2 min-h-[44px] hover:text-luxe-burgundy transition-colors"
+              className="flex items-center space-x-3 py-2.5 px-3 min-h-[48px] rounded-xl hover:bg-editorial-ivory/60 transition-colors"
             >
-              <User className="w-4 h-4 text-luxe-grey" />
-              <span>My Account & Orders</span>
+              <User className="w-4 h-4 text-editorial-gold" />
+              <span className="font-medium">My Account & Orders</span>
             </Link>
 
             <Link
               href="/wishlist"
               onClick={onClose}
-              className="flex items-center justify-between py-2.5 px-2 min-h-[44px] hover:text-luxe-burgundy transition-colors"
+              className="flex items-center justify-between py-2.5 px-3 min-h-[48px] rounded-xl hover:bg-editorial-ivory/60 transition-colors"
             >
               <div className="flex items-center space-x-3">
-                <Heart className="w-4 h-4 text-luxe-grey" />
-                <span>My Wishlist</span>
+                <Heart className="w-4 h-4 text-editorial-terracotta" />
+                <span className="font-medium">Curated Wishlist</span>
               </div>
               {wishlistCount > 0 && (
-                <span className="text-xs bg-luxe-ivory text-luxe-maroon border border-luxe-gold/40 px-2 py-0.5 rounded-full font-medium">
+                <span className="text-[10px] bg-editorial-gold/20 text-editorial-terracotta border border-editorial-gold/40 px-2 py-0.5 rounded-full font-bold">
                   {wishlistCount}
                 </span>
               )}
             </Link>
 
-            <Link
-              href="/cart"
-              onClick={onClose}
-              className="flex items-center justify-between py-2.5 px-2 min-h-[44px] hover:text-luxe-burgundy transition-colors"
+            <button
+              type="button"
+              onClick={() => {
+                if (onOpenCart) {
+                  onOpenCart();
+                } else {
+                  onClose();
+                  window.location.href = "/cart";
+                }
+              }}
+              className="w-full flex items-center justify-between py-2.5 px-3 min-h-[48px] rounded-xl hover:bg-editorial-ivory/60 transition-colors text-left"
             >
               <div className="flex items-center space-x-3">
-                <ShoppingBag className="w-4 h-4 text-luxe-grey" />
-                <span>Shopping Bag</span>
+                <ShoppingBag className="w-4 h-4 text-editorial-emerald" />
+                <span className="font-medium">Shopping Bag</span>
               </div>
               {cartCount > 0 && (
-                <span className="text-xs bg-luxe-gold text-luxe-maroon px-2 py-0.5 rounded-full font-semibold">
-                  {cartCount}
+                <span className="text-[10px] bg-editorial-emerald text-editorial-paper px-2 py-0.5 rounded-full font-bold">
+                  {cartCount} items
                 </span>
               )}
-            </Link>
+            </button>
           </div>
         </div>
 
-        {/*
-         * 5. FOOTER SUPPORT SECTION:
-         * Dedicated contact card at the bottom of the drawer to help shoppers
-         * call or message customer care directly.
-         */}
-        <div className="p-4 bg-luxe-ivory/50 border-t border-luxe-gold/25 space-y-1.5">
-          <div className="flex items-center space-x-2 text-xs text-luxe-grey">
-            <Phone className="w-3.5 h-3.5 text-luxe-terracotta" />
-            <span>Need Help? Call / WhatsApp:</span>
+        {/* ---------------------------------------------------------------------- */}
+        {/* 5. ATELIER CONCIERGE FOOTER CARD                                       */}
+        {/* ---------------------------------------------------------------------- */}
+        <div className="p-4 bg-editorial-ivory/70 border-t border-editorial-gold/25 space-y-2.5">
+          <div className="flex items-center justify-between">
+            <span className="text-[10px] uppercase tracking-[0.2em] font-semibold text-editorial-terracotta flex items-center space-x-1.5">
+              <Sparkles className="w-3 h-3 text-editorial-gold" />
+              <span>Atelier Concierge</span>
+            </span>
+            <span className="text-[10px] text-editorial-slate">10am – 7pm IST</span>
           </div>
-          <p className="text-xs font-semibold text-luxe-charcoal">
-            {siteConfig.contact.phone}
-          </p>
-          <p className="text-[11px] text-luxe-grey">
-            {siteConfig.contact.hours}
+
+          <div className="flex items-center space-x-2 pt-1">
+            <a
+              href={`tel:${siteConfig.contact.phone.replace(/[^0-9+]/g, "")}`}
+              className="flex-1 flex items-center justify-center space-x-1.5 py-2 px-3 rounded-lg bg-editorial-emerald text-editorial-paper text-xs font-medium hover:bg-editorial-terracotta transition-colors min-h-[44px]"
+            >
+              <Phone className="w-3.5 h-3.5" />
+              <span>Call Us</span>
+            </a>
+            <a
+              href={`https://wa.me/${siteConfig.contact.whatsapp.replace(/[^0-9]/g, "")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 flex items-center justify-center space-x-1.5 py-2 px-3 rounded-lg border border-editorial-gold/40 text-editorial-charcoal text-xs font-medium hover:bg-editorial-paper transition-colors min-h-[44px]"
+            >
+              <MessageCircle className="w-3.5 h-3.5 text-editorial-emerald" />
+              <span>WhatsApp</span>
+            </a>
+          </div>
+
+          <p className="text-[10px] text-center text-editorial-slate font-light pt-1">
+            Complimentary shipping across India on orders &ge; ₹1,499
           </p>
         </div>
       </div>

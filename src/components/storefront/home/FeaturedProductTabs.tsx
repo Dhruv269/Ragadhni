@@ -55,13 +55,13 @@ export function FeaturedProductTabs({ products }: FeaturedProductTabsProps) {
     <div className="space-y-8 sm:space-y-10">
       {/* Tab Navigation Header */}
       <ScrollReveal variant="fade-up">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between border-b border-luxe-gold/30 pb-5 gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between border-b border-editorial-gold/30 pb-5 gap-4">
           <div>
-            <div className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.25em] text-luxe-terracotta font-medium mb-1">
-              <Sparkles className="w-3.5 h-3.5 text-luxe-gold" />
+            <div className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.25em] text-editorial-terracotta font-medium mb-1">
+              <Sparkles className="w-3.5 h-3.5 text-editorial-gold" />
               <span>The Curated Wardrobe</span>
             </div>
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-luxe-charcoal font-normal tracking-tight">
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-editorial-charcoal font-normal tracking-tight">
               Curated Women&apos;s Heirlooms
             </h2>
           </div>
@@ -72,8 +72,8 @@ export function FeaturedProductTabs({ products }: FeaturedProductTabsProps) {
               onClick={() => setActiveTab("bestsellers")}
               className={`px-3 sm:px-4 py-2 transition-all duration-200 border-b-2 ${
                 activeTab === "bestsellers"
-                  ? "border-luxe-burgundy text-luxe-burgundy font-semibold"
-                  : "border-transparent text-luxe-grey hover:text-luxe-charcoal"
+                  ? "border-editorial-emerald text-editorial-emerald font-semibold"
+                  : "border-transparent text-editorial-slate hover:text-editorial-charcoal"
               }`}
             >
               Bestsellers
@@ -82,8 +82,8 @@ export function FeaturedProductTabs({ products }: FeaturedProductTabsProps) {
               onClick={() => setActiveTab("new-arrivals")}
               className={`px-3 sm:px-4 py-2 transition-all duration-200 border-b-2 ${
                 activeTab === "new-arrivals"
-                  ? "border-luxe-burgundy text-luxe-burgundy font-semibold"
-                  : "border-transparent text-luxe-grey hover:text-luxe-charcoal"
+                  ? "border-editorial-emerald text-editorial-emerald font-semibold"
+                  : "border-transparent text-editorial-slate hover:text-editorial-charcoal"
               }`}
             >
               New Arrivals
@@ -92,8 +92,8 @@ export function FeaturedProductTabs({ products }: FeaturedProductTabsProps) {
               onClick={() => setActiveTab("all")}
               className={`hidden sm:inline-block px-3 sm:px-4 py-2 transition-all duration-200 border-b-2 ${
                 activeTab === "all"
-                  ? "border-luxe-burgundy text-luxe-burgundy font-semibold"
-                  : "border-transparent text-luxe-grey hover:text-luxe-charcoal"
+                  ? "border-editorial-emerald text-editorial-emerald font-semibold"
+                  : "border-transparent text-editorial-slate hover:text-editorial-charcoal"
               }`}
             >
               All Pieces
@@ -121,7 +121,7 @@ export function FeaturedProductTabs({ products }: FeaturedProductTabsProps) {
         <div className="pt-4 text-center">
           <Link
             href="/women"
-            className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.22em] font-medium text-luxe-burgundy hover:text-luxe-terracotta border-b border-luxe-burgundy/40 pb-1 hover:border-luxe-terracotta transition-colors group"
+            className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.22em] font-medium text-editorial-emerald hover:text-editorial-terracotta border-b border-editorial-emerald/40 pb-1 hover:border-editorial-terracotta transition-colors group"
           >
             <span>Explore Complete Women&apos;s Collection ({products.length} Designs)</span>
             <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />

@@ -58,23 +58,23 @@ export function SizeGuideModal({ isOpen, onClose }: SizeGuideModalProps) {
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       {/* Dark backdrop */}
       <div
-        className="fixed inset-0 bg-heritage-espresso/70 backdrop-blur-xs transition-opacity"
+        className="fixed inset-0 bg-editorial-charcoal/70 backdrop-blur-xs transition-opacity"
         onClick={onClose}
       />
 
       {/* Modal Dialog Card */}
-      <div className="relative bg-heritage-warm-ivory border border-heritage-antique-gold/40 shadow-2xl max-w-2xl w-full p-6 sm:p-8 z-10 max-h-[90vh] overflow-y-auto">
+      <div className="relative bg-editorial-paper border border-editorial-gold/40 shadow-2xl max-w-2xl w-full p-6 sm:p-8 z-10 max-h-[90vh] overflow-y-auto">
         {/* Header with Title & Close Button */}
-        <div className="flex items-center justify-between pb-4 border-b border-heritage-antique-gold/30">
+        <div className="flex items-center justify-between pb-4 border-b border-editorial-gold/30">
           <div className="flex items-center space-x-2">
-            <Ruler className="w-5 h-5 text-heritage-burgundy" />
-            <h3 className="font-serif text-xl sm:text-2xl text-heritage-espresso font-normal">
+            <Ruler className="w-5 h-5 text-editorial-emerald" />
+            <h3 className="font-serif text-xl sm:text-2xl text-editorial-charcoal font-normal">
               Women&apos;s Ethnic Size Guide
             </h3>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 text-heritage-espresso/60 hover:text-heritage-espresso rounded-full hover:bg-heritage-sand/60 transition-colors"
+            className="p-1.5 text-editorial-charcoal/60 hover:text-editorial-charcoal rounded-full hover:bg-editorial-ivory/80 transition-colors"
             aria-label="Close size guide"
           >
             <X className="w-5 h-5" />
@@ -83,17 +83,17 @@ export function SizeGuideModal({ isOpen, onClose }: SizeGuideModalProps) {
 
         {/* Unit Toggle Buttons (Inches vs Centimeters) */}
         <div className="my-5 flex items-center justify-between">
-          <p className="text-xs text-heritage-espresso/70">
+          <p className="text-xs text-editorial-charcoal/70">
             Garment body measurements shown in:
           </p>
-          <div className="inline-flex border border-heritage-antique-gold/40 p-0.5 bg-heritage-sand/40">
+          <div className="inline-flex border border-editorial-gold/40 p-0.5 bg-editorial-ivory/50">
             <button
               type="button"
               onClick={() => setUnit("in")}
               className={`text-xs px-3 py-1 font-medium transition-colors ${
                 unit === "in"
-                  ? "bg-heritage-burgundy text-heritage-warm-ivory"
-                  : "text-heritage-espresso hover:bg-heritage-warm-ivory"
+                  ? "bg-editorial-emerald text-editorial-ivory"
+                  : "text-editorial-charcoal hover:bg-editorial-paper"
               }`}
             >
               Inches (in)
@@ -103,8 +103,8 @@ export function SizeGuideModal({ isOpen, onClose }: SizeGuideModalProps) {
               onClick={() => setUnit("cm")}
               className={`text-xs px-3 py-1 font-medium transition-colors ${
                 unit === "cm"
-                  ? "bg-heritage-burgundy text-heritage-warm-ivory"
-                  : "text-heritage-espresso hover:bg-heritage-warm-ivory"
+                  ? "bg-editorial-emerald text-editorial-ivory"
+                  : "text-editorial-charcoal hover:bg-editorial-paper"
               }`}
             >
               Centimeters (cm)
@@ -113,9 +113,9 @@ export function SizeGuideModal({ isOpen, onClose }: SizeGuideModalProps) {
         </div>
 
         {/* Measurements Table */}
-        <div className="overflow-x-auto border border-heritage-antique-gold/30">
-          <table className="w-full text-left text-xs text-heritage-espresso divide-y divide-heritage-antique-gold/25">
-            <thead className="bg-heritage-sand/50 font-serif uppercase tracking-wider text-[11px] text-heritage-espresso/80">
+        <div className="overflow-x-auto border border-editorial-gold/30">
+          <table className="w-full text-left text-xs text-editorial-charcoal divide-y divide-editorial-gold/25">
+            <thead className="bg-editorial-ivory/60 font-serif uppercase tracking-wider text-[11px] text-editorial-charcoal/80">
               <tr>
                 <th className="py-2.5 px-3">Size</th>
                 <th className="py-2.5 px-3">Bust ({unit})</th>
@@ -124,10 +124,10 @@ export function SizeGuideModal({ isOpen, onClose }: SizeGuideModalProps) {
                 <th className="py-2.5 px-3">Length ({unit})</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#EFE7D8] bg-heritage-warm-ivory font-sans">
+            <tbody className="divide-y divide-editorial-gold/15 bg-editorial-paper font-sans">
               {womenSizes.map((row) => (
-                <tr key={row.size} className="hover:bg-heritage-sand/20">
-                  <td className="py-2 px-3 font-semibold text-heritage-burgundy">{row.size}</td>
+                <tr key={row.size} className="hover:bg-editorial-ivory/30">
+                  <td className="py-2 px-3 font-semibold text-editorial-emerald">{row.size}</td>
                   <td className="py-2 px-3">{formatVal(row.bust)}</td>
                   <td className="py-2 px-3">{formatVal(row.waist)}</td>
                   <td className="py-2 px-3">{formatVal(row.hip)}</td>
@@ -139,8 +139,8 @@ export function SizeGuideModal({ isOpen, onClose }: SizeGuideModalProps) {
         </div>
 
         {/* Tailoring & Measurement Guidance */}
-        <div className="mt-6 p-4 bg-heritage-sand/30 border border-heritage-antique-gold/30 space-y-2 text-xs text-heritage-espresso/80">
-          <h4 className="font-serif font-semibold text-heritage-espresso uppercase tracking-wider text-[11px]">
+        <div className="mt-6 p-4 bg-editorial-ivory/50 border border-editorial-gold/30 space-y-2 text-xs text-editorial-charcoal/80">
+          <h4 className="font-serif font-semibold text-editorial-charcoal uppercase tracking-wider text-[11px]">
             The Ragadhni Tailoring Standard
           </h4>
           <p className="leading-relaxed">
