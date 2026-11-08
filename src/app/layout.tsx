@@ -36,6 +36,8 @@ import { Footer } from "@/components/storefront/footer/Footer";
 import { EditorialIntro } from "@/components/storefront/intro/EditorialIntro";
 import { CartProvider } from "@/context/CartContext";
 import { CartDrawer } from "@/components/storefront/cart/CartDrawer";
+import { SearchProvider } from "@/context/SearchContext";
+import { SearchOverlay } from "@/components/storefront/search/SearchOverlay";
 
 /*
  * ==============================================================================
@@ -146,23 +148,28 @@ export default function RootLayout({
        */}
       <body className="bg-editorial-paper text-editorial-charcoal font-sans flex flex-col min-h-screen selection:bg-editorial-emerald selection:text-editorial-ivory">
         <CartProvider>
-          {/* Cinematic Editorial Loading Introduction (session-aware) */}
-          <EditorialIntro />
+          <SearchProvider>
+            {/* Cinematic Editorial Loading Introduction (session-aware) */}
+            <EditorialIntro />
 
-          {/* Top promotional announcement bar */}
-          <AnnouncementBar />
+            {/* Top promotional announcement bar */}
+            <AnnouncementBar />
 
-          {/* Sticky brand navigation header */}
-          <Header />
+            {/* Sticky brand navigation header */}
+            <Header />
 
-          {/* Dynamic page content */}
-          <main className="flex-1">{children}</main>
+            {/* Dynamic page content */}
+            <main className="flex-1">{children}</main>
 
-          {/* Universal footer */}
-          <Footer />
+            {/* Universal footer */}
+            <Footer />
 
-          {/* Slide-out Shopping Bag Drawer */}
-          <CartDrawer />
+            {/* Slide-out Shopping Bag Drawer */}
+            <CartDrawer />
+
+            {/* Live Product Search Overlay */}
+            <SearchOverlay />
+          </SearchProvider>
         </CartProvider>
       </body>
     </html>

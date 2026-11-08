@@ -40,6 +40,7 @@ import {
 import { Badge } from "@/components/ui/Badge";
 import { MobileDrawer } from "./MobileDrawer";
 import { useCart } from "@/context/CartContext";
+import { useSearch } from "@/context/SearchContext";
 
 export interface HeaderProps {
   onSearchOpen?: () => void;
@@ -51,8 +52,6 @@ export function Header({ onSearchOpen, onCartOpen }: HeaderProps) {
   // STATE MANAGEMENT
   // ----------------------------------------------------------------------------
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
   const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
   const [accountOpen, setAccountOpen] = useState(false);
   const [wishlistOpen, setWishlistOpen] = useState(false);
@@ -61,8 +60,9 @@ export function Header({ onSearchOpen, onCartOpen }: HeaderProps) {
   // References for outside click dismissal
   const headerContainerRef = useRef<HTMLDivElement>(null);
 
-  // Shared dynamic cart state
+  // Shared dynamic cart & search state
   const { totalItems: cartCount, subtotal: cartSubtotal, openCart, closeCart, isOpen: isCartDrawerOpen } = useCart();
+  const { openSearch, closeSearch, isSearchOpen } = useSearch();
   const wishlistCount = 1;
 
   // ----------------------------------------------------------------------------
@@ -83,7 +83,6 @@ export function Header({ onSearchOpen, onCartOpen }: HeaderProps) {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         setActiveMegaMenu(null);
-        setSearchOpen(false);
         setAccountOpen(false);
         setWishlistOpen(false);
       }
@@ -95,7 +94,6 @@ export function Header({ onSearchOpen, onCartOpen }: HeaderProps) {
         !headerContainerRef.current.contains(e.target as Node)
       ) {
         setActiveMegaMenu(null);
-        setSearchOpen(false);
         setAccountOpen(false);
         setWishlistOpen(false);
       }
@@ -117,7 +115,7 @@ export function Header({ onSearchOpen, onCartOpen }: HeaderProps) {
     if (onSearchOpen) {
       onSearchOpen();
     } else {
-      setSearchOpen((prev) => !prev);
+      openSearch();
       setAccountOpen(false);
       setWishlistOpen(false);
       setActiveMegaMenu(null);
@@ -129,9 +127,9 @@ export function Header({ onSearchOpen, onCartOpen }: HeaderProps) {
       onCartOpen();
     } else {
       openCart();
+      closeSearch();
       setAccountOpen(false);
       setWishlistOpen(false);
-      setSearchOpen(false);
       setActiveMegaMenu(null);
     }
   };
@@ -140,7 +138,7 @@ export function Header({ onSearchOpen, onCartOpen }: HeaderProps) {
     setAccountOpen((prev) => !prev);
     setWishlistOpen(false);
     closeCart();
-    setSearchOpen(false);
+    closeSearch();
     setActiveMegaMenu(null);
   };
 
@@ -148,15 +146,8 @@ export function Header({ onSearchOpen, onCartOpen }: HeaderProps) {
     setWishlistOpen((prev) => !prev);
     setAccountOpen(false);
     closeCart();
-    setSearchOpen(false);
+    closeSearch();
     setActiveMegaMenu(null);
-  };
-
-  const handleSearchSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      window.location.href = `/search?q=${encodeURIComponent(searchQuery.trim())}`;
-    }
   };
 
   // ----------------------------------------------------------------------------
@@ -302,14 +293,14 @@ export function Header({ onSearchOpen, onCartOpen }: HeaderProps) {
                 Concierge
               </Link>
 
-              {/* Search Toggle Button */}
+              {/* Search Toggle Button (Opens Live Search Overlay) */}
               <button
                 onClick={handleToggleSearch}
                 className={`p-2 text-editorial-charcoal hover:text-editorial-terracotta focus-editorial rounded-full transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center ${
-                  searchOpen ? "bg-editorial-gold/15 text-editorial-terracotta" : ""
+                  isSearchOpen ? "bg-editorial-gold/15 text-editorial-terracotta" : ""
                 }`}
                 aria-label="Search collection"
-                aria-expanded={searchOpen}
+                aria-expanded={isSearchOpen}
               >
                 <Search className="w-4 h-4 sm:w-[18px] sm:h-[18px] stroke-[1.8]" />
               </button>
@@ -571,61 +562,7 @@ export function Header({ onSearchOpen, onCartOpen }: HeaderProps) {
           )}
 
           {/* ================================================================== */}
-          {/* 5. EXPANDABLE SEARCH DRAWER                                        */}
-          {/* ================================================================== */}
-          {searchOpen && (
-            <div className="absolute top-[calc(100%+8px)] left-0 right-0 mx-auto w-full max-w-3xl rounded-2xl bg-[#FAF6EE]/98 backdrop-blur-md border border-editorial-gold/35 shadow-editorial-float p-4 sm:p-5 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
-              <form onSubmit={handleSearchSubmit} className="relative flex items-center">
-                <Search className="absolute left-3.5 w-4 h-4 text-editorial-slate" />
-                <input
-                  type="text"
-                  placeholder="Search handcrafted sarees, kurtas, anarkalis, silk dupattas..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  autoFocus
-                  className="w-full bg-editorial-ivory/50 border border-editorial-gold/35 rounded-xl pl-10 pr-10 py-2.5 text-xs sm:text-sm text-editorial-charcoal placeholder:text-editorial-slate/60 focus:outline-none focus:border-editorial-terracotta focus:ring-1 focus:ring-editorial-terracotta transition-all"
-                />
-                <button
-                  type="button"
-                  onClick={() => setSearchOpen(false)}
-                  className="absolute right-3 p-1 text-editorial-slate hover:text-editorial-charcoal rounded-md transition-colors"
-                  aria-label="Close search drawer"
-                >
-                  <X className="w-4 h-4" />
-                </button>
-              </form>
-
-              {/* High-Intent Indian Fashion Keyword Suggestions */}
-              <div className="mt-3 flex flex-wrap items-center gap-1.5 text-xs text-editorial-slate">
-                <span className="font-semibold text-editorial-charcoal text-[11px] uppercase tracking-wider mr-1">
-                  Popular Searches:
-                </span>
-                {[
-                  "Chanderi Kurti",
-                  "Pure Silk Saree",
-                  "Anarkali Suit",
-                  "Banarasi Lehenga",
-                  "Kundan Jewellery",
-                  "Mulmul Cotton Dress",
-                ].map((keyword) => (
-                  <button
-                    key={keyword}
-                    type="button"
-                    onClick={() => {
-                      setSearchQuery(keyword);
-                      window.location.href = `/search?q=${encodeURIComponent(keyword)}`;
-                    }}
-                    className="px-2.5 py-1 rounded-full bg-editorial-ivory border border-editorial-gold/25 text-[11px] text-editorial-charcoal hover:border-editorial-terracotta hover:text-editorial-terracotta transition-colors"
-                  >
-                    {keyword}
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* ================================================================== */}
-          {/* 6. CUSTOMER ACCOUNT POPOVER SHELL (Zero 404s, Accessible)          */}
+          {/* 5. CUSTOMER ACCOUNT POPOVER SHELL (Zero 404s, Accessible)          */}
           {/* ================================================================== */}
           {accountOpen && (
             <div className="absolute top-[calc(100%+8px)] right-3 sm:right-16 w-80 rounded-2xl bg-[#FAF6EE]/98 backdrop-blur-md border border-editorial-gold/35 shadow-editorial-float p-5 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
