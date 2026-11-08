@@ -34,6 +34,7 @@ import { SizeGuideModal } from "./SizeGuideModal";
 import { PincodeChecker } from "./PincodeChecker";
 import { Heart, ShoppingBag, Ruler, ShieldCheck, Sparkles, ChevronDown } from "lucide-react";
 import { useCart } from "@/context/CartContext";
+import { useWishlist } from "@/context/WishlistContext";
 
 interface ProductDetailsClientProps {
   product: Product;
@@ -57,8 +58,9 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
   // Modal visibility for the Indian Size Guide
   const [sizeGuideOpen, setSizeGuideOpen] = useState(false);
 
-  // Wishlist heart toggle state
-  const [isWishlisted, setIsWishlisted] = useState(false);
+  // Wishlist context integration
+  const { isWishlisted: checkWishlist, toggleWishlist } = useWishlist();
+  const isWishlisted = checkWishlist(product.id);
 
   // Accordion active state for product specs
   const [openAccordion, setOpenAccordion] = useState<string | null>("fabric");
@@ -224,7 +226,7 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
         {/* Wishlist Heart Button */}
         <button
           type="button"
-          onClick={() => setIsWishlisted(!isWishlisted)}
+          onClick={() => toggleWishlist(product.id)}
           className="p-3 border border-editorial-gold/40 hover:border-editorial-terracotta bg-editorial-ivory flex items-center justify-center transition-colors"
           aria-label={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
         >

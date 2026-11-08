@@ -41,6 +41,8 @@ import { Badge } from "@/components/ui/Badge";
 import { MobileDrawer } from "./MobileDrawer";
 import { useCart } from "@/context/CartContext";
 import { useSearch } from "@/context/SearchContext";
+import { useWishlist } from "@/context/WishlistContext";
+import { mockProducts } from "@/lib/mockData";
 
 export interface HeaderProps {
   onSearchOpen?: () => void;
@@ -60,10 +62,10 @@ export function Header({ onSearchOpen, onCartOpen }: HeaderProps) {
   // References for outside click dismissal
   const headerContainerRef = useRef<HTMLDivElement>(null);
 
-  // Shared dynamic cart & search state
+  // Shared dynamic cart, search & wishlist state
   const { totalItems: cartCount, subtotal: cartSubtotal, openCart, closeCart, isOpen: isCartDrawerOpen } = useCart();
   const { openSearch, closeSearch, isSearchOpen } = useSearch();
-  const wishlistCount = 1;
+  const { wishlistCount, wishlistIds } = useWishlist();
 
   // ----------------------------------------------------------------------------
   // SCROLL & KEYBOARD EVENT HANDLERS
@@ -649,19 +651,42 @@ export function Header({ onSearchOpen, onCartOpen }: HeaderProps) {
                 </button>
               </div>
 
-              <div className="py-3 space-y-2.5">
-                <div className="flex items-center space-x-3 p-2 rounded-xl bg-editorial-ivory/60 border border-editorial-gold/20">
-                  <div className="w-12 h-14 rounded-md bg-editorial-emerald/10 border border-editorial-gold/30 flex items-center justify-center text-editorial-emerald font-serif text-xs">
-                    Silk
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h5 className="text-xs font-semibold text-editorial-charcoal truncate">
-                      Pure Chanderi Silk Anarkali Set
-                    </h5>
-                    <p className="text-[11px] text-editorial-slate">Size: M &bull; Emerald Green</p>
-                    <p className="text-xs font-semibold text-editorial-emerald mt-0.5">₹4,850</p>
-                  </div>
-                </div>
+              <div className="py-3 space-y-2.5 max-h-60 overflow-y-auto">
+                {wishlistCount === 0 ? (
+                  <p className="text-xs text-editorial-slate text-center py-4 italic">
+                    No saved pieces yet. Tap the heart on any heirloom to curate your wishlist.
+                  </p>
+                ) : (
+                  mockProducts
+                    .filter((p) => wishlistIds.includes(p.id))
+                    .map((item) => (
+                      <Link
+                        key={item.id}
+                        href={`/product/${item.slug}`}
+                        onClick={() => setWishlistOpen(false)}
+                        className="flex items-center space-x-3 p-2 rounded-xl bg-editorial-ivory/60 border border-editorial-gold/20 hover:border-editorial-terracotta/40 transition-colors group"
+                      >
+                        <div className="w-12 h-14 rounded-md bg-editorial-emerald/10 border border-editorial-gold/30 overflow-hidden shrink-0 relative">
+                          <img
+                            src={item.images[0]?.url || ""}
+                            alt={item.title}
+                            className="w-full h-full object-cover object-top"
+                          />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h5 className="text-xs font-semibold text-editorial-charcoal group-hover:text-editorial-terracotta transition-colors truncate">
+                            {item.title}
+                          </h5>
+                          <p className="text-[11px] text-editorial-slate truncate">
+                            {item.fabric || item.categoryName}
+                          </p>
+                          <p className="text-xs font-semibold text-editorial-emerald mt-0.5">
+                            ₹{item.basePrice.toLocaleString("en-IN")}
+                          </p>
+                        </div>
+                      </Link>
+                    ))
+                )}
               </div>
 
               <div className="pt-3 border-t border-editorial-gold/20">
